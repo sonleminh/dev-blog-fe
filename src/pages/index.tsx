@@ -1,3 +1,10 @@
+import Banner from '@/components/_pages/trang-chu';
+import LayoutContainer from '@/components/sharing/layout-container';
+
 export default function Home() {
-  return <h1>Hello, Next.js!</h1>;
+  return (
+    <LayoutContainer>
+      <Banner />
+    </LayoutContainer>
+  );
 }

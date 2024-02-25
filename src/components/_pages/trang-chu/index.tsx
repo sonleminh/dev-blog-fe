@@ -3,6 +3,8 @@ import { Box, Grid, SxProps, Typography } from '@mui/material';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
+import { truncateTextByLine } from '@/utils/css-helper.util';
+import SkeletonImage from '@/components/common/SkeletonImage';
 
 const Banner = () => {
   return (
@@ -21,60 +23,78 @@ const Banner = () => {
           className='article-item'>
           <Box className='article-item-thumb'>
             <Link href={'/'}>
-              <Image
-                src={
-                  'https://firebasestorage.googleapis.com/v0/b/dev-blog-7a694.appspot.com/o/cau-hoi-cho-nha-tuyen-dung-it-534x462.png?alt=media&token=cae6b033-a0cd-4a06-a24f-f5a60c0691ac'
-                }
-                fill
-                alt='cc'
-              />
+              <Box
+                sx={{
+                  position: 'relative',
+                  height: { xs: '250px', sm: '250px', md: '100%' },
+                }}>
+                <SkeletonImage
+                  src={
+                    'https://firebasestorage.googleapis.com/v0/b/dev-blog-7a694.appspot.com/o/cau-hoi-cho-nha-tuyen-dung-it-534x462.png?alt=media&token=cae6b033-a0cd-4a06-a24f-f5a60c0691ac'
+                  }
+                  priority
+                  alt='cc'
+                />
+              </Box>
             </Link>
           </Box>
           <Box className='article-item-info'>
-            <Typography>
+            <Typography className='info-title'>
               Front-end developer lên trình như thế nào? Bạn đã thực sự hiểu về
               Front-End?
             </Typography>
-            <Typography>February 16, 2024</Typography>
+            <Typography className='info-date'>February 16, 2024</Typography>
           </Box>
         </Grid>
         <Grid item sx={{ bgcolor: 'pink' }} className='article-item'>
           <Box className='article-item-thumb'>
             <Link href={'/'}>
-              <Image
-                src={
-                  'https://firebasestorage.googleapis.com/v0/b/dev-blog-7a694.appspot.com/o/cau-hoi-cho-nha-tuyen-dung-it-534x462.png?alt=media&token=cae6b033-a0cd-4a06-a24f-f5a60c0691ac'
-                }
-                fill
-                alt='cc'
-              />
+              <Box
+                sx={{
+                  position: 'relative',
+                  height: { xs: '250px', sm: '250px', md: '100%' },
+                }}>
+                <SkeletonImage
+                  src={
+                    'https://firebasestorage.googleapis.com/v0/b/dev-blog-7a694.appspot.com/o/cau-hoi-cho-nha-tuyen-dung-it-534x462.png?alt=media&token=cae6b033-a0cd-4a06-a24f-f5a60c0691ac'
+                  }
+                  priority
+                  alt='cc'
+                />
+              </Box>
             </Link>
           </Box>
           <Box className='article-item-info'>
-            <Typography>
+            <Typography className='info-title'>
               Top 30+ câu hỏi cho nhà tuyển dụng IT khi phỏng vấn
             </Typography>
-            <Typography>February 20, 2024</Typography>
+            <Typography className='info-date'>February 20, 2024</Typography>
           </Box>
         </Grid>
         <Grid item sx={{ bgcolor: 'pink' }} className='article-item'>
           <Box className='article-item-thumb'>
             <Link href={'/'}>
-              <Image
-                src={
-                  'https://firebasestorage.googleapis.com/v0/b/dev-blog-7a694.appspot.com/o/cau-hoi-cho-nha-tuyen-dung-it-534x462.png?alt=media&token=cae6b033-a0cd-4a06-a24f-f5a60c0691ac'
-                }
-                fill
-                alt='cc'
-              />
+              <Box
+                sx={{
+                  position: 'relative',
+                  height: { xs: '250px', sm: '250px', md: '100%' },
+                }}>
+                <SkeletonImage
+                  src={
+                    'https://firebasestorage.googleapis.com/v0/b/dev-blog-7a694.appspot.com/o/cau-hoi-cho-nha-tuyen-dung-it-534x462.png?alt=media&token=cae6b033-a0cd-4a06-a24f-f5a60c0691ac'
+                  }
+                  priority
+                  alt='cc'
+                />
+              </Box>
             </Link>
           </Box>
           <Box className='article-item-info'>
-            <Typography>
+            <Typography className='info-title'>
               Front-end developer lên trình như thế nào? Bạn đã thực sự hiểu về
               Front-End?
             </Typography>
-            <Typography>February 16, 2024</Typography>
+            <Typography className='info-date'>February 16, 2024</Typography>
           </Box>
         </Grid>
       </Grid>
@@ -90,6 +110,7 @@ const BannerContainer: SxProps<Theme> = {
     position: 'relative',
     overflow: 'hidden',
     '.article-item-thumb': {
+      height: '100%',
       '& a': {
         ':before': {
           bottom: '0',
@@ -115,7 +136,22 @@ const BannerContainer: SxProps<Theme> = {
       position: 'absolute',
       bottom: 0,
       width: '100%',
+      padding: '0 20px 10px',
       zIndex: 1,
+    },
+    '.info-title': {
+      mb: 1,
+      color: '#fff',
+      textShadow: '1px 1px 3px rgba(0, 0, 0, 0.2)',
+      ...truncateTextByLine(3),
+      fontSize: 22,
+      lineHeight: '28px',
+      fontWeight: 600,
+    },
+    '.info-date': {
+      color: '#fff',
+      textShadow: '1px 1px 1px rgba(0, 0, 0, 0.3)',
+      fontSize: 12,
     },
     ':hover': {
       bgcolor: 'pink',

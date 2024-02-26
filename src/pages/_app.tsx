@@ -4,6 +4,9 @@ import { Roboto } from 'next/font/google';
 import React from 'react';
 import { ColorModeProvider } from '@/contexts/ColorModeContext';
 import { CssBaseline, ThemeProvider, createTheme } from '@mui/material';
+import 'swiper/css';
+import 'swiper/css/pagination';
+import './index.css';
 
 const roboto = Roboto({
   weight: '400',

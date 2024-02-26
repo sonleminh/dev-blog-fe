@@ -46,7 +46,7 @@ const Banner = () => {
             <Typography className='info-date'>February 16, 2024</Typography>
           </Box>
         </Grid>
-        <Grid item sx={{ bgcolor: 'pink' }} className='article-item'>
+        <Grid item className='article-item'>
           <Box className='article-item-thumb'>
             <Link href={'/'}>
               <Box
@@ -71,7 +71,7 @@ const Banner = () => {
             <Typography className='info-date'>February 20, 2024</Typography>
           </Box>
         </Grid>
-        <Grid item sx={{ bgcolor: 'pink' }} className='article-item'>
+        <Grid item className='article-item'>
           <Box className='article-item-thumb'>
             <Link href={'/'}>
               <Box

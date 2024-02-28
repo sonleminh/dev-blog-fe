@@ -6,6 +6,7 @@ import { ColorModeProvider } from '@/contexts/ColorModeContext';
 import { CssBaseline, ThemeProvider, createTheme } from '@mui/material';
 import 'swiper/css';
 import 'swiper/css/pagination';
+import 'swiper/css/navigation';
 import './index.css';
 
 const roboto = Roboto({

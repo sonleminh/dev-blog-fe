@@ -3,11 +3,13 @@ import LayoutContainer from '@/components/sharing/layout-container';
 import { Box, Grid, Typography } from '@mui/material';
 import React from 'react';
 import { truncateTextByLine } from '@/utils/css-helper.util';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Pagination } from 'swiper/modules';
 
 const Blog = () => {
   return (
     <LayoutContainer>
-      <Grid container spacing={4}>
+      {/* <Grid container spacing={4}>
         <Grid item xs={8}>
           <Typography sx={{ mb: 2, fontSize: 18, fontWeight: 600 }}>
             Blog
@@ -135,7 +137,34 @@ const Blog = () => {
             </Grid>
           </Box>
         </Grid>
-      </Grid>
+      </Grid> */}
+      cc
+      <Swiper
+        direction={'vertical'}
+        pagination={{
+          clickable: true,
+        }}
+        autoHeight={true}
+        modules={[Pagination]}
+        className='mySwiper4'>
+        {/* {[1, 2, 3, 4, 5].map((item, index) => (
+          <SwiperSlide key={index}>
+            <Box sx={{ bgcolor: 'pink' }}>Slide 1</Box>
+          </SwiperSlide>
+        ))} */}
+        <SwiperSlide>
+          <Box sx={{ height: 300, bgcolor: 'pink' }}>Slide 1</Box>
+        </SwiperSlide>
+        <SwiperSlide>
+          <Box sx={{ height: 300, bgcolor: 'pink' }}>Slide 2</Box>
+        </SwiperSlide>
+        <SwiperSlide>
+          <Box sx={{ height: 300, bgcolor: 'pink' }}>Slide 3</Box>
+        </SwiperSlide>
+        <SwiperSlide>
+          <Box sx={{ height: 300, bgcolor: 'pink' }}>Slide 4</Box>
+        </SwiperSlide>
+      </Swiper>
     </LayoutContainer>
   );
 };

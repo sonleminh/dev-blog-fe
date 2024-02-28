@@ -1,7 +1,7 @@
 import Banner from '@/components/_pages/trang-chu';
 import SkeletonImage from '@/components/common/SkeletonImage';
 import LayoutContainer from '@/components/sharing/layout-container';
-import { Box, Grid, Typography } from '@mui/material';
+import { Box, Grid, SxProps, Theme, Typography } from '@mui/material';
 import { truncateTextByLine } from '@/utils/css-helper.util';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper/modules';
@@ -24,7 +24,7 @@ export default function Home() {
                     mb: 2,
                   }}>
                   <Typography sx={{ fontSize: 18, fontWeight: 600 }}>
-                    Latest
+                    Mới nhất
                   </Typography>
                   <Typography sx={{ fontSize: 12 }}>View all</Typography>
                 </Box>
@@ -111,14 +111,14 @@ export default function Home() {
                             fontSize: 13,
                             lineHeight: '20px',
                           }}>
-                          Read more
+                          Đọc thêm
                         </Typography>
                       </Box>
                     </Grid>
                   ))}
                 </Grid>
               </Box>
-              <Box>
+              <Box sx={ProgramingStyle}>
                 <Box
                   sx={{
                     display: 'flex',
@@ -126,17 +126,15 @@ export default function Home() {
                     mb: 2,
                   }}>
                   <Typography sx={{ fontSize: 18, fontWeight: 600 }}>
-                    Living
+                    Lập trình
                   </Typography>
-                  <Box sx={{}}>
-                    <KeyboardArrowLeftIcon
-                      // sx={prevBtn}
-                      className={`arrow-left`}
-                    />
-                    <KeyboardArrowRightIcon
-                      // sx={nextBtn}
-                      className={`arrow-right`}
-                    />
+                  <Box sx={{ display: 'flex' }}>
+                    <Box className={`arrow-left`}>
+                      <KeyboardArrowLeftIcon />
+                    </Box>
+                    <Box className={`arrow-right`}>
+                      <KeyboardArrowRightIcon />
+                    </Box>
                   </Box>
                 </Box>
                 <Swiper
@@ -191,7 +189,7 @@ export default function Home() {
                   mb: 2,
                 }}>
                 <Typography sx={{ fontSize: 18, fontWeight: 600 }}>
-                  Latest
+                  Mới nhất
                 </Typography>
                 <Typography sx={{ fontSize: 12 }}>View all</Typography>
               </Box>
@@ -241,7 +239,7 @@ export default function Home() {
               ))}
               <Box>
                 <Typography sx={{ fontSize: 18, fontWeight: 600 }}>
-                  Categories
+                  Danh mục
                 </Typography>
                 <Grid container spacing={2}>
                   {[1, 2, 3, 4].map((item, index) => (
@@ -283,3 +281,29 @@ export default function Home() {
     </LayoutContainer>
   );
 }
+
+const ProgramingStyle: SxProps<Theme> = {
+  '.arrow-left, .arrow-right': {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '26px',
+    height: '26px',
+    bgcolor: (theme) => theme.palette.primary.light,
+    color: '#fff',
+    borderRadius: '10px',
+    '& svg': {
+      fontSize: 18,
+    },
+    cursor: 'pointer',
+    transition: 'all .2s linear',
+  },
+  '.arrow-right': {
+    ml: 0.5,
+  },
+  '.swiper-button-disabled': {
+    bgcolor: '#F0F2FE',
+    color: '#000',
+    cursor: 'default',
+  },
+};

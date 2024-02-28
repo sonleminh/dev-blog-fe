@@ -17,6 +17,10 @@ function ColorModeProvider({ children }: { children: ReactNode }) {
   const darkTheme = createTheme({
     palette: {
       mode,
+      primary: {
+        main: '#000',
+        light: '#3d55ef',
+      },
     },
   });
 

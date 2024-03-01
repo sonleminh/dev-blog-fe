@@ -3,7 +3,7 @@ import React, { ReactNode } from 'react';
 
 const LayoutContainer = ({ children }: { children: ReactNode }) => {
   return (
-    <Box px={{ xs: '4%', sm: '5%', md: '6%', lg: '7%', xl: '15%' }}>
+    <Box px={{ xs: '4%', sm: '5%', md: '6%', lg: '7%', xl: '22%' }}>
       {children}
     </Box>
   );

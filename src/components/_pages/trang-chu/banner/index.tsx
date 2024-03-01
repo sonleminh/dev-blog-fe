@@ -7,8 +7,8 @@ import { truncateTextByLine } from '@/utils/css-helper.util';
 import SkeletonImage from '@/components/common/SkeletonImage';
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import ThumbSwiper from './components/ThumbSwiper';
 import MainSwiper from './components/MainSwiper';
+import ThumbSwiper from './components/ThumbSwiper';
 
 const fakeNews = [
   {
@@ -57,61 +57,8 @@ const Banner = () => {
 
   return (
     <Box sx={BannerContainer}>
-      <MainSwiper data={fakeNews} thumbsSwiper={thumbsSwiper}></MainSwiper>
+      <MainSwiper data={fakeNews} thumbsSwiper={thumbsSwiper} />
       <ThumbSwiper data={fakeNews} setThumbsSwiper={setThumbsSwiper} />
-      {/* <ThumbSwiper data={[1, 2, 3, 4, 5]} /> */}
-
-      {/* <Swiper
-        spaceBetween={30}
-        centeredSlides={true}
-        autoplay={{
-          delay: 2500,
-          disableOnInteraction: false,
-        }}
-        navigation={true}
-        modules={[Autoplay, Navigation]}
-        onAutoplayTimeLeft={onAutoplayTimeLeft}
-        className='mySwiper'>
-        {[1, 2, 3, 4, 5].map((item, index) => (
-          <SwiperSlide key={index}>
-            <Box>
-              <Link href={'/blog/1'}>
-                {' '}
-                <Box
-                  sx={{
-                    position: 'relative',
-                    width: '100%',
-                    height: { xs: '400px', sm: '400px', md: '400px' },
-                    mb: 1,
-                    borderRadius: '8px',
-                    overflow: 'hidden',
-                    '& img': {
-                      objectFit: 'cover',
-                    },
-                  }}>
-                  <SkeletonImage
-                    src={
-                      'https://firebasestorage.googleapis.com/v0/b/dev-blog-7a694.appspot.com/o/cau-hoi-cho-nha-tuyen-dung-it-534x462.png?alt=media&token=cae6b033-a0cd-4a06-a24f-f5a60c0691ac'
-                    }
-                    alt='cc'
-                    fill
-                  />
-                </Box>
-              </Link>
-            </Box>
-            <Link href={'/'}>
-              Front-end developer lên trình như thế nào? Bạn đã thực sự hiểu về
-              Front-End?
-            </Link>
-          </SwiperSlide>
-        ))}
-        <div className='autoplay-progress' slot='container-end'>
-          <svg viewBox='0 0 48 48' ref={progressCircle}>
-            <circle cx='24' cy='24' r='20'></circle>
-          </svg>
-          <span ref={progressContent}></span>
-        </div>
-      </Swiper> */}
     </Box>
   );
 };

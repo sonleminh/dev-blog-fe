@@ -22,6 +22,9 @@ function ColorModeProvider({ children }: { children: ReactNode }) {
         light: '#3d55ef',
       },
     },
+    typography: {
+      fontFamily: 'unset',
+    },
   });
 
   return (

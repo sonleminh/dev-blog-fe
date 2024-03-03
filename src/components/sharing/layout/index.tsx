@@ -13,7 +13,6 @@ type LayoutType = {
 const Layout = ({ children }: LayoutType) => {
   const theme = useTheme();
   const context = React.useContext(ColorModeContext);
-
   return (
     <>
       <Header />

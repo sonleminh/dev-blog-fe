@@ -25,8 +25,8 @@ const ThumbSwiper = (props: any) => {
         }}
         modules={[Autoplay, FreeMode, Navigation, Thumbs]}
         className='mySwiper'>
-        {props?.data?.map((item: any) => (
-          <SwiperSlide key={item}>
+        {props?.data?.map((item: any, index: number) => (
+          <SwiperSlide key={index}>
             <Box className='thumb-item'>
               <Box
                 className='thumb-container'

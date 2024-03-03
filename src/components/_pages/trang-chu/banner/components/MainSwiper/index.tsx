@@ -22,8 +22,8 @@ const MainSwiper = (props: any) => {
         }}
         modules={[Autoplay, FreeMode, Thumbs]}
         className='mainSwiper'>
-        {props?.data?.map((item: any) => (
-          <SwiperSlide key={item}>
+        {props?.data?.map((item: any, index: number) => (
+          <SwiperSlide key={index}>
             <Box
               sx={{
                 position: 'relative',

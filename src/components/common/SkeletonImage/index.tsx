@@ -28,6 +28,7 @@ const SkeletonImage: React.FC<ImageProps> = (props) => {
       onError={() => {
         setIsError(true);
       }}
+      priority
     />
   );
 };

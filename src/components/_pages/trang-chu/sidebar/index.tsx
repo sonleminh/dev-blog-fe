@@ -1,11 +1,19 @@
+import AppLink from '@/components/common/AppLink';
 import SkeletonImage from '@/components/common/SkeletonImage';
 import { truncateTextByLine } from '@/utils/css-helper.util';
-import { Box, Grid, SxProps, Theme, Typography } from '@mui/material';
+import {
+  Box,
+  Button,
+  Chip,
+  Grid,
+  SxProps,
+  Theme,
+  Typography,
+} from '@mui/material';
 
 const Sidebar = () => {
   return (
     <Box>
-      {' '}
       <Box sx={{ mb: 4 }}>
         <Box
           sx={{
@@ -60,6 +68,39 @@ const Sidebar = () => {
             </Box>
           </Box>
         ))}
+      </Box>
+      <Box mb={4}>
+        <Typography sx={{ mb: 2, fontSize: 18, fontWeight: 600 }}>
+          Tags
+        </Typography>
+        <Box
+          sx={{
+            display: 'flex',
+            flexWrap: 'wrap',
+            gap: '10px',
+          }}>
+          {[1, 2, 3, 4].map((item, index) => (
+            <AppLink key={index} href={'/'}>
+              <Button
+                variant='contained'
+                sx={{
+                  p: '4px 8px',
+                  bgcolor: '#eee',
+                  color: '#000',
+                  fontSize: 13,
+                  borderRadius: '10px',
+                  textTransform: 'none',
+                  boxShadow: 'none',
+                  ':hover': {
+                    bgcolor: (theme) => theme.palette.primary.light,
+                    color: '#fff',
+                  },
+                }}>
+                Lập trình
+              </Button>
+            </AppLink>
+          ))}
+        </Box>
       </Box>
       <Box>
         <Typography sx={{ mb: 2, fontSize: 18, fontWeight: 600 }}>

@@ -40,19 +40,6 @@ const fakeNews = [
 ];
 
 const Banner = () => {
-  const progressCircle = useRef<SVGSVGElement>(null);
-  const progressContent = useRef<HTMLSpanElement>(null);
-  const onAutoplayTimeLeft = (_, time: any, progress: any) => {
-    console.log('time:', time);
-    console.log('progress:', progress);
-    if (progressCircle.current) {
-      progressCircle.current.style.setProperty('--progress', `${1 - progress}`);
-    }
-    if (progressContent.current) {
-      progressContent.current.textContent = `${Math.ceil(time / 1000)}s`;
-    }
-  };
-
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
 
   return (

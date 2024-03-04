@@ -20,6 +20,7 @@ import { useRouter } from 'next/navigation';
 import { useFormik } from 'formik';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import { postRequest } from '@/utils/fetch-client';
 
 const Login = () => {
   const router = useRouter();
@@ -32,6 +33,11 @@ const Login = () => {
     },
     onSubmit: (values) => {
       console.log(values);
+      postRequest('auth/signin', values)
+        .then((data) => {
+          console.log(data);
+        })
+        .catch((err) => console.log(err?.message, 'error'));
     },
   });
   return (
@@ -102,6 +108,11 @@ const Login = () => {
             type={isVisible ? '' : 'password'}
             name='password'
             onChange={formik.handleChange}
+            onKeyDown={(event) => {
+              if (event.key === 'Enter') {
+                formik.handleSubmit();
+              }
+            }}
             value={formik.values.password}
           />
           <Box

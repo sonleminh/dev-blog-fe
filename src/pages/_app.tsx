@@ -9,6 +9,10 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import './index.css';
 import { SessionProvider } from 'next-auth/react';
+import { AuthContextProvider } from '@/contexts/AuthContext';
+import { QueryClient, QueryClientProvider } from 'react-query';
+
+const query = new QueryClient();
 
 const roboto = Roboto({
   weight: ['300', '400', '500', '700', '900'],
@@ -18,15 +22,19 @@ const roboto = Roboto({
 export default function App({ Component, pageProps }: AppPropsWithLayout) {
   const Layout = Component.Layout ?? EmptyLayout;
   return (
-    <ColorModeProvider>
-      <CssBaseline />
-      <main className={roboto.className}>
-        <SessionProvider session={pageProps.session}>
-          <Layout>
-            <Component {...pageProps} />
-          </Layout>
-        </SessionProvider>
-      </main>
-    </ColorModeProvider>
+    <QueryClientProvider client={query}>
+      <AuthContextProvider>
+        <ColorModeProvider>
+          <CssBaseline />
+          <main className={roboto.className}>
+            <SessionProvider session={pageProps.session}>
+              <Layout>
+                <Component {...pageProps} />
+              </Layout>
+            </SessionProvider>
+          </main>
+        </ColorModeProvider>
+      </AuthContextProvider>
+    </QueryClientProvider>
   );
 }

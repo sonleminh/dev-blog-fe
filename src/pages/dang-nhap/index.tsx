@@ -20,10 +20,13 @@ import { useRouter } from 'next/navigation';
 import { useFormik } from 'formik';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import { useSignInMutate } from '@/services/auth';
 
 const Login = () => {
   const router = useRouter();
   const { data, status } = useSession();
+  const { mutate } = useSignInMutate();
+
   const [isVisible, setIsVisible] = useState(false);
   const formik = useFormik({
     initialValues: {
@@ -32,6 +35,7 @@ const Login = () => {
     },
     onSubmit: (values) => {
       console.log(values);
+      mutate(values);
     },
   });
   return (

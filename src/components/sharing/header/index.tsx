@@ -16,8 +16,11 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { signOut, useSession } from 'next-auth/react';
 import SkeletonImage from '@/components/common/SkeletonImage';
 import { useEffect, useRef, useState } from 'react';
+import { useAuthContext } from '@/contexts/AuthContext';
 
 const Header = () => {
+  const auth = useAuthContext();
+  console.log(auth);
   const { data, status } = useSession();
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -67,7 +70,7 @@ const Header = () => {
               display: 'flex',
               alignItems: 'center',
             }}>
-            {data ? (
+            {data || auth?.user ? (
               <Box
                 sx={{
                   position: 'relative',
@@ -104,7 +107,7 @@ const Header = () => {
                   />
                 </Box>
                 <Typography sx={{ fontWeight: 500 }}>
-                  {data?.user?.name}
+                  {data?.user?.name || auth?.user?.name}
                 </Typography>
                 {isOpen ? (
                   <Box

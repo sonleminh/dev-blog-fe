@@ -1,4 +1,6 @@
+import { ACCESS_TOKEN_KEY } from '@/constants/const';
 import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
+import Cookies from 'js-cookie';
 
 export const privateInstance = axios.create({
   baseURL: process.env.NEXT_PUBLIC_HOST,
@@ -6,11 +8,10 @@ export const privateInstance = axios.create({
 
 privateInstance.interceptors.request.use(
   (config) => {
-    // const accessToken = Cookies.get(ACCESS_TOKEN_KEY);
-    // if (accessToken) {
-    //   config.headers.Authorization = `Bearer ${accessToken}`;
-    // }
-
+    const accessToken = Cookies.get(ACCESS_TOKEN_KEY);
+    if (accessToken) {
+      config.headers.Authorization = `Bearer ${accessToken}`;
+    }
     return config;
   },
   async (error) => Promise.reject(error)

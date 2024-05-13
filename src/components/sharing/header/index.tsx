@@ -27,7 +27,6 @@ import { useRouter } from 'next/navigation';
 
 const Header = () => {
   // const auth = useAuthContext();
-  console.log('header');
   // const { data, status } = useSession();
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
@@ -183,6 +182,7 @@ const Header = () => {
                 alignItems: 'center',
                 border: '2px solid #000',
                 borderRadius: 2,
+                fontWeight: 500,
               }}>
               <AccountCircleIcon sx={{ mr: 0.5 }} />
               Đăng nhập

@@ -65,7 +65,7 @@ const Header = () => {
             justifyContent: 'space-between',
             alignItems: 'center',
             height: 80,
-            fontWeight: 600,
+            // fontWeight: 600,
           }}>
           <Box
             sx={{

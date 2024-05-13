@@ -3,7 +3,7 @@ import { Dosis } from 'next/font/google';
 import AppLink from '@/components/common/AppLink';
 import { Box, Typography } from '@mui/material';
 
-const dosis = Dosis({ subsets: ['latin'] });
+// const dosis = Dosis({ subsets: ['latin'] });
 
 const HeaderLogo = () => {
   return (
@@ -15,11 +15,13 @@ const HeaderLogo = () => {
         bgcolor: '#000',
         color: '#fff',
         fontSize: 18,
-        fontWeight: 700,
+        // fontWeight: 700,
         borderRadius: '8px',
       }}
-      className={dosis.className}>
-      <span> &lt; devblog / &gt;</span>
+      // className={dosis.className}
+    >
+      {/* <span> &lt; devblog / &gt;</span> */}
+      abcdxyz
     </Box>
   );
 };

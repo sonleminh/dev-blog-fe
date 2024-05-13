@@ -29,8 +29,8 @@ export default function RootLayout({
       <SessionProvider>
         <html lang='en'>
           <ColorModeProvider>
-            <CssBaseline />
             <body className={inter.className}>
+              <CssBaseline />
               <Layout>{children}</Layout>
             </body>
           </ColorModeProvider>

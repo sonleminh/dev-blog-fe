@@ -24,6 +24,7 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import { useSignInMutate } from '@/services/auth';
 import { useSessionContext } from '@/contexts/SessionContext';
+import { signIn } from 'next-auth/react';
 
 const Login = () => {
   const router = useRouter();
@@ -37,8 +38,13 @@ const Login = () => {
       username: '',
       password: '',
     },
-    onSubmit: (values) => {
-      signinMutation.mutate(values);
+    onSubmit: async (values) => {
+      // signinMutation.mutate(values);
+      const res = await signIn('credentials', {
+        username: values.username,
+        password: values.password,
+      });
+      console.log('1:', res);
     },
   });
 

@@ -9,7 +9,7 @@ import { useRouter } from 'next/navigation';
 
 const authUrl = 'auth';
 
-const signInAPI = async (payload: ISignInPayload) => {
+export const signInAPI = async (payload: ISignInPayload) => {
   const result = await postRequest(
     `http://localhost:8080/admin/api/${authUrl}/signin`,
     payload

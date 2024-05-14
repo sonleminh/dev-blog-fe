@@ -25,7 +25,7 @@ export function useSignInMutate() {
     mutationFn: signInAPI,
     onSuccess: (data: ISignInResponse) => {
       console.log('success:', data);
-      postRequest('http://localhost:3000/api/auth', data);
+      postRequest('http://localhost:3000/api', data);
       setSessionToken(data.accessToken);
       router.push('/');
     },

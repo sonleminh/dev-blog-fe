@@ -43,8 +43,10 @@ const Login = () => {
       const res = await signIn('credentials', {
         username: values.username,
         password: values.password,
+        redirect: false,
       });
-      console.log('1:', res);
+
+      console.log(res);
     },
   });
 

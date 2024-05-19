@@ -22,12 +22,14 @@ import { useQuery } from '@tanstack/react-query';
 import { getRequest } from '@/utils/fetch-client';
 import { signoutAPI } from '@/services/auth';
 import { useRouter } from 'next/navigation';
+import { useSession } from 'next-auth/react';
 
 // import { useAuthContext } from '@/contexts/AuthContext';
 
 const Header = () => {
   // const auth = useAuthContext();
-  // const { data, status } = useSession();
+  const { data, status } = useSession();
+  console.log('data:', data);
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);

@@ -1,102 +1,72 @@
-import { signInAPI, useSignInMutate } from '@/services/auth';
+import { ISignInPayload } from '@/interfaces/ISignIn';
+import { ISignInResponse } from '@/interfaces/IUser';
+import { signInAPI } from '@/services/auth';
+import { postRequest } from '@/utils/fetch-client';
 import { NextAuthOptions } from 'next-auth';
 import NextAuth from 'next-auth/next';
-import Credentials from 'next-auth/providers/credentials';
-import GitHubProvider from 'next-auth/providers/github';
+import CredentialsProvider from 'next-auth/providers/credentials';
+
+async function signIn(credentials: any) {
+  const result = (await postRequest(
+    `http://localhost:8080/admin/api/auth/signin`,
+    credentials
+  )) as ISignInResponse;
+  // if (!result.name) {
+  //   throw new Error('Wrong credentials');
+  // }
+  return result;
+}
 
 export const authOptions: NextAuthOptions = {
-  // providers: [
-  //   GitHubProvider({
-  //     clientId: process.env.GITHUB_ID ?? '',
-  //     clientSecret: process.env.GITHUB_SECRET ?? '',
-  //   }),
-  // ],
-  session: {
-    strategy: 'jwt',
-  },
   providers: [
-    Credentials({
-      type: 'credentials',
-      credentials: {
-        username: {
-          label: 'Username',
-          type: 'text',
-          placeholder: 'Enter your username',
-        },
-        password: {
-          label: 'Password',
-          type: 'password',
-          placeholder: 'Enter your password',
-        },
-      },
-      authorize: async (credentials, req) => {
+    CredentialsProvider({
+      name: 'credentials',
+      credentials: {},
+      async authorize(credentials) {
+        // const user = await signIn(credentials);
+        // if (user.name) {
+        //   return user as ISignInResponse;
+        // } else {
+        //   return null;
+        // }
         try {
-          if (!credentials) return null;
-          const user = await signInAPI({
-            username: credentials.username,
-            password: credentials.password,
-          });
+          const user = await signIn(credentials);
+          console.log(user);
+          if (!user.name) {
+            // throw Error('Wrong credentials!!');
 
-          if (user && user.name) {
-            return { name: user.name, id: '1' };
-          } else {
             return null;
           }
+          return user as ISignInResponse;
         } catch (error) {
-          throw new Error('Invalid username or password');
+          console.log('Error:', error);
+          throw new Error('Failed to login');
         }
-        // const user = { id: '1', name: 'J Smith', email: 'jsmith@example.com' };
-
-        // if (!user) {
-        //   throw new Error('No user found with the entered username');
-        // }
-
-        // return user;
       },
-      //     //     const user = { id: '1', name: 'J Smith', email: 'jsmith@example.com' };
-      //     //     const { username, password } = credentials as {
-      //     //       username: string;
-      //     //       password: string;
-      //     //     };
-
-      //     //     const result = await signInAPI({
-      //     //       username: username,
-      //     //       password: password,
-      //     //     });
-
-      //     //     if (user) {
-      //     //       // Any object returned will be saved in `user` property of the JWT
-      //     //       return {
-      //     //         id: '1234',
-      //     //         name: 'John Doe',
-      //     //         email: 'john@gmail.com',
-      //     //         role: 'admin',
-      //     //       };
-      //     //     } else {
-      //     //       // If you return null then an error will be displayed advising the user to check their details.
-      //     //       return {
-      //     //         id: '1234',
-      //     //         name: 'John Doe',
-      //     //         email: 'john@gmail.com',
-      //     //         role: 'admin',
-      //     //       };
-
-      //     //       // You can also Reject this callback with an Error thus the user will be sent to the error page with the error message as a query parameter
-      //     //     }
-      //     //     // if (!result.name) {
-      //     //     //   throw new Error('invalid credentials');
-      //     //     // }
-
-      //     //     // return { id: '1', name: 'c' };
-      //     //   },
     }),
   ],
-  // pages: {
-  //   signIn: '/dang-nhap',
-  //   error: '/',
-  //   // signOut: '/auth/signout'
+  pages: {
+    signIn: '/dang-nhap',
+  },
+  // callbacks: {
+  //   async jwt({ token, user }) {
+  //     if (user) {
+  //       token.id = user.id;
+  //       token.name = user.name;
+  //       token.accessToken = user.accessToken;
+  //     }
+  //     return token;
+  //   },
+  //   async session({ session,token }) {
+  //     if (token) {
+  //       session.user.id = token.id;
+  //       session.user.name = token.name;
+  //       session.user.accessToken = token.accessToken;
+  //     }
+  //     return session;
+  //   },
   // },
 };
-export const handler = NextAuth(authOptions);
+const handler = NextAuth(authOptions);
 
-// export { handler as GET, handler as POST };
+export { handler as GET, handler as POST };

@@ -1,4 +1,5 @@
 import Layout from '@/components/sharing/layout';
+import AuthProvider from '@/contexts/AuthProvider';
 import { ColorModeProvider } from '@/contexts/ColorModeContext';
 import { QueryContextProvider } from '@/contexts/QueryContext';
 import { SessionProvider } from '@/contexts/SessionContext';
@@ -26,16 +27,18 @@ export default function RootLayout({
 }>) {
   return (
     <QueryContextProvider>
-      <SessionProvider>
-        <html lang='en'>
-          <ColorModeProvider>
-            <body className={inter.className}>
-              <CssBaseline />
-              <Layout>{children}</Layout>
-            </body>
-          </ColorModeProvider>
-        </html>
-      </SessionProvider>
+      <AuthProvider>
+        <SessionProvider>
+          <html lang='en'>
+            <ColorModeProvider>
+              <body className={inter.className}>
+                <CssBaseline />
+                <Layout>{children}</Layout>
+              </body>
+            </ColorModeProvider>
+          </html>
+        </SessionProvider>
+      </AuthProvider>
     </QueryContextProvider>
   );
 }

@@ -14,6 +14,7 @@ export const signInAPI = async (payload: ISignInPayload) => {
     `http://localhost:8080/admin/api/${authUrl}/signin`,
     payload
   );
+  console.log(result);
   return result as ISignInResponse;
 };
 
@@ -24,10 +25,9 @@ export function useSignInMutate() {
   return useMutation({
     mutationFn: signInAPI,
     onSuccess: (data: ISignInResponse) => {
-      console.log('success:', data);
       postRequest('http://localhost:3000/api', data);
       setSessionToken(data.accessToken);
-      router.push('/');
+      // router.push('/');
     },
     onError: (error) => console.log(error),
   });

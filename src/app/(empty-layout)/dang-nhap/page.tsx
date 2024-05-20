@@ -2,6 +2,7 @@
 
 import { AccountCircle } from '@mui/icons-material';
 import {
+  Alert,
   Box,
   Button,
   FormControl,
@@ -39,18 +40,18 @@ const Login = () => {
       password: '',
     },
     onSubmit: async (values) => {
-      signinMutation.mutate(values);
-      // try {
-      //   const res = await signIn('credentials', {
-      //     username: values.username,
-      //     password: values.password,
-      //     redirect: false,
-      //   });
+      // signinMutation.mutate(values);
+      try {
+        const res = await signIn('credentials', {
+          username: values.username,
+          password: values.password,
+          redirect: false,
+        });
 
-      //   console.log(res);
-      // } catch (error) {
-      //   console.log('Error:', error);
-      // }
+        console.log(res);
+      } catch (error) {
+        console.log('Error:', error);
+      }
     },
   });
 

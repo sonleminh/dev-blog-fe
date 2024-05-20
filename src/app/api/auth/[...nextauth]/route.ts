@@ -10,10 +10,8 @@ async function signIn(credentials: any) {
   const result = (await postRequest(
     `http://localhost:8080/admin/api/auth/signin`,
     credentials
-  )) as ISignInResponse;
-  // if (!result.name) {
-  //   throw new Error('Wrong credentials');
-  // }
+  )) as any;
+  console.log('rs:', result);
   return result;
 }
 
@@ -30,14 +28,14 @@ export const authOptions: NextAuthOptions = {
         //   return null;
         // }
         try {
-          const user = await signIn(credentials);
-          console.log(user);
-          if (!user.name) {
-            // throw Error('Wrong credentials!!');
+          const result = await signIn(credentials);
+          // console.log('user:', user);
+          // if (!user.name) {
+          //   // throw Error('Wrong credentials!!');
 
-            return null;
-          }
-          return user as ISignInResponse;
+          //   return null;
+          // }
+          return result?.user;
         } catch (error) {
           console.log('Error:', error);
           throw new Error('Failed to login');

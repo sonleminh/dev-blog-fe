@@ -4,8 +4,11 @@ import React from 'react';
 import Cookies from 'js-cookie';
 import { useQuery } from '@tanstack/react-query';
 import { whoIAmAPI } from '@/services/auth';
+import { useSession } from 'next-auth/react';
 
 const Profile = () => {
+  const { data: session, status } = useSession();
+  console.log('ss1:', session);
   // console.log('ck:', ck);
   // Cookies.set('name', 'John');
   // console.log('ck2:', Cookies.get('name'));

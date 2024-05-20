@@ -8,10 +8,10 @@ export interface ISignInResponse {
   name: string | null;
   accessToken: string;
   refreshToken: string;
-}
-
-export interface ISignInFailed {
-  message: string;
-  error: string;
-  statusCode: number;
+  // message: string;
+  // user?: { id: string; fullName: string | null };
+  // accessToken?: string;
+  // refreshToken?: string;
+  // error?: string;
+  // statusCode?: number;
 }

@@ -16,26 +16,17 @@ async function signIn(credentials: any) {
 }
 
 export const authOptions: NextAuthOptions = {
+  session: {
+    strategy: 'jwt',
+  },
   providers: [
     CredentialsProvider({
       name: 'credentials',
       credentials: {},
       async authorize(credentials) {
-        // const user = await signIn(credentials);
-        // if (user.name) {
-        //   return user as ISignInResponse;
-        // } else {
-        //   return null;
-        // }
         try {
           const result = await signIn(credentials);
-          // console.log('user:', user);
-          // if (!user.name) {
-          //   // throw Error('Wrong credentials!!');
-
-          //   return null;
-          // }
-          return result?.user;
+          return result?.user as ISignInResponse;
         } catch (error) {
           console.log('Error:', error);
           throw new Error('Failed to login');
@@ -46,24 +37,29 @@ export const authOptions: NextAuthOptions = {
   pages: {
     signIn: '/dang-nhap',
   },
-  // callbacks: {
-  //   async jwt({ token, user }) {
-  //     if (user) {
-  //       token.id = user.id;
-  //       token.name = user.name;
-  //       token.accessToken = user.accessToken;
-  //     }
-  //     return token;
-  //   },
-  //   async session({ session,token }) {
-  //     if (token) {
-  //       session.user.id = token.id;
-  //       session.user.name = token.name;
-  //       session.user.accessToken = token.accessToken;
-  //     }
-  //     return session;
-  //   },
-  // },
+  callbacks: {
+    async jwt({ token, user, session }) {
+      console.log('jwt:', { token, user, session });
+      if (user) {
+        return {
+          ...token,
+          id: user.id,
+        };
+        // token.id = user.id;
+        // token.name = user.name;
+        // token.accessToken = user.accessToken;
+      }
+      return token;
+    },
+    async session({ session, token, user }) {
+      console.log('session:', { session, token, user });
+
+      if (token.sub && session.user) {
+        session.user.id = token.sub;
+      }
+      return session;
+    },
+  },
 };
 const handler = NextAuth(authOptions);
 

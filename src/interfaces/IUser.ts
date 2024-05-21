@@ -5,13 +5,16 @@ export interface IUser {
 
 export interface ISignInResponse {
   id: string;
-  name: string | null;
-  accessToken: string;
-  refreshToken: string;
-  // message: string;
-  // user?: { id: string; fullName: string | null };
-  // accessToken?: string;
-  // refreshToken?: string;
-  // error?: string;
-  // statusCode?: number;
+  // name: string | null;
+  // accessToken: string;
+  // refreshToken: string;
+  message: string;
+  user?: {
+    id: string;
+    name: string | null;
+    accessToken?: string;
+    refreshToken?: string;
+  };
+  error?: string;
+  statusCode?: number;
 }

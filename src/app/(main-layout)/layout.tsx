@@ -1,12 +1,10 @@
 import Layout from '@/components/sharing/layout';
-import AuthProvider from '@/contexts/AuthProvider';
 import { ColorModeProvider } from '@/contexts/ColorModeContext';
 import { QueryContextProvider } from '@/contexts/QueryContext';
 import { SessionProvider } from '@/contexts/SessionContext';
 import { Box, CssBaseline } from '@mui/material';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import type { Metadata } from 'next';
-import { getServerSession } from 'next-auth';
 import { Inter } from 'next/font/google';
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -26,23 +24,18 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const session = await getServerSession();
-  console.log('ss:', session);
-
   return (
     <QueryContextProvider>
-      <AuthProvider>
-        <SessionProvider>
-          <html lang='en'>
-            <ColorModeProvider>
-              <body className={inter.className}>
-                <CssBaseline />
-                <Layout>{children}</Layout>
-              </body>
-            </ColorModeProvider>
-          </html>
-        </SessionProvider>
-      </AuthProvider>
+      <SessionProvider>
+        <html lang='en'>
+          <ColorModeProvider>
+            <body className={inter.className}>
+              <CssBaseline />
+              <Layout>{children}</Layout>
+            </body>
+          </ColorModeProvider>
+        </html>
+      </SessionProvider>
     </QueryContextProvider>
   );
 }

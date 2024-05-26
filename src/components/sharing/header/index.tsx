@@ -22,11 +22,13 @@ import { useQuery } from '@tanstack/react-query';
 import { getRequest } from '@/utils/fetch-client';
 import { signoutAPI } from '@/services/auth';
 import { useRouter } from 'next/navigation';
+import { useAuthContext } from '@/contexts/AuthContext';
 
 // import { useAuthContext } from '@/contexts/AuthContext';
 
 const Header = () => {
-  // const auth = useAuthContext();
+  const auth = useAuthContext();
+  console.log('auth:', auth?.user);
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -50,7 +52,7 @@ const Header = () => {
     const result = await getRequest(
       `http://localhost:8080/admin/api/auth/signout`
     );
-    console.log('dangxuated');
+    // console.log('dangxuated');
     router.push('/dang-nhap');
   };
 

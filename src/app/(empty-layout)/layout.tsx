@@ -1,3 +1,4 @@
+import { AuthContextProvider } from '@/contexts/AuthContext';
 import { ColorModeProvider } from '@/contexts/ColorModeContext';
 import { QueryContextProvider } from '@/contexts/QueryContext';
 import { SessionProvider as CookieSessionProvider } from '@/contexts/SessionContext';
@@ -28,14 +29,16 @@ export default async function RootLayout({
   return (
     <QueryContextProvider>
       <CookieSessionProvider>
-        <ColorModeProvider>
-          <html lang='en'>
-            <body className={inter.className}>
-              <CssBaseline />
-              {children}
-            </body>
-          </html>
-        </ColorModeProvider>
+        <AuthContextProvider>
+          <ColorModeProvider>
+            <html lang='en'>
+              <body className={inter.className}>
+                <CssBaseline />
+                {children}
+              </body>
+            </html>
+          </ColorModeProvider>
+        </AuthContextProvider>
       </CookieSessionProvider>
     </QueryContextProvider>
   );

@@ -25,10 +25,13 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import { useSignInMutate } from '@/services/auth';
 import { useSessionContext } from '@/contexts/SessionContext';
+import { useAuthContext } from '@/contexts/AuthContext';
 
 const Login = () => {
   const router = useRouter();
   // const { data, status } = useSession();
+  const auth = useAuthContext();
+  console.log('auth:', auth?.user);
   const { setSessionToken } = useSessionContext();
   const signinMutation = useSignInMutate();
 

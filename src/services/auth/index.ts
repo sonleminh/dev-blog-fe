@@ -1,10 +1,11 @@
 'use client';
 
+import { useAuthContext } from '@/contexts/AuthContext';
 import { useSessionContext } from '@/contexts/SessionContext';
 import { ISignInPayload } from '@/interfaces/ISignIn';
 import { ISignInResponse, IWhoIAmResponse } from '@/interfaces/IUser';
 import { getRequest, postRequest } from '@/utils/fetch-client';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQuery } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
 
 const authUrl = 'auth';
@@ -19,12 +20,18 @@ export const signInAPI = async (payload: ISignInPayload) => {
 
 export function useSignInMutate() {
   const router = useRouter();
-  const { sessionToken, setSessionToken } = useSessionContext();
-  console.log('sstk:', sessionToken);
+  const { setSessionToken } = useSessionContext();
+  const auth = useAuthContext();
+
   return useMutation({
     mutationFn: signInAPI,
-    onSuccess: (data: ISignInResponse) => {
+    onSuccess: (data) => {
       console.log('data:', data);
+      if (data.user) {
+        console.log('1');
+        const { id, accessToken, refreshToken, ...user } = data.user;
+        auth?.login(user);
+      }
       postRequest('http://localhost:3000/api/auth', data);
       setSessionToken(data?.user?.accessToken as string);
       // router.push('/');
@@ -38,6 +45,12 @@ export const whoIAmAPI = async () => {
     `http://localhost:8080/admin/api/${authUrl}/profile`
   );
   return result as IWhoIAmResponse;
+};
+
+export const useWhoAmI = () => {
+  return useQuery(['tai-khoan'], whoIAmAPI, {
+    refetchOnWindowFocus: false,
+  });
 };
 
 // export const publicAPI = async () => {

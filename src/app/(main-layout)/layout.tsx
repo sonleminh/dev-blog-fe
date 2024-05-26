@@ -1,4 +1,5 @@
 import Layout from '@/components/sharing/layout';
+import { AuthContextProvider, useAuthContext } from '@/contexts/AuthContext';
 import { ColorModeProvider } from '@/contexts/ColorModeContext';
 import { QueryContextProvider } from '@/contexts/QueryContext';
 import { SessionProvider } from '@/contexts/SessionContext';
@@ -24,17 +25,21 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const auth = useAuthContext();
+
   return (
     <QueryContextProvider>
       <SessionProvider>
-        <html lang='en'>
-          <ColorModeProvider>
-            <body className={inter.className}>
-              <CssBaseline />
-              <Layout>{children}</Layout>
-            </body>
-          </ColorModeProvider>
-        </html>
+        <AuthContextProvider>
+          <html lang='en'>
+            <ColorModeProvider>
+              <body className={inter.className}>
+                <CssBaseline />
+                <Layout>{children}</Layout>
+              </body>
+            </ColorModeProvider>
+          </html>
+        </AuthContextProvider>
       </SessionProvider>
     </QueryContextProvider>
   );

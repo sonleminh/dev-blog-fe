@@ -2,10 +2,10 @@ export async function POST(request: Request) {
   // const res = await request.json();
   // return Response.json({ res });
   const res = await request.json();
-  console.log(res);
+  // console.log(res);
   const sessionToken = res.user.accessToken;
 
-  console.log('auth:', sessionToken);
+  // console.log('auth:', sessionToken);
   if (!sessionToken) {
     return Response.json(
       { message: 'Can not get session token' },

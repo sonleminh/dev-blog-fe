@@ -1,10 +1,11 @@
+import ProtectedRoute from '@/components/protected-route';
 import Layout from '@/components/sharing/layout';
-import { AuthContextProvider, useAuthContext } from '@/contexts/AuthContext';
+import { AuthContextProvider } from '@/contexts/AuthContext';
 import { ColorModeProvider } from '@/contexts/ColorModeContext';
 import { QueryContextProvider } from '@/contexts/QueryContext';
 import { SessionProvider } from '@/contexts/SessionContext';
-import { Box, CssBaseline } from '@mui/material';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { CssBaseline } from '@mui/material';
+import { QueryClient } from '@tanstack/react-query';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import 'swiper/css';
@@ -25,20 +26,20 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const auth = useAuthContext();
-
   return (
     <QueryContextProvider>
       <SessionProvider>
         <AuthContextProvider>
-          <html lang='en'>
-            <ColorModeProvider>
-              <body className={inter.className}>
-                <CssBaseline />
-                <Layout>{children}</Layout>
-              </body>
-            </ColorModeProvider>
-          </html>
+          <ProtectedRoute>
+            <html lang='en'>
+              <ColorModeProvider>
+                <body className={inter.className}>
+                  <CssBaseline />
+                  <Layout>{children}</Layout>
+                </body>
+              </ColorModeProvider>
+            </html>
+          </ProtectedRoute>
         </AuthContextProvider>
       </SessionProvider>
     </QueryContextProvider>

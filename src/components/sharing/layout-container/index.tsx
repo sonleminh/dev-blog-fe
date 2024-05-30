@@ -3,7 +3,7 @@ import React, { ReactNode } from 'react';
 
 const LayoutContainer = ({ children }: { children: ReactNode }) => {
   return (
-    <Box sx={{ maxWidth: { xl: 1070 }, margin: '0 auto' }}>{children}</Box>
+    <Box sx={{ maxWidth: { lg: 1070 }, margin: '0 auto' }}>{children}</Box>
   );
 };
 

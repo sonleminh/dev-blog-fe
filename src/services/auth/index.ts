@@ -34,7 +34,7 @@ export function useSignInMutate() {
       }
       postRequest('http://localhost:3000/api/auth', data);
       setSessionToken(data?.user?.accessToken as string);
-      // router.push('/');
+      router.push('/');
     },
     onError: (error) => console.log(error),
   });
@@ -48,8 +48,10 @@ export const whoIAmAPI = async () => {
 };
 
 export const useWhoAmI = () => {
-  return useQuery(['tai-khoan'], whoIAmAPI, {
+  return useQuery({queryKey:['tai-khoan'], queryFn: whoIAmAPI, 
     refetchOnWindowFocus: false,
+    refetchOnMount: false,
+    refetchInterval: false,
   });
 };
 

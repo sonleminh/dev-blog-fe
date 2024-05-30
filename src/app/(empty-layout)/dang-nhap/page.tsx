@@ -31,7 +31,7 @@ const Login = () => {
   const router = useRouter();
   // const { data, status } = useSession();
   const auth = useAuthContext();
-  console.log('auth:', auth?.user);
+  // console.log('auth:', auth?.user);
   const { setSessionToken } = useSessionContext();
   const signinMutation = useSignInMutate();
 

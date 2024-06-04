@@ -101,7 +101,7 @@ const Latest = () => {
                 // component={AppLink}
                 // href={'/blog/1'}
                 sx={{
-                  color: (theme) => theme.palette.primary.light,
+                  // color: (theme) => theme.palette.primary.light,
                   fontSize: 13,
                   lineHeight: '20px',
                 }}>

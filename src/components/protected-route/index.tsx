@@ -14,9 +14,6 @@ const ProtectedRoute = ({ children }: { children: ReactNode }) => {
     if (!isFetching) {
       if (userData) {
         auth?.login(userData);
-        console.log('2');
-      } else {
-        router.push('/');
       }
     }
   }, [userData, isFetching]);

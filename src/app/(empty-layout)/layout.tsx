@@ -31,7 +31,7 @@ export default async function RootLayout({
       <CookieSessionProvider>
         <AuthContextProvider>
           <ColorModeProvider>
-            <html lang='en'>
+            <html suppressHydrationWarning lang='en'>
               <body className={inter.className}>
                 <CssBaseline />
                 {children}

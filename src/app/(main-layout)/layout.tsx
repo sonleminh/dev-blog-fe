@@ -31,7 +31,7 @@ export default async function RootLayout({
       <SessionProvider>
         <AuthContextProvider>
           <ProtectedRoute>
-            <html lang='en'>
+            <html  lang='en'>
               <ColorModeProvider>
                 <body className={inter.className}>
                   <CssBaseline />

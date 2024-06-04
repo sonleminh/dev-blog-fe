@@ -6,6 +6,7 @@ import { ReactNode, createContext, useContext, useState } from 'react';
 interface IAuthContext {
   user?: IUser;
   login: (user: IUser) => void;
+  logout: () => void;
 }
 
 const AuthContext = createContext<IAuthContext | undefined>(undefined);
@@ -17,8 +18,12 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
     setUser(user);
   };
 
+  const logout = () => {
+    setUser(undefined);
+  };
+
   return (
-    <AuthContext.Provider value={{ user, login }}>
+    <AuthContext.Provider value={{ user, login, logout }}>
       {children}
     </AuthContext.Provider>
   );

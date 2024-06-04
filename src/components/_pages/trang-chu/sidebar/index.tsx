@@ -92,7 +92,7 @@ const Sidebar = () => {
                   textTransform: 'none',
                   boxShadow: 'none',
                   ':hover': {
-                    bgcolor: (theme) => theme.palette.primary.light,
+                    // bgcolor: (theme) => theme.palette.primary.light,
                     color: '#fff',
                   },
                 }}>

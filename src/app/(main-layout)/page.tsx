@@ -3,11 +3,12 @@
 import Banner from '@/components/_pages/trang-chu/banner';
 
 import Latest from '@/components/_pages/trang-chu/latest';
-// import Programming from '@/components/_pages/trang-chu/programming';
+import Programming from '@/components/_pages/trang-chu/programming';
 import LayoutContainer from '@/components/sharing/layout-container';
 import { Box, Grid } from '@mui/material';
 import React from 'react';
 import Cookies from 'js-cookie';
+import Sidebar from '@/components/_pages/trang-chu/sidebar';
 
 const Homepage = () => {
   // Cookies.set('name', 'John');
@@ -21,13 +22,13 @@ const Homepage = () => {
           <Grid container spacing={4}>
             <Grid item xs={8}>
               <Latest />
-              {/* <Programming /> */}
+              <Programming />
             </Grid>
             <Grid
               item
               xs={4}
               sx={{ position: 'sticky', top: '0', height: '100%' }}>
-              {/* <Sidebar /> */}
+              <Sidebar />
             </Grid>
           </Grid>
         </Box>

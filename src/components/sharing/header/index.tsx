@@ -23,6 +23,7 @@ import { getRequest } from '@/utils/fetch-client';
 import { signoutAPI } from '@/services/auth';
 import { useRouter } from 'next/navigation';
 import { useAuthContext } from '@/contexts/AuthContext';
+import Cookies from 'js-cookie';
 
 // import { useAuthContext } from '@/contexts/AuthContext';
 
@@ -47,6 +48,8 @@ const Header = () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, []);
+
+  console.log('auth:', auth?.user?.name);
 
   const handleSignout = async () => {
     const result = await getRequest(
@@ -87,7 +90,7 @@ const Header = () => {
               display: 'flex',
               alignItems: 'center',
             }}>
-            {/* {data || auth?.user ? (
+            {auth?.user?.name ? (
               <Box
                 sx={{
                   position: 'relative',
@@ -101,7 +104,7 @@ const Header = () => {
                   cursor: 'pointer',
                 }}
                 onClick={() => setIsOpen(!isOpen)}>
-                <Box
+                {/* <Box
                   sx={{
                     position: 'relative',
                     width: '28px',
@@ -122,10 +125,11 @@ const Header = () => {
                     alt='cc'
                     fill
                   />
-                </Box>
+                </Box> */}
                 <Typography sx={{ fontWeight: 500 }}>
-                  {data?.user?.name || auth?.user?.name}
+                  {auth?.user?.name}
                 </Typography>
+
                 {isOpen ? (
                   <Box
                     ref={dropdownRef}
@@ -160,9 +164,11 @@ const Header = () => {
                       <ListItem>
                         <Typography
                           sx={{ p: '5px 0', fontWeight: 500 }}
-                          onClick={() =>
-                            signOut({ callbackUrl: '/dang-nhap' })
-                          }>
+                          onClick={() => {
+                            auth.logout();
+                            signoutAPI();
+                            router.push('/dang-nhap');
+                          }}>
                           Sign out
                         </Typography>
                       </ListItem>
@@ -172,24 +178,24 @@ const Header = () => {
                   <></>
                 )}
               </Box>
-            ) : ( */}
-            <Box
-              component={AppLink}
-              href={'/dang-nhap'}
-              sx={{
-                display: 'flex',
-                height: '40px',
-                p: '4px 8px',
-                alignItems: 'center',
-                border: '2px solid #000',
-                borderRadius: 2,
-                fontWeight: 500,
-              }}>
-              <AccountCircleIcon sx={{ mr: 0.5 }} />
-              Đăng nhập
-            </Box>
-            <Button onClick={handleSignout}>Dang xuat</Button>
-            {/* )} */}
+            ) : (
+              <Box
+                component={AppLink}
+                href={'/dang-nhap'}
+                sx={{
+                  display: 'flex',
+                  height: '40px',
+                  p: '4px 8px',
+                  alignItems: 'center',
+                  border: '2px solid #000',
+                  borderRadius: 2,
+                  fontWeight: 500,
+                }}>
+                <AccountCircleIcon sx={{ mr: 0.5 }} />
+                Đăng nhập
+              </Box>
+              // <Button onClick={handleSignout}>Dang xuat</Button>
+            )}
 
             <SearchIcon sx={{ ml: 2 }} />
           </Box>

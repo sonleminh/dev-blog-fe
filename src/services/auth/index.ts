@@ -1,5 +1,6 @@
 'use client';
 
+import { QueryKeys } from '@/components/constants/query-key';
 import { useAuthContext } from '@/contexts/AuthContext';
 import { useSessionContext } from '@/contexts/SessionContext';
 import { ISignInPayload } from '@/interfaces/ISignIn';
@@ -26,9 +27,7 @@ export function useSignInMutate() {
   return useMutation({
     mutationFn: signInAPI,
     onSuccess: (data) => {
-      console.log('data:', data);
       if (data.user) {
-        console.log('1');
         const { id, accessToken, refreshToken, ...user } = data.user;
         auth?.login(user);
       }
@@ -48,7 +47,7 @@ export const whoIAmAPI = async () => {
 };
 
 export const useWhoAmI = () => {
-  return useQuery({queryKey:['tai-khoan'], queryFn: whoIAmAPI, 
+  return useQuery({queryKey:[QueryKeys.ACCOUNT], queryFn: whoIAmAPI, 
     refetchOnWindowFocus: false,
     refetchOnMount: false,
     refetchInterval: false,

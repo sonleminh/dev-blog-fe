@@ -9,11 +9,14 @@ import { Box, Grid } from '@mui/material';
 import React from 'react';
 import Cookies from 'js-cookie';
 import Sidebar from '@/components/_pages/trang-chu/sidebar';
+import { useGetArticleList } from '@/services/article';
 
 const Homepage = () => {
   // Cookies.set('name', 'John');
   // console.log('ck2:', Cookies.get('name'));
   console.log('homepage');
+  const { data } = useGetArticleList();
+
   return (
     <LayoutContainer>
       <Box sx={{ py: 4 }}>

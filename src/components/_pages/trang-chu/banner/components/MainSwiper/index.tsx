@@ -3,8 +3,14 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, FreeMode, Thumbs } from 'swiper/modules';
 import { Box, SxProps, Theme } from '@mui/material';
 import SkeletonImage from '@/components/common/SkeletonImage';
+import { IArticle } from '@/interfaces/IArticle';
 
-const MainSwiper = (props: any) => {
+type TSwiperProps = {
+  data: IArticle[];
+  thumbsSwiper: any;
+};
+
+const MainSwiper = (props: TSwiperProps) => {
   return (
     <Box sx={MainSwiperStyle}>
       <Swiper
@@ -22,7 +28,7 @@ const MainSwiper = (props: any) => {
         }}
         modules={[Autoplay, FreeMode, Thumbs]}
         className='mainSwiper'>
-        {props?.data?.map((item: any, index: number) => (
+        {props?.data?.map((item: IArticle, index: number) => (
           <SwiperSlide key={index}>
             <Box
               sx={{
@@ -35,7 +41,7 @@ const MainSwiper = (props: any) => {
                   objectFit: 'cover',
                 },
               }}>
-              <SkeletonImage src={item.thumbnail} alt='cc' fill />
+              <SkeletonImage src={item.thumbnail_image} alt='cc' fill />
             </Box>
           </SwiperSlide>
         ))}

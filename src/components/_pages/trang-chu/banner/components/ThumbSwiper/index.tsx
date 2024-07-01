@@ -3,8 +3,14 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, FreeMode, Navigation, Thumbs } from 'swiper/modules';
 import SkeletonImage from '@/components/common/SkeletonImage';
 import { Box, SxProps, Theme } from '@mui/material';
+import { IArticle } from '@/interfaces/IArticle';
 
-const ThumbSwiper = (props: any) => {
+type TSwiperProps = {
+  data: IArticle[];
+  setThumbsSwiper: () => void;
+};
+
+const ThumbSwiper = (props: TSwiperProps) => {
   return (
     <Box sx={SwiperStyle}>
       <Swiper
@@ -25,7 +31,7 @@ const ThumbSwiper = (props: any) => {
         }}
         modules={[Autoplay, FreeMode, Navigation, Thumbs]}
         className='mySwiper'>
-        {props?.data?.map((item: any, index: number) => (
+        {props?.data?.map((item: IArticle, index: number) => (
           <SwiperSlide key={index}>
             <Box className='thumb-item'>
               <Box
@@ -41,7 +47,7 @@ const ThumbSwiper = (props: any) => {
                     objectFit: 'cover',
                   },
                 }}>
-                <SkeletonImage src={item.thumbnail} alt='cc' fill />
+                <SkeletonImage src={item.thumbnail_image} alt='cc' fill />
               </Box>
               <svg className='progressBar'>
                 <circle r='35' cx='36' cy='36'></circle>

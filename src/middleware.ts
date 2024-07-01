@@ -12,7 +12,7 @@ const publicRoute = ['/dang-nhap'];
 export async function middleware(request: NextRequest) {
   const cookieStore = cookies();
   const sessionToken = cookieStore.get('sessionToken');
-  console.log('sstk:', sessionToken);
+  // console.log('sstk:', sessionToken);
   // const result = whoIAmAPI();
 
   // const headers = new Headers({
@@ -30,7 +30,7 @@ export async function middleware(request: NextRequest) {
     }
   )) as IWhoIAmResponse;
 
-  console.log('rs:', result);
+  // console.log('rs:', result);
 
   const path = request.nextUrl.pathname;
   const isProtectedRoute = protectedRoute.includes(path);

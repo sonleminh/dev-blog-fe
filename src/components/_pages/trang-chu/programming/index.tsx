@@ -1,4 +1,5 @@
-import React from 'react';
+'use client';
+
 import SkeletonImage from '@/components/common/SkeletonImage';
 import { Box, SxProps, Theme, Typography } from '@mui/material';
 import { truncateTextByLine } from '@/utils/css-helper.util';
@@ -79,7 +80,7 @@ const ProgramingStyle: SxProps<Theme> = {
     alignItems: 'center',
     width: '26px',
     height: '26px',
-    bgcolor: (theme) => theme.palette.primary.light,
+    bgcolor: '#3d55ef',
     color: '#fff',
     borderRadius: '10px',
     '& svg': {

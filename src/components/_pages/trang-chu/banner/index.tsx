@@ -11,6 +11,7 @@ import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import MainSwiper from './components/MainSwiper';
 import ThumbSwiper from './components/ThumbSwiper';
+import { IArticle } from '@/interfaces/IArticle';
 
 const fakeNews = [
   {
@@ -41,13 +42,13 @@ const fakeNews = [
   },
 ];
 
-const Banner = () => {
+const Banner = ({ data }: { data: IArticle[] }) => {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
-
+  console.log(data);
   return (
     <Box sx={BannerContainer}>
-      <MainSwiper data={fakeNews} thumbsSwiper={thumbsSwiper} />
-      <ThumbSwiper data={fakeNews} setThumbsSwiper={setThumbsSwiper} />
+      <MainSwiper data={data} thumbsSwiper={thumbsSwiper} />
+      <ThumbSwiper data={data} setThumbsSwiper={setThumbsSwiper} />
     </Box>
   );
 };

@@ -29,7 +29,7 @@ import Cookies from 'js-cookie';
 
 const Header = () => {
   const auth = useAuthContext();
-  console.log('auth:', auth?.user);
+  // console.log('auth:', auth?.user);
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -49,7 +49,7 @@ const Header = () => {
     };
   }, []);
 
-  console.log('auth:', auth?.user?.name);
+  // console.log('auth:', auth?.user?.name);
 
   const handleSignout = async () => {
     const result = await getRequest(

@@ -7,7 +7,13 @@ const articleUrl = 'article';
 
 export const getArticleListAPI = async () => {
   const result = await getRequest(
-    `http://localhost:3000/api`
+    `http://localhost:3000/api`, 
+    // {
+    //   headers: {
+    //     'Cache-Control': 'no-store',
+    //     'Pragma': 'no-cache'
+    //   }
+    // }
   );
   return result as IArticleListResponse;
 };

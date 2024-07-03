@@ -21,7 +21,7 @@ const ThumbSwiper = (props: TSwiperProps) => {
         slidesPerView={4}
         freeMode={true}
         watchSlidesProgress={true}
-        loop={true}
+        // loop={true}
         autoplay={{
           delay: 5500,
           disableOnInteraction: false,

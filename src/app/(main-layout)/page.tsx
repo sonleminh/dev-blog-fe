@@ -17,8 +17,9 @@ const Homepage = async () => {
   // Cookies.set('name', 'John');
   // console.log('ck2:', Cookies.get('name'));
   // console.log('homepage', data);
+  // const;
   const data: IArticleListResponse = await getArticleListAPI();
-  console.log(data);
+  console.log('1:', data);
   // // console.log(datac.data);
   // // console.log(datac);
   // console.log(datac.then((result) => console.log(result)));
@@ -27,7 +28,7 @@ const Homepage = async () => {
   return (
     <LayoutContainer>
       <Box sx={{ py: 4 }}>
-        <Banner data={data.data.articleList} />
+        {/* <Banner data={data.data.articleList} />   */}
         <Box sx={{ mt: 3 }}>
           <Grid container spacing={4}>
             <Grid item xs={8}>

@@ -21,7 +21,7 @@ const MainSwiper = (props: TSwiperProps) => {
               ? props?.thumbsSwiper
               : null,
         }}
-        loop={true}
+        // loop={true}
         autoplay={{
           delay: 5500,
           disableOnInteraction: false,

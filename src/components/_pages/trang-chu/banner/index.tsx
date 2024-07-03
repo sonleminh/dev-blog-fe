@@ -44,7 +44,7 @@ const fakeNews = [
 
 const Banner = ({ data }: { data: IArticle[] }) => {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
-  console.log(data);
+  // console.log('banner:', data);
   return (
     <Box sx={BannerContainer}>
       <MainSwiper data={data} thumbsSwiper={thumbsSwiper} />

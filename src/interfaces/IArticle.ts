@@ -1,5 +1,13 @@
 export interface IArticleListResponse {
-    data: {
+    articles: {
+        articleList: IArticle[],
+        total: number
+    },
+    feArticles: {
+        articleList: IArticle[],
+        total: number
+    },
+    beArticles: {
         articleList: IArticle[],
         total: number
     }

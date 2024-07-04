@@ -7,7 +7,7 @@ const articleUrl = 'article';
 
 export const getArticleListAPI = async () => {
   const result = await getRequest(
-    `http://localhost:3000/api`, 
+    `http://localhost:3000/api`, {cache: 'no-store', next: {revalidate: 0}}
     // {
     //   headers: {
     //     'Cache-Control': 'no-store',

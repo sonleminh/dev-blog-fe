@@ -7,10 +7,11 @@ import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper/modules';
+import { IArticle } from '@/interfaces/IArticle';
 
-const Programming = () => {
+const ArticleByTag = ({ data, title }: { data: IArticle[]; title: string }) => {
   return (
-    <Box sx={ProgramingStyle}>
+    <Box sx={ArticleByTagStyle}>
       <Box
         sx={{
           display: 'flex',
@@ -18,13 +19,13 @@ const Programming = () => {
           mb: 2,
         }}>
         <Typography sx={{ fontSize: 18, fontWeight: 600 }}>
-          Lập trình
+          Front-end
         </Typography>
         <Box sx={{ display: 'flex' }}>
-          <Box className={`arrow-left`}>
+          <Box className={`arrow-left arrow-left-${title}`}>
             <KeyboardArrowLeftIcon />
           </Box>
-          <Box className={`arrow-right`}>
+          <Box className={`arrow-right arrow-right-${title}`}>
             <KeyboardArrowRightIcon />
           </Box>
         </Box>
@@ -33,12 +34,12 @@ const Programming = () => {
         slidesPerView={3}
         spaceBetween={12}
         navigation={{
-          prevEl: '.arrow-left',
-          nextEl: '.arrow-right',
+          prevEl: `.arrow-left-${title}`,
+          nextEl: `.arrow-right-${title}`,
         }}
         modules={[Navigation]}
         className='mySwiper'>
-        {[1, 2, 3, 4, 5].map((item, index) => (
+        {data?.map((item, index) => (
           <SwiperSlide key={index}>
             <Box
               sx={{
@@ -52,17 +53,10 @@ const Programming = () => {
                   objectFit: 'cover',
                 },
               }}>
-              <SkeletonImage
-                src={
-                  'https://firebasestorage.googleapis.com/v0/b/dev-blog-7a694.appspot.com/o/cau-hoi-cho-nha-tuyen-dung-it-534x462.png?alt=media&token=cae6b033-a0cd-4a06-a24f-f5a60c0691ac'
-                }
-                alt='cc'
-                fill
-              />
+              <SkeletonImage src={item.thumbnail_image} alt='cc' fill />
             </Box>
             <Typography sx={{ fontWeight: 600, ...truncateTextByLine(2) }}>
-              Front-end developer lên trình như thế nào? Bạn đã thực sự hiểu về
-              Front-End?
+              {item.title}
             </Typography>
           </SwiperSlide>
         ))}
@@ -71,9 +65,9 @@ const Programming = () => {
   );
 };
 
-export default Programming;
+export default ArticleByTag;
 
-const ProgramingStyle: SxProps<Theme> = {
+const ArticleByTagStyle: SxProps<Theme> = {
   '.arrow-left, .arrow-right': {
     display: 'flex',
     justifyContent: 'center',

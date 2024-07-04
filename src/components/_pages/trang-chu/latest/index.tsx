@@ -2,9 +2,11 @@ import React from 'react';
 import SkeletonImage from '@/components/common/SkeletonImage';
 import { Box, Grid, Typography } from '@mui/material';
 import { truncateTextByLine } from '@/utils/css-helper.util';
+import { IArticle, IArticleListResponse } from '@/interfaces/IArticle';
 // import AppLink from '@/components/common/AppLink';
 
-const Latest = () => {
+const Latest = ({ data }: { data: IArticle[] }) => {
+  // console.log(data);
   return (
     <Box sx={{ mb: 6 }}>
       <Box
@@ -17,7 +19,7 @@ const Latest = () => {
         <Typography sx={{ fontSize: 12 }}>View all</Typography>
       </Box>
       <Grid container rowSpacing={4} columnSpacing={2.5}>
-        {[1, 2, 3, 4].map((item, index) => (
+        {data?.map((item, index) => (
           <Grid key={index} item xs={6}>
             <Box
             // component={AppLink} href={'/blog/1'}
@@ -34,13 +36,7 @@ const Latest = () => {
                     objectFit: 'cover',
                   },
                 }}>
-                <SkeletonImage
-                  src={
-                    'https://firebasestorage.googleapis.com/v0/b/dev-blog-7a694.appspot.com/o/cau-hoi-cho-nha-tuyen-dung-it-534x462.png?alt=media&token=cae6b033-a0cd-4a06-a24f-f5a60c0691ac'
-                  }
-                  alt='cc'
-                  fill
-                />
+                <SkeletonImage src={item.thumbnail_image} alt='cc' fill />
               </Box>
             </Box>
             <Typography
@@ -52,8 +48,7 @@ const Latest = () => {
                 fontWeight: 600,
                 ...truncateTextByLine(2),
               }}>
-              Front-end developer lên trình như thế nào? Bạn đã thực sự hiểu về
-              Front-End?
+              {item.title}
             </Typography>
             <Box
               sx={{

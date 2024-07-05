@@ -1,8 +1,11 @@
+'use client';
+
 import React from 'react';
 import SkeletonImage from '@/components/common/SkeletonImage';
 import { Box, Grid, Typography } from '@mui/material';
 import { truncateTextByLine } from '@/utils/css-helper.util';
 import { IArticle, IArticleListResponse } from '@/interfaces/IArticle';
+import AppLink from '@/components/common/AppLink';
 // import AppLink from '@/components/common/AppLink';
 
 const Latest = ({ data }: { data: IArticle[] }) => {
@@ -21,9 +24,7 @@ const Latest = ({ data }: { data: IArticle[] }) => {
       <Grid container rowSpacing={4} columnSpacing={2.5}>
         {data?.map((item, index) => (
           <Grid key={index} item xs={6}>
-            <Box
-            // component={AppLink} href={'/blog/1'}
-            >
+            <Box component={AppLink} href={`blog/${item._id}`}>
               <Box
                 sx={{
                   position: 'relative',

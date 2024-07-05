@@ -22,13 +22,11 @@ import { useQuery } from '@tanstack/react-query';
 import { getRequest } from '@/utils/fetch-client';
 import { signoutAPI } from '@/services/auth';
 import { useRouter } from 'next/navigation';
-import { useAuthContext } from '@/contexts/AuthContext';
 import Cookies from 'js-cookie';
 
 // import { useAuthContext } from '@/contexts/AuthContext';
 
 const Header = () => {
-  const auth = useAuthContext();
   // console.log('auth:', auth?.user);
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
@@ -90,113 +88,6 @@ const Header = () => {
               display: 'flex',
               alignItems: 'center',
             }}>
-            {auth?.user?.name ? (
-              <Box
-                sx={{
-                  position: 'relative',
-                  display: 'flex',
-                  alignItems: 'center',
-                  height: 40,
-                  p: '4px 8px',
-                  bgcolor: '#fff',
-                  border: '2px solid #000',
-                  borderRadius: 2,
-                  cursor: 'pointer',
-                }}
-                onClick={() => setIsOpen(!isOpen)}>
-                {/* <Box
-                  sx={{
-                    position: 'relative',
-                    width: '28px',
-                    height: { xs: '28px' },
-                    mr: 1,
-                    borderRadius: '50%',
-                    overflow: 'hidden',
-                    '& img': {
-                      objectFit: 'cover',
-                    },
-                  }}>
-                  <SkeletonImage
-                    src={
-                      data
-                        ? (data?.user?.image as string)
-                        : 'https://firebasestorage.googleapis.com/v0/b/dev-blog-7a694.appspot.com/o/cau-hoi-cho-nha-tuyen-dung-it-534x462.png?alt=media&token=cae6b033-a0cd-4a06-a24f-f5a60c0691ac'
-                    }
-                    alt='cc'
-                    fill
-                  />
-                </Box> */}
-                <Typography sx={{ fontWeight: 500 }}>
-                  {auth?.user?.name}
-                </Typography>
-
-                {isOpen ? (
-                  <Box
-                    ref={dropdownRef}
-                    sx={{
-                      position: 'absolute',
-                      top: 50,
-                      left: 0,
-                      width: '100%',
-                      bgcolor: '#fff',
-                      borderRadius: '8px',
-                      boxShadow: 2,
-                      fontWeight: 500,
-                      zIndex: 69,
-                    }}>
-                    <List
-                      sx={{
-                        '.MuiListItem-root': {
-                          p: '0 16px',
-                          ':hover': {
-                            bgcolor: '#eee',
-                          },
-                        },
-                      }}>
-                      <ListItem>
-                        <AppLink href={'/profile'}>
-                          <Typography sx={{ p: '5px 0', fontWeight: 500 }}>
-                            Profile
-                          </Typography>
-                        </AppLink>
-                      </ListItem>
-                      <Divider />
-                      <ListItem>
-                        <Typography
-                          sx={{ p: '5px 0', fontWeight: 500 }}
-                          onClick={() => {
-                            auth.logout();
-                            signoutAPI();
-                            router.push('/dang-nhap');
-                          }}>
-                          Sign out
-                        </Typography>
-                      </ListItem>
-                    </List>
-                  </Box>
-                ) : (
-                  <></>
-                )}
-              </Box>
-            ) : (
-              <Box
-                component={AppLink}
-                href={'/dang-nhap'}
-                sx={{
-                  display: 'flex',
-                  height: '40px',
-                  p: '4px 8px',
-                  alignItems: 'center',
-                  border: '2px solid #000',
-                  borderRadius: 2,
-                  fontWeight: 500,
-                }}>
-                <AccountCircleIcon sx={{ mr: 0.5 }} />
-                Đăng nhập
-              </Box>
-              // <Button onClick={handleSignout}>Dang xuat</Button>
-            )}
-
             <SearchIcon sx={{ ml: 2 }} />
           </Box>
         </Box>

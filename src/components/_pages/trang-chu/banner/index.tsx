@@ -13,35 +13,6 @@ import MainSwiper from './components/MainSwiper';
 import ThumbSwiper from './components/ThumbSwiper';
 import { IArticle } from '@/interfaces/IArticle';
 
-const fakeNews = [
-  {
-    title:
-      'Front-end developer lên trình như thế nào? Bạn đã thực sự hiểu về Front-End?',
-    thumbnail:
-      'https://firebasestorage.googleapis.com/v0/b/dev-blog-7a694.appspot.com/o/cau-hoi-cho-nha-tuyen-dung-it-534x462.png?alt=media&token=cae6b033-a0cd-4a06-a24f-f5a60c0691ac',
-  },
-  {
-    title: 'bien-chatgpt-thanh-chuyen',
-    thumbnail:
-      'https://firebasestorage.googleapis.com/v0/b/dev-blog-7a694.appspot.com/o/bien-chatgpt-thanh-chuyen-gia-compressed-356x364.jpg?alt=media&token=85900f45-672b-41a4-9e38-7e4977b95722',
-  },
-  {
-    title: 'co-che-layer-caching',
-    thumbnail:
-      'https://firebasestorage.googleapis.com/v0/b/dev-blog-7a694.appspot.com/o/co-che-layer-caching-khi-build-docker-image-1-356x364.png?alt=media&token=5f3d578d-334b-4a61-a162-426d0e0999a3',
-  },
-  {
-    title: 'Cách xử lý conflict khi git merge – Vấn nạn đau đầu của mọi Dev',
-    thumbnail:
-      'https://firebasestorage.googleapis.com/v0/b/dev-blog-7a694.appspot.com/o/cach-xu-ly-conflict-khi-git-merge-534x462.png?alt=media&token=f95e80b3-de44-4c29-abb5-fbedf1054ac3',
-  },
-  {
-    title: 'ionic-hay-react-native',
-    thumbnail:
-      'https://firebasestorage.googleapis.com/v0/b/dev-blog-7a694.appspot.com/o/ionic-hay-react-native-1.jpg?alt=media&token=845771ff-23c7-4ddf-a6bb-e7e835619a2d',
-  },
-];
-
 const Banner = ({ data }: { data: IArticle[] }) => {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   // console.log('banner:', data);

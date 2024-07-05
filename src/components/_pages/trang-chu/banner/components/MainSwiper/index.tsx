@@ -4,6 +4,7 @@ import { Autoplay, FreeMode, Thumbs } from 'swiper/modules';
 import { Box, SxProps, Theme } from '@mui/material';
 import SkeletonImage from '@/components/common/SkeletonImage';
 import { IArticle } from '@/interfaces/IArticle';
+import AppLink from '@/components/common/AppLink';
 
 type TSwiperProps = {
   data: IArticle[];
@@ -30,19 +31,21 @@ const MainSwiper = (props: TSwiperProps) => {
         className='mainSwiper'>
         {props?.data?.map((item: IArticle, index: number) => (
           <SwiperSlide key={index}>
-            <Box
-              sx={{
-                position: 'relative',
-                width: '100%',
-                height: { xs: '160px', sm: '160px', md: '100%' },
-                mb: 1,
-                overflow: 'hidden',
-                '& img': {
-                  objectFit: 'cover',
-                },
-              }}>
-              <SkeletonImage src={item.thumbnail_image} alt='cc' fill />
-            </Box>
+            <AppLink href={`blog/${item._id}`}>
+              <Box
+                sx={{
+                  position: 'relative',
+                  width: '100%',
+                  height: { xs: '160px', sm: '160px', md: '100%' },
+                  mb: 1,
+                  overflow: 'hidden',
+                  '& img': {
+                    objectFit: 'cover',
+                  },
+                }}>
+                <SkeletonImage src={item.thumbnail_image} alt='cc' fill />
+              </Box>
+            </AppLink>
           </SwiperSlide>
         ))}
       </Swiper>

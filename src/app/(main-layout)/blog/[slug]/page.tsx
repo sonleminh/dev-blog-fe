@@ -1,8 +1,10 @@
 import Latest from '@/components/_pages/trang-chu/latest';
 import Sidebar from '@/components/_pages/trang-chu/sidebar';
 import Breadcrumbs from '@/components/common/Breadcrumbs';
+import HtmlRenderBox from '@/components/common/HtmlRenderBox';
 import SkeletonImage from '@/components/common/SkeletonImage';
 import LayoutContainer from '@/components/sharing/layout-container';
+import { getArticleByIdAPI } from '@/services/article';
 import { Link, Grid, Box, Typography } from '@mui/material';
 
 const breadcrumbsOptions = [
@@ -10,7 +12,8 @@ const breadcrumbsOptions = [
   { link: '/', label: '1' },
 ];
 
-const NewsDetail = () => {
+const ArticleDetail = async ({ params }: { params: { slug: string } }) => {
+  const data = await getArticleByIdAPI(params?.slug);
   return (
     <LayoutContainer>
       <Grid container spacing={4}>
@@ -21,7 +24,7 @@ const NewsDetail = () => {
           <Typography
             variant='h3'
             sx={{ mb: 3, fontSize: 28, fontWeight: 700 }}>
-            Will Humans Be Able to Live in Mars in the Future?
+            {data?.title}
           </Typography>
           <Box
             sx={{
@@ -85,7 +88,7 @@ const NewsDetail = () => {
               2 days ago
             </Box>
           </Box>
-          <Box
+          {/* <Box
             sx={{
               position: 'relative',
               width: '100%',
@@ -103,7 +106,8 @@ const NewsDetail = () => {
               alt='cc'
               fill
             />
-          </Box>
+          </Box> */}
+          <HtmlRenderBox html={data?.content} />
         </Grid>
         <Grid item xs={4}>
           <Sidebar />
@@ -113,4 +117,4 @@ const NewsDetail = () => {
   );
 };
 
-export default NewsDetail;
+export default ArticleDetail;

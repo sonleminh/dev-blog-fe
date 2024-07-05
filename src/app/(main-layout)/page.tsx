@@ -16,16 +16,10 @@ import ArticleByTag from '@/components/_pages/trang-chu/article-by-tag';
 
 const Homepage = async () => {
   const data = await getArticleListAPI();
-  console.log(data);
-  // const FEData = await getArticleListAPI();
-  // console.log(datac.then((result) => console.log(result)));
-  // const result = await getRequest(`http://localhost:3000/api`);
-  // console.log('result:', result);
-  // console.log('2:', data);
   return (
     <LayoutContainer>
       <Box sx={{ py: 4 }}>
-        <Banner data={data.articles.articleList} />
+        <Banner data={data.articles.articleList.slice(4, 10)} />
         <Box sx={{ mt: 3 }}>
           <Grid container spacing={4}>
             <Grid item xs={8}>

@@ -1,10 +1,8 @@
-import { AuthContextProvider } from '@/contexts/AuthContext';
 import { ColorModeProvider } from '@/contexts/ColorModeContext';
 import { QueryContextProvider } from '@/contexts/QueryContext';
-import { SessionProvider as CookieSessionProvider } from '@/contexts/SessionContext';
 
 import { CssBaseline } from '@mui/material';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { QueryClient } from '@tanstack/react-query';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 
@@ -28,18 +26,14 @@ export default async function RootLayout({
   // console.log('ss:', session);
   return (
     <QueryContextProvider>
-      <CookieSessionProvider>
-        <AuthContextProvider>
-          <ColorModeProvider>
-            <html suppressHydrationWarning lang='en'>
-              <body className={inter.className}>
-                <CssBaseline />
-                {children}
-              </body>
-            </html>
-          </ColorModeProvider>
-        </AuthContextProvider>
-      </CookieSessionProvider>
+      <ColorModeProvider>
+        <html suppressHydrationWarning lang='en'>
+          <body className={inter.className}>
+            <CssBaseline />
+            {children}
+          </body>
+        </html>
+      </ColorModeProvider>
     </QueryContextProvider>
   );
 }

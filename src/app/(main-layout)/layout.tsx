@@ -1,9 +1,6 @@
-import ProtectedRoute from '@/components/protected-route';
 import Layout from '@/components/sharing/layout';
-import { AuthContextProvider } from '@/contexts/AuthContext';
 import { ColorModeProvider } from '@/contexts/ColorModeContext';
 import { QueryContextProvider } from '@/contexts/QueryContext';
-import { SessionProvider } from '@/contexts/SessionContext';
 import { CssBaseline } from '@mui/material';
 import { QueryClient } from '@tanstack/react-query';
 import type { Metadata } from 'next';
@@ -28,20 +25,14 @@ export default async function RootLayout({
 }>) {
   return (
     <QueryContextProvider>
-      <SessionProvider>
-        <AuthContextProvider>
-          <ProtectedRoute>
-            <html  lang='en'>
-              <ColorModeProvider>
-                <body className={inter.className}>
-                  <CssBaseline />
-                  <Layout>{children}</Layout>
-                </body>
-              </ColorModeProvider>
-            </html>
-          </ProtectedRoute>
-        </AuthContextProvider>
-      </SessionProvider>
+      <html lang='en'>
+        <ColorModeProvider>
+          <body className={inter.className}>
+            <CssBaseline />
+            <Layout>{children}</Layout>
+          </body>
+        </ColorModeProvider>
+      </html>
     </QueryContextProvider>
   );
 }

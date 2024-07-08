@@ -1,19 +1,9 @@
 import { getRequest } from "@/utils/fetch-client";
 
 export async function GET() {
-    // const data = await getRequest(
-    //   `http://localhost:8080/admin/api/article`
-    // );
-    const [articles, feArticles,beArticles] = await Promise.all([
+    const data = await 
       getRequest(
-        `http://localhost:8080/admin/api/article`
-      ),
-      getRequest(
-        `http://localhost:8080/admin/api/article?tag=front-end`
-      ),
-      getRequest(
-        `http://localhost:8080/admin/api/article?tag=back-end`
+        `http://localhost:8080/admin/api/article?find_option=HOME`
       )
-    ])
-    return Response.json({articles, feArticles,beArticles}) 
+    return Response.json({ data }) 
   }

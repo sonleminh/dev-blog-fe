@@ -1,8 +1,9 @@
 'use client';
+
 import React from 'react';
 import Header from '../header';
 import Footer from '../footer';
-import { Box, useTheme } from '@mui/material';
+import { Box, Grid, useTheme } from '@mui/material';
 import Brightness3Icon from '@mui/icons-material/Brightness3';
 import LightModeIcon from '@mui/icons-material/LightMode';
 import { ColorModeContext } from '@/contexts/ColorModeContext';

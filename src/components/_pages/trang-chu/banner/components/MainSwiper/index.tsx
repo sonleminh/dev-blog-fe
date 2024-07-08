@@ -1,10 +1,12 @@
 import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, FreeMode, Thumbs } from 'swiper/modules';
-import { Box, SxProps, Theme } from '@mui/material';
+import { Box, SxProps, Theme, Typography } from '@mui/material';
 import SkeletonImage from '@/components/common/SkeletonImage';
 import { IArticle } from '@/interfaces/IArticle';
 import AppLink from '@/components/common/AppLink';
+import moment from 'moment';
+import { truncateTextByLine } from '@/utils/css-helper.util';
 
 type TSwiperProps = {
   data: IArticle[];
@@ -23,15 +25,29 @@ const MainSwiper = (props: TSwiperProps) => {
               : null,
         }}
         // loop={true}
-        autoplay={{
-          delay: 5500,
-          disableOnInteraction: false,
-        }}
+        // autoplay={{
+        //   delay: 5500,
+        //   disableOnInteraction: false,
+        // }}
         modules={[Autoplay, FreeMode, Thumbs]}
         className='mainSwiper'>
         {props?.data?.map((item: IArticle, index: number) => (
           <SwiperSlide key={index}>
-            <AppLink href={`blog/${item._id}`}>
+            <AppLink
+              href={`blog/${item._id}`}
+              sx={{
+                position: 'relative',
+                ':before': {
+                  position: 'absolute',
+                  content: "''",
+                  bottom: 0,
+                  zIndex: 1,
+                  width: '100%',
+                  height: '100%',
+                  background:
+                    'linear-gradient(to bottom, rgba(0, 0, 0, 0) 40%, rgba(0, 0, 0, 0.7) 100%)',
+                },
+              }}>
               <Box
                 sx={{
                   position: 'relative',
@@ -44,6 +60,27 @@ const MainSwiper = (props: TSwiperProps) => {
                   },
                 }}>
                 <SkeletonImage src={item.thumbnail_image} alt='cc' fill />
+              </Box>
+              <Box
+                sx={{
+                  position: 'absolute',
+                  bottom: '0',
+                  zIndex: 2,
+                  p: '0 120px 24px 24px',
+                  color: '#fff',
+                }}>
+                <Typography
+                  sx={{
+                    mb: 1,
+                    fontSize: 24,
+                    fontWeight: 600,
+                    ...truncateTextByLine(2),
+                  }}>
+                  {item?.title}
+                </Typography>
+                <Typography sx={{ fontSize: 15, fontWeight: 500 }}>
+                  {moment(item.createdAt).format('MMMM D, YYYY')}
+                </Typography>
               </Box>
             </AppLink>
           </SwiperSlide>

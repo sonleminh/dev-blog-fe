@@ -7,13 +7,13 @@ import LayoutContainer from '@/components/sharing/layout-container';
 import { getArticleByIdAPI } from '@/services/article';
 import { Link, Grid, Box, Typography } from '@mui/material';
 
-const breadcrumbsOptions = [
-  { link: '/', label: 'HOME' },
-  { link: '/', label: '1' },
-];
-
 const ArticleDetail = async ({ params }: { params: { slug: string } }) => {
   const data = await getArticleByIdAPI(params?.slug);
+
+  const breadcrumbsOptions = [
+    { link: '/', label: 'HOME' },
+    { link: `/blog/${data._id}`, label: data.title },
+  ];
   return (
     <LayoutContainer>
       <Grid container spacing={4}>

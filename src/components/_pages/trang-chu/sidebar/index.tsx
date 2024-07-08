@@ -1,17 +1,13 @@
 import AppLink from '@/components/common/AppLink';
 import SkeletonImage from '@/components/common/SkeletonImage';
+import { IArticle } from '@/interfaces/IArticle';
+import { getArticleListAPI } from '@/services/article';
 import { truncateTextByLine } from '@/utils/css-helper.util';
-import {
-  Box,
-  Button,
-  Chip,
-  Grid,
-  SxProps,
-  Theme,
-  Typography,
-} from '@mui/material';
+import { Box, Button, Grid, SxProps, Theme, Typography } from '@mui/material';
+import moment from 'moment';
 
-const Sidebar = () => {
+const Sidebar = async () => {
+  const { trending_articles, tags } = await getArticleListAPI();
   return (
     <Box>
       <Box sx={{ mb: 4 }}>
@@ -22,13 +18,13 @@ const Sidebar = () => {
             mb: 2,
           }}>
           <Typography sx={{ fontSize: 18, fontWeight: 600 }}>
-            Mới nhất
+            Thịnh hành
           </Typography>
           <Typography sx={{ fontSize: 12 }}>View all</Typography>
         </Box>
-        {[1, 2, 3].map((item, index) => (
+        {trending_articles?.map((item) => (
           <Box
-            key={index}
+            key={item._id}
             sx={{
               display: 'flex',
               justifyContent: 'space-between',
@@ -45,13 +41,7 @@ const Sidebar = () => {
                   objectFit: 'cover',
                 },
               }}>
-              <SkeletonImage
-                src={
-                  'https://firebasestorage.googleapis.com/v0/b/dev-blog-7a694.appspot.com/o/cau-hoi-cho-nha-tuyen-dung-it-534x462.png?alt=media&token=cae6b033-a0cd-4a06-a24f-f5a60c0691ac'
-                }
-                alt='cc'
-                fill
-              />
+              <SkeletonImage src={item.thumbnail_image} alt={item.title} fill />
             </Box>
             <Box sx={{ width: '72%' }}>
               <Typography
@@ -61,10 +51,11 @@ const Sidebar = () => {
                   fontWeight: 700,
                   ...truncateTextByLine(2),
                 }}>
-                Front-end developer lên trình như thế nào? Bạn đã thực sự hiểu
-                về Front-End?
+                {item.title}
               </Typography>
-              <Typography sx={{ fontSize: 12 }}>February 16, 2024</Typography>
+              <Typography sx={{ fontSize: 12 }}>
+                {moment(item.createdAt).format('MMMM D, YYYY')}
+              </Typography>
             </Box>
           </Box>
         ))}
@@ -79,7 +70,7 @@ const Sidebar = () => {
             flexWrap: 'wrap',
             gap: '10px',
           }}>
-          {[1, 2, 3, 4].map((item, index) => (
+          {tags?.map((item, index) => (
             <AppLink key={index} href={'/'}>
               <Button
                 variant='contained'
@@ -88,7 +79,7 @@ const Sidebar = () => {
                   bgcolor: '#eee',
                   color: '#000',
                   fontSize: 13,
-                  borderRadius: '10px',
+                  borderRadius: '4px',
                   textTransform: 'none',
                   boxShadow: 'none',
                   ':hover': {
@@ -96,48 +87,11 @@ const Sidebar = () => {
                     color: '#fff',
                   },
                 }}>
-                Lập trình
+                {item.label}
               </Button>
             </AppLink>
           ))}
         </Box>
-      </Box>
-      <Box>
-        <Typography sx={{ mb: 2, fontSize: 18, fontWeight: 600 }}>
-          Danh mục
-        </Typography>
-        <Grid container spacing={2}>
-          {[1, 2, 3, 4].map((item, index) => (
-            <Grid key={index} item xs={6}>
-              <Box sx={{ display: 'flex' }}>
-                <Box
-                  sx={{
-                    position: 'relative',
-                    width: '60px',
-                    height: { xs: '56px', sm: '56px', md: '56px' },
-                    mr: 1,
-                    borderRadius: '50%',
-                    overflow: 'hidden',
-                    '& img': {
-                      objectFit: 'cover',
-                    },
-                  }}>
-                  <SkeletonImage
-                    src={
-                      'https://firebasestorage.googleapis.com/v0/b/dev-blog-7a694.appspot.com/o/cau-hoi-cho-nha-tuyen-dung-it-534x462.png?alt=media&token=cae6b033-a0cd-4a06-a24f-f5a60c0691ac'
-                    }
-                    alt='cc'
-                    fill
-                  />
-                </Box>
-                <Box>
-                  <Typography>STYLE</Typography>
-                  <Typography>4 POSTS</Typography>
-                </Box>
-              </Box>
-            </Grid>
-          ))}
-        </Grid>
       </Box>
     </Box>
   );

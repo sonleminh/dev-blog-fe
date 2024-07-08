@@ -6,10 +6,10 @@ import { useQuery } from '@tanstack/react-query';
 const articleUrl = 'article';
 
 export const getArticleListAPI = async () => {
-  const result = await getRequest(
+  const result: {data: IArticleListResponse} = await getRequest(
     `http://localhost:3000/api`, {cache: 'no-store', next: {revalidate: 0}}
   );
-  return result as IArticleListResponse;
+  return result.data as IArticleListResponse;
 };
 
 export const useGetArticleList = () => {

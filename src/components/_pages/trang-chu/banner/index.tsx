@@ -15,7 +15,6 @@ import { IArticle } from '@/interfaces/IArticle';
 
 const Banner = ({ data }: { data: IArticle[] }) => {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
-  // console.log('banner:', data);
   return (
     <Box sx={BannerContainer}>
       <MainSwiper data={data} thumbsSwiper={thumbsSwiper} />

@@ -3,6 +3,7 @@ import { Stack } from '@mui/material';
 import { Breadcrumbs as BaseBreadcrumbs } from '@mui/material';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import AppLink from '../AppLink';
+import { truncateTextByLine } from '@/utils/css-helper.util';
 
 interface IBreadcrumbsProps {
   options: IBreadcrumbOption[];
@@ -20,17 +21,34 @@ const Breadcrumbs = ({ options }: IBreadcrumbsProps) => {
       aria-label='breadcrumb'
       sx={
         {
-          // '.MuiBreadcrumbs-separator': {
-          //   margin: '0 2px',
-          // },
-          // '.MuiBreadcrumbs-li': {
-          //   lineHeight: '24px',
-          // },
+          '.MuiBreadcrumbs-ol': {
+            width: '100%',
+            flexWrap: 'nowrap',
+          },
+          '.MuiBreadcrumbs-li': {
+            lineHeight: '12px',
+            ':last-child': {
+              overflow: 'hidden',
+              textOverflow: 'ellipsis',
+              whiteSpace: 'nowrap',
+            },
+          },
         }
+        // {
+        // '.MuiBreadcrumbs-separator': {
+        //   margin: '0 2px',
+        // },
+
+        // }
       }>
       {options?.map((item, index) => {
         return (
-          <AppLink key={index} href={item.link} sx={{ fontSize: 12 }}>
+          <AppLink
+            key={index}
+            href={item.link}
+            sx={{
+              fontSize: 12,
+            }}>
             {item.label}
           </AppLink>
         );

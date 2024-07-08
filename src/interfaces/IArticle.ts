@@ -1,16 +1,13 @@
 export interface IArticleListResponse {
-    articles: {
-        articleList: IArticle[],
-        total: number
-    },
-    feArticles: {
-        articleList: IArticle[],
-        total: number
-    },
-    beArticles: {
-        articleList: IArticle[],
-        total: number
-    }
+    recent_articles:  IArticle[],
+    FE_articles:  IArticle[],
+    BE_articles:  IArticle[],
+    trending_articles:  IArticle[],
+    tags:  {
+        value: string;
+        label: string;
+    }[],
+    total: number
 }
 
 export interface IArticle {
@@ -20,4 +17,5 @@ export interface IArticle {
     content: string;
     tags:string[];
     thumbnail_image: string
+    createdAt: string
 }

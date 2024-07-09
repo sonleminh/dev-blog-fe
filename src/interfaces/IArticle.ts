@@ -1,4 +1,13 @@
-export interface IArticleListResponse {
+export interface IArticlesResponse {
+    articleList: IArticle[]
+    tags:  {
+        value: string;
+        label: string;
+    }[] 
+    total: number
+}
+
+export interface IHomeArticlesResponse {
     recent_articles:  IArticle[],
     FE_articles:  IArticle[],
     BE_articles:  IArticle[],
@@ -7,6 +16,15 @@ export interface IArticleListResponse {
         value: string;
         label: string;
     }[],
+    total: number
+}
+
+export interface IArticlesByTagResponse {
+    articleList: IArticle[]
+    tag:  {
+        value: string;
+        label: string;
+    }
     total: number
 }
 

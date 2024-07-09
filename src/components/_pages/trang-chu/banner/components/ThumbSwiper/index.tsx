@@ -21,11 +21,11 @@ const ThumbSwiper = (props: TSwiperProps) => {
         slidesPerView={4}
         freeMode={true}
         watchSlidesProgress={true}
-        // loop={true}
-        // autoplay={{
-        //   delay: 5500,
-        //   disableOnInteraction: false,
-        // }}
+        loop={true}
+        autoplay={{
+          delay: 5500,
+          disableOnInteraction: false,
+        }}
         pagination={{
           clickable: true,
         }}

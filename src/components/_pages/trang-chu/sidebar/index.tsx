@@ -33,9 +33,9 @@ const Sidebar = async () => {
             <Box
               sx={{
                 position: 'relative',
-                width: '72px',
+                width: '28%',
                 height: { xs: '72px', sm: '72px', md: '72px' },
-                borderRadius: '8px',
+                borderRadius: '4px',
                 overflow: 'hidden',
                 '& img': {
                   objectFit: 'cover',
@@ -43,7 +43,7 @@ const Sidebar = async () => {
               }}>
               <SkeletonImage src={item.thumbnail_image} alt={item.title} fill />
             </Box>
-            <Box sx={{ width: '72%' }}>
+            <Box sx={{ width: '68%' }}>
               <Typography
                 sx={{
                   mb: 1,
@@ -71,7 +71,7 @@ const Sidebar = async () => {
             gap: '10px',
           }}>
           {tags?.map((item, index) => (
-            <AppLink key={index} href={'/'}>
+            <AppLink key={index} href={`/tag/${item?.value}`}>
               <Button
                 variant='contained'
                 sx={{

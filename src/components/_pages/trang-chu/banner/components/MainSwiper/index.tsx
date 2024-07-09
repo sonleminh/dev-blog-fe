@@ -24,11 +24,11 @@ const MainSwiper = (props: TSwiperProps) => {
               ? props?.thumbsSwiper
               : null,
         }}
-        // loop={true}
-        // autoplay={{
-        //   delay: 5500,
-        //   disableOnInteraction: false,
-        // }}
+        loop={true}
+        autoplay={{
+          delay: 5500,
+          disableOnInteraction: false,
+        }}
         modules={[Autoplay, FreeMode, Thumbs]}
         className='mainSwiper'>
         {props?.data?.map((item: IArticle, index: number) => (

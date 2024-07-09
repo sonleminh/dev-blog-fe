@@ -11,7 +11,6 @@ import { getArticleListAPI, useGetArticleList } from '@/services/article';
 import { IArticleListResponse } from '@/interfaces/IArticle';
 import { getRequest } from '@/utils/fetch-client';
 import ArticleByTag from '@/components/_pages/trang-chu/article-by-tag';
-import { useGetArticleContext } from '@/contexts/GetArticleContext';
 
 const Homepage = async () => {
   const data = await getArticleListAPI();

@@ -1,15 +1,15 @@
 import { QueryKeys } from '@/components/constants/query-key';
-import { IArticle, IArticleListResponse } from '@/interfaces/IArticle';
+import { IArticle, IArticlesByTagResponse, IArticlesResponse, IHomeArticlesResponse } from '@/interfaces/IArticle';
 import { getRequest } from '@/utils/fetch-client';
 import { useQuery } from '@tanstack/react-query';
 
 const articleUrl = 'article';
 
 export const getArticleListAPI = async () => {
-  const result: {data: IArticleListResponse} = await getRequest(
+  const result: {data: IHomeArticlesResponse} = await getRequest(
     `http://localhost:3000/api`, {cache: 'no-store', next: {revalidate: 0}}
   );
-  return result.data as IArticleListResponse;
+  return result.data as IHomeArticlesResponse;
 };
 
 export const useGetArticleList = () => {
@@ -25,6 +25,13 @@ export const getArticleByIdAPI = async (id:string) => {
     `http://localhost:3000/blog/${id}/api`, {cache: 'no-store', next: {revalidate: 0}}
   );
   return result.data as IArticle;
+};
+
+export const getArticleByTagAPI = async (tag:string) => {
+  const result: {data: IArticlesByTagResponse} = await getRequest(
+    `http://localhost:3000/tag/${tag}/api`, {cache: 'no-store', next: {revalidate: 0}}
+  );
+  return result.data as IArticlesByTagResponse;
 };
 
 // export const useGetArticleList = () => {

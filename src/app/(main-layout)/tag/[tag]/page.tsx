@@ -18,37 +18,21 @@ const ArticleByTag = async ({
   searchParams,
 }: {
   params: { tag: string };
-  searchParams: { [page: string]: string | string[] | undefined };
+  searchParams: { page: string };
 }) => {
-  // function ArticleByTag() {
-  // const [query, setQuery] = useState<IQuery>({
-  //   limit: 10,
-  //   page: 1,
-  // });
-  console.log('params:', searchParams);
-
-  const handleChangeQuery = (object: Partial<IQuery>) => {
-    // setQuery((prev) => ({ ...prev, ...object }));
-    console.log(object);
-  };
-
-  const data = await getArticleByTagAPI(params.tag);
-  console.log(data);
-  // const breadcrumbsOptions = [
-  //   { link: '/', label: 'HOME' },
-  //   { link: `/tag/${data.tag.value}}`, label: data.tag.label },
-  // ];
-
+  const data = await getArticleByTagAPI(params.tag, +searchParams.page);
+  const breadcrumbsOptions = [
+    { link: '/', label: 'HOME' },
+    { link: `/tag/${data?.tag.value}`, label: data?.tag.label },
+  ];
   return (
     <LayoutContainer>
       <Grid container spacing={4}>
         <Grid item xs={8}>
           <Box sx={{ mb: 3 }}>
-            {/* <Breadcrumbs options={breadcrumbsOptions} /> */}
-            <Pagination data={data} page={searchParams.page} />
+            <Breadcrumbs options={breadcrumbsOptions} />
           </Box>
-          {/* <Test data={data} /> */}
-          {/* <Box>
+          <Box sx={{ mb: 3 }}>
             <Grid container spacing={2}>
               {data?.articleList?.map((item) => (
                 <Grid key={item?._id} item xs={12}>
@@ -98,7 +82,8 @@ const ArticleByTag = async ({
                 </Grid>
               ))}
             </Grid>
-          </Box> */}
+          </Box>
+          <Pagination data={data} page={+searchParams?.page} />
         </Grid>
         <Grid item xs={4}>
           <Sidebar />

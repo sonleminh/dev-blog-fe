@@ -8,7 +8,6 @@ import React from 'react';
 // import Cookies from 'js-cookie';
 import Sidebar from '@/components/_pages/trang-chu/sidebar';
 import { getArticleListAPI, useGetArticleList } from '@/services/article';
-import { IArticleListResponse } from '@/interfaces/IArticle';
 import { getRequest } from '@/utils/fetch-client';
 import ArticleByTag from '@/components/_pages/trang-chu/article-by-tag';
 
@@ -29,7 +28,7 @@ const Homepage = async () => {
               item
               xs={4}
               sx={{ position: 'sticky', top: '0', height: '100%' }}>
-              <Sidebar data={data.trending_articles} />
+              <Sidebar />
             </Grid>
           </Grid>
         </Box>

@@ -27,9 +27,9 @@ export const getArticleByIdAPI = async (id:string) => {
   return result.data as IArticle;
 };
 
-export const getArticleByTagAPI = async (tag:string) => {
+export const getArticleByTagAPI = async (tag:string, page: number) => {
   const result: {data: IArticlesByTagResponse} = await getRequest(
-    `http://localhost:3000/tag/${tag}/api`, {cache: 'no-store', next: {revalidate: 0}}
+    `http://localhost:3000/tag/${tag}/api?page=${page}`, {cache: 'no-store', next: {revalidate: 0}}
   );
   return result.data as IArticlesByTagResponse;
 };

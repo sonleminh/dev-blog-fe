@@ -4,6 +4,8 @@ import { NextRequest } from "next/server";
 export async function GET(request: NextRequest, {params}: {
     params: { tag: string}
 }) {
-    const data = await getRequest(`http://localhost:8080/admin/api/article/tag/${params.tag}`)
+    const searchParams = request.nextUrl.searchParams
+    const page = searchParams.get('page')
+    const data = await getRequest(`http://localhost:8080/admin/api/article/tag/${params.tag}?page=${page}&limit=2`)
     return Response.json({data})
 }

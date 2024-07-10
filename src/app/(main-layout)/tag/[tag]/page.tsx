@@ -23,7 +23,7 @@ const ArticleByTag = async ({
   const data = await getArticleByTagAPI(params.tag, +searchParams.page);
   const breadcrumbsOptions = [
     { link: '/', label: 'HOME' },
-    { link: `/tag/${data?.tag.value}`, label: data?.tag.label },
+    { link: `/tag/${data?.tag?.value}`, label: data?.tag?.label },
   ];
   return (
     <LayoutContainer>

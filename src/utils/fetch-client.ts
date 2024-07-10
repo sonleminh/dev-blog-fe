@@ -49,7 +49,7 @@ async function postRequest<T>(
 
 async function putRequest<T>(
   url: string,
-  data: any,
+  data?: any,
   config?: RequestInit,
   errCallback?: () => void
 ): Promise<T> {

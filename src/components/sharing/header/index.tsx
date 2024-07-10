@@ -6,11 +6,16 @@ import {
   Box,
   Button,
   Divider,
+  InputAdornment,
   List,
   ListItem,
+  Menu,
+  MenuItem,
   SxProps,
+  TextField,
   Theme,
   Typography,
+  makeStyles,
 } from '@mui/material';
 import AppLink from '@/components/common/AppLink';
 import SearchIcon from '@mui/icons-material/Search';
@@ -28,9 +33,23 @@ import Cookies from 'js-cookie';
 
 const Header = () => {
   // console.log('auth:', auth?.user);
+  // const useStyles = makeStyles({
+  //   inputRoot: {
+  //     width: 120,
+  //     transition: 'width 0.3s ease',
+  //     '&:focus-within': {
+  //       width: 200,
+  //     },
+  //   },
+  // });
+  // const classes = useStyles();
   const router = useRouter();
+
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
+
+  const open = Boolean(anchorEl);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -88,7 +107,49 @@ const Header = () => {
               display: 'flex',
               alignItems: 'center',
             }}>
-            <SearchIcon sx={{ ml: 2 }} />
+            <TextField
+              variant='outlined'
+              size='small'
+              fullWidth
+              name='username'
+              placeholder='Search..'
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position='start'>
+                    <SearchIcon />
+                  </InputAdornment>
+                ),
+              }}
+              helperText={
+                <Typography
+                  component={'span'}
+                  sx={{ fontSize: 13, color: 'red' }}>
+                  {/* {formik.errors.username} */}
+                </Typography>
+              }
+              // onChange={handleChange}
+              sx={{
+                width: 120,
+                mt: 6,
+                borderRadius: 4,
+                transition: 'width 0.3s ease',
+                '& .MuiInputBase-root': {
+                  width: '100%',
+                },
+                '&:focus-within': {
+                  width: 300,
+                },
+              }}
+            />
+            <Menu
+              id='basic-menu'
+              anchorEl={anchorEl}
+              open={open}
+              MenuListProps={{
+                'aria-labelledby': 'basic-button',
+              }}>
+              <MenuItem>cc</MenuItem>
+            </Menu>
           </Box>
         </Box>
       </LayoutContainer>

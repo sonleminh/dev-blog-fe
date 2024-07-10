@@ -1,17 +1,13 @@
-// 'use client';
-
+import LayoutContainer from '@/components/sharing/layout-container';
+import SkeletonImage from '@/components/common/SkeletonImage';
 import Sidebar from '@/components/_pages/trang-chu/sidebar';
 import Breadcrumbs from '@/components/common/Breadcrumbs';
-import SkeletonImage from '@/components/common/SkeletonImage';
-import LayoutContainer from '@/components/sharing/layout-container';
+import Pagination from '@/components/common/Pagination';
+
+import { truncateTextByLine } from '@/utils/css-helper.util';
 import { getArticleByTagAPI } from '@/services/article';
 import { Box, Grid, Typography } from '@mui/material';
-import React, { useState } from 'react';
-import { truncateTextByLine } from '@/utils/css-helper.util';
 import moment from 'moment';
-import { IQuery } from '@/interfaces/IQuery';
-import Test from './components';
-import Pagination from '@/components/common/Pagination';
 
 const ArticleByTag = async ({
   params,

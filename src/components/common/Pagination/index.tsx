@@ -1,11 +1,8 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
-import { Pagination as BasePagination } from '@mui/material';
-import { IQuery } from '@/interfaces/IQuery';
-import { getArticleByTagAPI } from '@/services/article';
-import { useRouter } from 'next/navigation';
 import { IArticlesByTagResponse } from '@/interfaces/IArticle';
+import { Pagination as BasePagination } from '@mui/material';
+import { useRouter } from 'next/navigation';
 
 const Pagination = ({
   data,
@@ -15,20 +12,6 @@ const Pagination = ({
   page: number;
 }) => {
   const router = useRouter();
-  // const [datac, setDatac] = useState<any>();
-  // const [query, setQuery] = useState<IQuery>({
-  //   limit: 10,
-  //   page: 1,
-  // });
-
-  // useEffect(() => {
-  //   async function getData() {
-  //     const data = await getArticleByTagAPI('database');
-
-  //     setDatac(data);
-  //   }
-  //   getData();
-  // }, []);
 
   return (
     <BasePagination

@@ -57,6 +57,7 @@ const ArticleByTag = ({ data, title }: { data: IArticle[]; title: string }) => {
             </Box>
             <Typography sx={{ fontWeight: 600, ...truncateTextByLine(2) }}>
               {item.title}
+              {/* cc */}
             </Typography>
           </SwiperSlide>
         ))}

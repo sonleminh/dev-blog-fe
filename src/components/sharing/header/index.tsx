@@ -1,80 +1,54 @@
 'use client';
-import WindowIcon from '@mui/icons-material/Window';
-import LayoutContainer from '../layout-container';
-import HeaderLogo from './HeaderLogo';
+import AppLink from '@/components/common/AppLink';
+import SearchIcon from '@mui/icons-material/Search';
 import {
   Box,
-  Button,
-  Divider,
+  Grid,
   InputAdornment,
   List,
   ListItem,
-  Menu,
-  MenuItem,
   SxProps,
   TextField,
   Theme,
   Typography,
-  makeStyles,
 } from '@mui/material';
-import AppLink from '@/components/common/AppLink';
-import SearchIcon from '@mui/icons-material/Search';
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import LayoutContainer from '../layout-container';
+import HeaderLogo from './HeaderLogo';
 // import { signOut, useSession } from 'next-auth/react';
 import SkeletonImage from '@/components/common/SkeletonImage';
-import { useEffect, useRef, useState } from 'react';
-import { useQuery } from '@tanstack/react-query';
-import { getRequest } from '@/utils/fetch-client';
-import { signoutAPI } from '@/services/auth';
-import { useRouter } from 'next/navigation';
-import Cookies from 'js-cookie';
-
-// import { useAuthContext } from '@/contexts/AuthContext';
+import { useSearchArticle } from '@/services/article';
+import { truncateTextByLine } from '@/utils/css-helper.util';
+import moment from 'moment';
+import { ChangeEvent, useEffect, useState } from 'react';
 
 const Header = () => {
-  // console.log('auth:', auth?.user);
-  // const useStyles = makeStyles({
-  //   inputRoot: {
-  //     width: 120,
-  //     transition: 'width 0.3s ease',
-  //     '&:focus-within': {
-  //       width: 200,
-  //     },
-  //   },
-  // });
-  // const classes = useStyles();
-  const router = useRouter();
+  const [searchValue, setSearchValue] = useState<string>();
+  const [result, setResult] = useState<any>();
+  const { data: searchResult } = useSearchArticle(searchValue as string);
 
-  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-  const [isOpen, setIsOpen] = useState(false);
-  const dropdownRef = useRef<HTMLDivElement>(null);
+  const handleSearchChange = (
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    search(e.target.value);
+  };
 
-  const open = Boolean(anchorEl);
+  function debounce<T extends (...args: any[]) => any>(cb: T, delay = 1500) {
+    let timeout: ReturnType<typeof setTimeout>;
+    return (...args: Parameters<T>): void => {
+      clearTimeout(timeout);
+      timeout = setTimeout(() => {
+        cb(...args);
+      }, delay);
+    };
+  }
+
+  const search = debounce((text: string) => {
+    setSearchValue(text);
+  });
 
   useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (
-        dropdownRef.current &&
-        !dropdownRef.current.contains(event.target as Node)
-      ) {
-        setIsOpen(false);
-      }
-    };
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, []);
-
-  // console.log('auth:', auth?.user?.name);
-
-  const handleSignout = async () => {
-    const result = await getRequest(
-      `http://localhost:8080/admin/api/auth/signout`
-    );
-    // console.log('dangxuated');
-    router.push('/dang-nhap');
-  };
+    setResult(searchResult);
+  }, [searchResult]);
 
   return (
     <>
@@ -104,6 +78,7 @@ const Header = () => {
           </Box>
           <Box
             sx={{
+              position: 'relative',
               display: 'flex',
               alignItems: 'center',
             }}>
@@ -123,11 +98,9 @@ const Header = () => {
               helperText={
                 <Typography
                   component={'span'}
-                  sx={{ fontSize: 13, color: 'red' }}>
-                  {/* {formik.errors.username} */}
-                </Typography>
+                  sx={{ fontSize: 13, color: 'red' }}></Typography>
               }
-              // onChange={handleChange}
+              onChange={(e) => handleSearchChange(e)}
               sx={{
                 width: 120,
                 mt: 6,
@@ -141,15 +114,60 @@ const Header = () => {
                 },
               }}
             />
-            <Menu
-              id='basic-menu'
-              anchorEl={anchorEl}
-              open={open}
-              MenuListProps={{
-                'aria-labelledby': 'basic-button',
-              }}>
-              <MenuItem>cc</MenuItem>
-            </Menu>
+            {searchResult && (
+              <Box
+                sx={{
+                  position: 'absolute',
+                  top: '100%',
+                  left: 0,
+                  zIndex: 69,
+                  width: '100%',
+                  bgcolor: '#fff',
+                  boxShadow: 5,
+                }}>
+                <List>
+                  {result?.articleList.map((item: any) => (
+                    <ListItem key={item._id}>
+                      <Grid container spacing={1.5}>
+                        <Grid item xs={3}>
+                          <Box
+                            sx={{
+                              position: 'relative',
+                              width: '100%',
+                              height: 50,
+                              borderRadius: '4px',
+                              overflow: 'hidden',
+                              '& img': {
+                                objectFit: 'cover',
+                              },
+                            }}>
+                            <SkeletonImage
+                              src={item?.thumbnail_image}
+                              alt={item?.title}
+                              fill
+                            />
+                          </Box>
+                        </Grid>
+                        <Grid item xs={9}>
+                          <Typography
+                            sx={{
+                              fontSize: 13,
+                              fontWeight: 500,
+                              lineHeight: '18px',
+                              ...truncateTextByLine(2),
+                            }}>
+                            {item.title}
+                          </Typography>
+                          <Typography sx={{ fontSize: 11, color: '#767676' }}>
+                            {moment(item?.createdAt).format('MMMM D, YYYY')}
+                          </Typography>
+                        </Grid>
+                      </Grid>
+                    </ListItem>
+                  ))}
+                </List>
+              </Box>
+            )}
           </Box>
         </Box>
       </LayoutContainer>

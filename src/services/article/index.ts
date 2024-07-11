@@ -12,11 +12,19 @@ export const getArticleListAPI = async () => {
   return result.data as IHomeArticlesResponse;
 };
 
-export const useGetArticleList = () => {
-  return useQuery({queryKey:[QueryKeys.ARTICLE], queryFn: getArticleListAPI, 
+export const getSearchArticleAPI = async (keyword: string) => {
+  const result = await getRequest(
+    `http://localhost:8080/admin/api/article?s=${keyword}`,  {cache: 'no-store', next: {revalidate: 0}}
+  );
+  return result as IArticlesResponse;
+};
+
+export const useSearchArticle = (keyword: string) => {
+  return useQuery({queryKey:[QueryKeys.ARTICLE], queryFn: ()=> getSearchArticleAPI(keyword), 
+    enabled: !!keyword,
     refetchOnWindowFocus: false,
-    refetchOnMount: false,
-    refetchInterval: false,
+    // refetchOnMount: false,
+    // refetchInterval: false,
   });
 };
 
@@ -33,6 +41,8 @@ export const getArticleByTagAPI = async (tag:string, page: number) => {
   );
   return result.data as IArticlesByTagResponse;
 };
+
+
 
 // export const useGetArticleList = () => {
 //   return useQuery({queryKey:[QueryKeys.ARTICLE], queryFn: getArticleListAPI, 

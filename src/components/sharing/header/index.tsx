@@ -19,20 +19,66 @@ import SkeletonImage from '@/components/common/SkeletonImage';
 import { useSearchArticle } from '@/services/article';
 import { truncateTextByLine } from '@/utils/css-helper.util';
 import moment from 'moment';
-import { ChangeEvent, useEffect, useState } from 'react';
+import { ChangeEvent, useEffect, useRef, useState } from 'react';
+import { useQueryClient } from '@tanstack/react-query';
+import { QueryKeys } from '@/components/constants/query-key';
 
 const Header = () => {
-  const [searchValue, setSearchValue] = useState<string>();
+  const queryClient = useQueryClient();
+
+  const [searchValue, setSearchValue] = useState<string | null>();
   const [result, setResult] = useState<any>();
-  const { data: searchResult } = useSearchArticle(searchValue as string);
+  const { data: searchResult, refetch } = useSearchArticle(
+    searchValue as string
+  );
+  const [isOpen, setIsOpen] = useState(false);
+  const searchResultBoxRef = useRef<HTMLDivElement>(null);
+  const searchInputRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        searchResultBoxRef.current &&
+        !searchResultBoxRef.current.contains(event.target as Node)
+      ) {
+        // setResult(null);
+        setIsOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
+  console.log('rs:', result);
+  console.log('data:', searchResult);
+  console.log('searchValue:', searchValue);
 
   const handleSearchChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
-    search(e.target.value);
+    // console.log('handleChange');
+    console.log('searchValue?.length:', searchValue?.length);
+    // if (searchValue?.length === 0) {
+    //   console.log('clear');
+    //   queryClient.removeQueries({ queryKey: [QueryKeys.ARTICLE] });
+    //   setSearchValue(null);
+    // } else {
+    //   console.log('search');
+    //   search(e.target.value);
+    // }
+    if (e.target.value) {
+      console.log('search');
+      search(e.target.value);
+    } else {
+      console.log('clear');
+      queryClient.removeQueries({ queryKey: [QueryKeys.ARTICLE] });
+      setSearchValue(null);
+    }
   };
 
-  function debounce<T extends (...args: any[]) => any>(cb: T, delay = 1500) {
+  function debounce<T extends (...args: any[]) => any>(cb: T, delay = 1000) {
     let timeout: ReturnType<typeof setTimeout>;
     return (...args: Parameters<T>): void => {
       clearTimeout(timeout);
@@ -44,16 +90,33 @@ const Header = () => {
 
   const search = debounce((text: string) => {
     setSearchValue(text);
+    // if (text.length === 0) {
+    //   setResult(null);
+    //   setIsOpen(false);
+    // }
   });
 
-  useEffect(() => {
-    setResult(searchResult);
-  }, [searchResult]);
+  const handleBoxClick = () => {
+    // setIsOpen(true);
+    if (searchInputRef.current) {
+      searchInputRef.current.focus();
+    }
+  };
+
+  // console.log('isO:', isOpen);
+
+  // useEffect(() => {
+  //   if (searchResult && isOpen) {
+  //     setIsOpen(true);
+  //     setResult(searchResult);
+  //   }
+  // }, [searchResult, isOpen]);
 
   return (
     <>
       <LayoutContainer>
         <Box
+          onClick={handleBoxClick}
           sx={{
             display: 'flex',
             justifyContent: 'space-between',
@@ -77,6 +140,8 @@ const Header = () => {
             </List>
           </Box>
           <Box
+            ref={searchResultBoxRef}
+            onClick={() => setIsOpen(true)}
             sx={{
               position: 'relative',
               display: 'flex',
@@ -100,6 +165,7 @@ const Header = () => {
                   component={'span'}
                   sx={{ fontSize: 13, color: 'red' }}></Typography>
               }
+              inputRef={searchInputRef}
               onChange={(e) => handleSearchChange(e)}
               sx={{
                 width: 120,
@@ -114,7 +180,8 @@ const Header = () => {
                 },
               }}
             />
-            {searchResult && (
+            {/* {isOpen && ( */}
+            {searchResult && isOpen && (
               <Box
                 sx={{
                   position: 'absolute',
@@ -126,7 +193,7 @@ const Header = () => {
                   boxShadow: 5,
                 }}>
                 <List>
-                  {result?.articleList.map((item: any) => (
+                  {searchResult?.articleList.map((item: any) => (
                     <ListItem key={item._id}>
                       <Grid container spacing={1.5}>
                         <Grid item xs={3}>

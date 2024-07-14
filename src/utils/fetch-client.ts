@@ -21,7 +21,6 @@ async function fetchRequest<T>(
     });
 
     const responseData: T = await response.json();
-    // console.log('fetch:', theme?.value);
     return responseData;
   } catch (error: any) {
     errCallback && errCallback();

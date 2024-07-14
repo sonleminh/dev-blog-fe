@@ -8,6 +8,7 @@ import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper/modules';
 import { IArticle } from '@/interfaces/IArticle';
+import AppLink from '@/components/common/AppLink';
 
 const ArticleByTag = ({ data, title }: { data: IArticle[]; title: string }) => {
   return (
@@ -18,9 +19,7 @@ const ArticleByTag = ({ data, title }: { data: IArticle[]; title: string }) => {
           justifyContent: 'space-between',
           mb: 2,
         }}>
-        <Typography sx={{ fontSize: 18, fontWeight: 600 }}>
-          Front-end
-        </Typography>
+        <Typography sx={{ fontSize: 18, fontWeight: 600 }}>{title}</Typography>
         <Box sx={{ display: 'flex' }}>
           <Box className={`arrow-left arrow-left-${title}`}>
             <KeyboardArrowLeftIcon />
@@ -39,25 +38,27 @@ const ArticleByTag = ({ data, title }: { data: IArticle[]; title: string }) => {
         }}
         modules={[Navigation]}
         className='mySwiper'>
-        {data?.map((item, index) => (
-          <SwiperSlide key={index}>
-            <Box
-              sx={{
-                position: 'relative',
-                width: '100%',
-                height: { xs: '160px', sm: '160px', md: '160px' },
-                mb: 1,
-                borderRadius: '8px',
-                overflow: 'hidden',
-                '& img': {
-                  objectFit: 'cover',
-                },
-              }}>
-              <SkeletonImage src={item.thumbnail_image} alt='cc' fill />
-            </Box>
-            <Typography sx={{ fontWeight: 600, ...truncateTextByLine(2) }}>
-              {item.title}
-            </Typography>
+        {data?.map((item) => (
+          <SwiperSlide key={item._id}>
+            <AppLink href={`/blog/${item._id}`}>
+              <Box
+                sx={{
+                  position: 'relative',
+                  width: '100%',
+                  height: { xs: '160px', sm: '160px', md: '160px' },
+                  mb: 1,
+                  borderRadius: '8px',
+                  overflow: 'hidden',
+                  '& img': {
+                    objectFit: 'cover',
+                  },
+                }}>
+                <SkeletonImage src={item.thumbnail_image} alt='cc' fill />
+              </Box>
+              <Typography sx={{ fontWeight: 600, ...truncateTextByLine(2) }}>
+                {item.title}
+              </Typography>
+            </AppLink>
           </SwiperSlide>
         ))}
       </Swiper>

@@ -20,10 +20,6 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  // const session = await getServerSession();
-  // const [session, loading] = useSession();
-
-  // console.log('ss:', session);
   return (
     <QueryContextProvider>
       <ColorModeProvider>

@@ -23,7 +23,8 @@ const Sidebar = async () => {
           <Typography sx={{ fontSize: 12 }}>View all</Typography>
         </Box>
         {trending_articles?.map((item) => (
-          <Box
+          <AppLink
+            href={`/blog/${item._id}`}
             key={item._id}
             sx={{
               display: 'flex',
@@ -57,7 +58,7 @@ const Sidebar = async () => {
                 {moment(item.createdAt).format('MMMM D, YYYY')}
               </Typography>
             </Box>
-          </Box>
+          </AppLink>
         ))}
       </Box>
       <Box mb={4}>
@@ -87,7 +88,7 @@ const Sidebar = async () => {
                     color: '#fff',
                   },
                 }}>
-                {item.label}
+                #{item.label}
               </Button>
             </AppLink>
           ))}

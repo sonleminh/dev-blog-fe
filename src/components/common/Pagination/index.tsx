@@ -17,7 +17,6 @@ const Pagination = ({
     <BasePagination
       count={Math.ceil((data?.total ?? 0) / 2)}
       onChange={(e, newPage) => {
-        console.log(newPage);
         useRouter;
         router.push(`/tag/${data?.tag?.value}?page=${newPage}`);
       }}

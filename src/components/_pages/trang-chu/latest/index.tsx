@@ -8,7 +8,6 @@ import { Box, Grid, Typography } from '@mui/material';
 // import AppLink from '@/components/common/AppLink';
 
 const Latest = ({ data }: { data: IArticle[] }) => {
-  // console.log(data);
   return (
     <Box sx={{ mb: 6 }}>
       <Box

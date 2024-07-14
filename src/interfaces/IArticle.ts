@@ -33,7 +33,7 @@ export interface IArticle {
     title: string;
     summary: string;
     content: string;
-    tags:string[];
+    tags: {value:string,label: string}[];
     thumbnail_image: string
     createdAt: string
 }

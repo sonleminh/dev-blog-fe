@@ -6,6 +6,6 @@ export async function GET(request: NextRequest, {params}: {
 }) {
     const searchParams = request.nextUrl.searchParams
     const page = searchParams.get('page')
-    const data = await getRequest(`http://localhost:8080/admin/api/article/tag/${params.tag}?page=${page}&limit=10`)
+    const data = await getRequest(`http://localhost:8080/admin/api/article/?page=${page}&limit=10`)
     return Response.json({data})
 }

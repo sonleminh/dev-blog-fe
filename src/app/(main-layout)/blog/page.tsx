@@ -1,27 +1,30 @@
+import { getArticleListAPI, getLatestArticleAPI } from '@/services/article';
+import React from 'react';
 import LayoutContainer from '@/components/sharing/layout-container';
 import SkeletonImage from '@/components/common/SkeletonImage';
 import Sidebar from '@/components/_pages/trang-chu/sidebar';
 import Breadcrumbs from '@/components/common/Breadcrumbs';
-import Pagination from '@/components/common/Pagination';
 
 import { truncateTextByLine } from '@/utils/css-helper.util';
-import { getArticleByTagAPI } from '@/services/article';
 import { Box, Grid, Typography } from '@mui/material';
 import moment from 'moment';
+import { redirect } from 'next/navigation';
+import Pagination from '@/components/common/Pagination';
 
-const ArticleByTag = async ({
+const Latest = async ({
   params,
   searchParams,
 }: {
   params: { tag: string };
   searchParams: { page: string };
 }) => {
-  const data = await getArticleByTagAPI(params.tag, +searchParams.page);
-  console.log('data:', data);
+  const data = await getLatestArticleAPI(params.tag, +searchParams.page);
+
   const breadcrumbsOptions = [
     { link: '/', label: 'HOME' },
-    { link: `/tag/${data?.tag?.value}`, label: data?.tag?.label },
+    { link: ``, label: 'Mới nhất' },
   ];
+
   return (
     <LayoutContainer>
       <Grid container spacing={4}>
@@ -80,7 +83,7 @@ const ArticleByTag = async ({
               ))}
             </Grid>
           </Box>
-          <Pagination data={data} page={+searchParams?.page} type='tag' />
+          <Pagination data={data} page={+searchParams?.page} />
         </Grid>
         <Grid item xs={4}>
           <Sidebar />
@@ -90,4 +93,4 @@ const ArticleByTag = async ({
   );
 };
 
-export default ArticleByTag;
+export default Latest;

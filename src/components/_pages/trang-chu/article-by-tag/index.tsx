@@ -40,7 +40,18 @@ const ArticleByTag = ({ data, title }: { data: IArticle[]; title: string }) => {
         className='mySwiper'>
         {data?.map((item) => (
           <SwiperSlide key={item._id}>
-            <AppLink href={`/blog/${item._id}`}>
+            <AppLink
+              href={`/blog/${item._id}`}
+              sx={{
+                ':hover': {
+                  '& img': {
+                    transform: 'scale(1.05)',
+                  },
+                  '& span': {
+                    textDecoration: 'underline',
+                  },
+                },
+              }}>
               <Box
                 sx={{
                   position: 'relative',
@@ -49,13 +60,17 @@ const ArticleByTag = ({ data, title }: { data: IArticle[]; title: string }) => {
                   mb: 1,
                   borderRadius: '8px',
                   overflow: 'hidden',
+
                   '& img': {
                     objectFit: 'cover',
+                    transition: 'all 0.5s ease',
                   },
                 }}>
                 <SkeletonImage src={item.thumbnail_image} alt='cc' fill />
               </Box>
-              <Typography sx={{ fontWeight: 600, ...truncateTextByLine(2) }}>
+              <Typography
+                component={'span'}
+                sx={{ fontWeight: 600, ...truncateTextByLine(2) }}>
                 {item.title}
               </Typography>
             </AppLink>
@@ -75,7 +90,7 @@ const ArticleByTagStyle: SxProps<Theme> = {
     alignItems: 'center',
     width: '26px',
     height: '26px',
-    bgcolor: '#3d55ef',
+    bgcolor: '#000',
     color: '#fff',
     borderRadius: '10px',
     '& svg': {
@@ -88,7 +103,7 @@ const ArticleByTagStyle: SxProps<Theme> = {
     ml: 0.5,
   },
   '.swiper-button-disabled': {
-    bgcolor: '#F0F2FE',
+    bgcolor: '#eee',
     color: '#000',
     cursor: 'default',
   },

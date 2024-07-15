@@ -42,6 +42,12 @@ export const getArticleByTagAPI = async (tag:string, page: number) => {
   return result.data as IArticlesByTagResponse;
 };
 
+export const getLatestArticleAPI = async (tag:string, page: number) => {
+  const result: {data: IArticlesByTagResponse} = await getRequest(
+    `http://localhost:3000/blog/api?page=${page}`, {cache: 'no-store', next: {revalidate: 0}}
+  );
+  return result.data as IArticlesByTagResponse;
+};
 
 
 // export const useGetArticleList = () => {

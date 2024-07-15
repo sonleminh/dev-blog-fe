@@ -1,9 +1,9 @@
-import AppLink from '@/components/common/AppLink';
 import SkeletonImage from '@/components/common/SkeletonImage';
-import { IArticle } from '@/interfaces/IArticle';
-import { getArticleListAPI } from '@/services/article';
+import AppLink from '@/components/common/AppLink';
+
 import { truncateTextByLine } from '@/utils/css-helper.util';
-import { Box, Button, Grid, SxProps, Theme, Typography } from '@mui/material';
+import { getArticleListAPI } from '@/services/article';
+import { Box, Button, SxProps, Theme, Typography } from '@mui/material';
 import moment from 'moment';
 
 const Sidebar = async () => {
@@ -20,7 +20,6 @@ const Sidebar = async () => {
           <Typography sx={{ fontSize: 18, fontWeight: 600 }}>
             Thịnh hành
           </Typography>
-          <Typography sx={{ fontSize: 12 }}>View all</Typography>
         </Box>
         {trending_articles?.map((item) => (
           <AppLink

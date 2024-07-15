@@ -7,18 +7,22 @@ import { useRouter } from 'next/navigation';
 const Pagination = ({
   data,
   page,
+  type,
 }: {
   data: IArticlesByTagResponse;
   page: number;
+  type?: string;
 }) => {
   const router = useRouter();
 
   return (
     <BasePagination
-      count={Math.ceil((data?.total ?? 0) / 2)}
+      count={Math.ceil((data?.total ?? 0) / 10)}
       onChange={(e, newPage) => {
         useRouter;
-        router.push(`/tag/${data?.tag?.value}?page=${newPage}`);
+        router.push(
+          type ? `/tag/${data?.tag?.value}?page=${newPage}` : `?page=${newPage}`
+        );
       }}
       defaultPage={1}
       showFirstButton

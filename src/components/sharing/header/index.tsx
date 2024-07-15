@@ -4,6 +4,7 @@ import AppLink from '@/components/common/AppLink';
 import SearchIcon from '@mui/icons-material/Search';
 import {
   Box,
+  Button,
   Grid,
   InputAdornment,
   List,
@@ -12,6 +13,7 @@ import {
   TextField,
   Theme,
   Typography,
+  useTheme,
 } from '@mui/material';
 import LayoutContainer from '../layout-container';
 import HeaderLogo from './HeaderLogo';
@@ -22,6 +24,8 @@ import moment from 'moment';
 import { ChangeEvent, useEffect, useRef, useState } from 'react';
 
 const Header = () => {
+  const theme = useTheme();
+
   const [searchValue, setSearchValue] = useState<string | null>();
   const { data: searchResult, refetch } = useSearchArticle(
     searchValue as string
@@ -88,7 +92,15 @@ const Header = () => {
               display: 'flex',
               alignItems: 'center',
             }}>
-            <HeaderLogo />
+            <Button
+              component={AppLink}
+              href='/'
+              sx={{
+                p: 0,
+                border: theme.palette.mode === 'light' ? '' : '1px solid #fff',
+              }}>
+              <HeaderLogo />
+            </Button>
             <List sx={MenuListStyle}>
               <ListItem>
                 <AppLink href={'/'}>Blog</AppLink>

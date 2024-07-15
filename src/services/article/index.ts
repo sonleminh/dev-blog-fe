@@ -48,12 +48,3 @@ export const getLatestArticleAPI = async (tag:string, page: number) => {
   );
   return result.data as IArticlesByTagResponse;
 };
-
-
-// export const useGetArticleList = () => {
-//   return useQuery({queryKey:[QueryKeys.ARTICLE], queryFn: getArticleListAPI, 
-//     refetchOnWindowFocus: false,
-//     refetchOnMount: false,
-//     refetchInterval: false,
-//   });
-// };

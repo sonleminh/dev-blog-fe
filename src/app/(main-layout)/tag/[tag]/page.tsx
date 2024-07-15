@@ -17,7 +17,6 @@ const ArticleByTag = async ({
   searchParams: { page: string };
 }) => {
   const data = await getArticleByTagAPI(params.tag, +searchParams.page);
-  console.log('data:', data);
   const breadcrumbsOptions = [
     { link: '/', label: 'HOME' },
     { link: `/tag/${data?.tag?.value}`, label: data?.tag?.label },

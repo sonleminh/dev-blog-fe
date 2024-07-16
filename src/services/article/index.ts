@@ -1,7 +1,8 @@
 import { QueryKeys } from '@/components/constants/query-key';
-import { IArticle, IArticlesByTagResponse, IArticlesResponse, IHomeArticlesResponse } from '@/interfaces/IArticle';
-import { getRequest } from '@/utils/fetch-client';
 import { useQuery } from '@tanstack/react-query';
+
+import { IArticleByIdResponse, IArticlesByTagResponse, IArticlesResponse, IHomeArticlesResponse } from '@/interfaces/IArticle';
+import { getRequest } from '@/utils/fetch-client';
 
 const articleUrl = 'article';
 
@@ -29,10 +30,10 @@ export const useSearchArticle = (keyword: string) => {
 };
 
 export const getArticleByIdAPI = async (id:string) => {
-  const result: {data: IArticle} = await getRequest(
+  const result = await getRequest(
     `http://localhost:3000/blog/${id}/api`, {cache: 'no-store', next: {revalidate: 0}}
   );
-  return result.data as IArticle;
+  return result as IArticleByIdResponse;
 };
 
 export const getArticleByTagAPI = async (tag:string, page: number) => {

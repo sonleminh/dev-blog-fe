@@ -28,6 +28,11 @@ export interface IArticlesByTagResponse {
     total: number
 }
 
+export interface IArticleByIdResponse {
+    data: IArticle,
+    relatedData: IArticlesResponse
+}
+
 export interface IArticle {
     _id: string;
     title: string;
@@ -36,4 +41,5 @@ export interface IArticle {
     tags: {value:string,label: string}[];
     thumbnail_image: string
     createdAt: string
+    views: number
 }

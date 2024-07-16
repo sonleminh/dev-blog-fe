@@ -3,16 +3,17 @@
 import SkeletonImage from '@/components/common/SkeletonImage';
 import AppLink from '@/components/common/AppLink';
 
-import { truncateTextByLine } from '@/utils/css-helper.util';
 import { IArticle } from '@/interfaces/IArticle';
-import { Swiper, SwiperSlide } from 'swiper/react';
+import { truncateTextByLine } from '@/utils/css-helper.util';
+
 import { Navigation } from 'swiper/modules';
+import { Swiper, SwiperSlide } from 'swiper/react';
 
 import { Box, SxProps, Theme, Typography } from '@mui/material';
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 
-const ArticleByTag = ({ data, title }: { data: IArticle[]; title: string }) => {
+export const RelatedArticle = ({ data }: { data: IArticle[] }) => {
   return (
     <Box sx={ArticleByTagStyle}>
       <Box
@@ -21,60 +22,53 @@ const ArticleByTag = ({ data, title }: { data: IArticle[]; title: string }) => {
           justifyContent: 'space-between',
           mb: 2,
         }}>
-        <Typography sx={{ fontSize: 18, fontWeight: 600 }}>{title}</Typography>
+        <Typography sx={{ fontSize: 18, fontWeight: 600 }}>
+          Bài viết liên quan
+        </Typography>
         <Box sx={{ display: 'flex' }}>
-          <Box className={`arrow-left arrow-left-${title}`}>
+          <Box className={`arrow-left`}>
             <KeyboardArrowLeftIcon />
           </Box>
-          <Box className={`arrow-right arrow-right-${title}`}>
+          <Box className={`arrow-right`}>
             <KeyboardArrowRightIcon />
           </Box>
         </Box>
       </Box>
       <Swiper
-        slidesPerView={3}
-        spaceBetween={12}
-        navigation={{
-          prevEl: `.arrow-left-${title}`,
-          nextEl: `.arrow-right-${title}`,
-        }}
         modules={[Navigation]}
-        className='mySwiper'>
-        {data?.map((item) => (
-          <SwiperSlide key={item._id}>
-            <AppLink
-              href={`/blog/${item._id}`}
-              sx={{
-                ':hover': {
-                  '& img': {
-                    transform: 'scale(1.05)',
-                  },
-                  '& span': {
-                    textDecoration: 'underline',
-                  },
-                },
-              }}>
+        navigation={{
+          prevEl: `.arrow-left`,
+          nextEl: `.arrow-right`,
+        }}
+        slidesPerView={3}
+        spaceBetween={20}>
+        {data?.map((item: IArticle, index: number) => (
+          <SwiperSlide key={index}>
+            <AppLink href={`blog/${item._id}`}>
               <Box
                 sx={{
                   position: 'relative',
                   width: '100%',
-                  height: { xs: '160px', sm: '160px', md: '160px' },
+                  height: { xs: '160px', sm: '160px', md: '200px' },
                   mb: 1,
-                  borderRadius: '8px',
+                  borderRadius: 2,
                   overflow: 'hidden',
-
                   '& img': {
                     objectFit: 'cover',
-                    transition: 'all 0.5s ease',
                   },
                 }}>
-                <SkeletonImage src={item.thumbnail_image} alt='devblog' />
+                <SkeletonImage src={item.thumbnail_image} alt='cc' fill />
               </Box>
-              <Typography
-                component={'span'}
-                sx={{ fontWeight: 500, ...truncateTextByLine(2) }}>
-                {item.title}
-              </Typography>
+              <Box>
+                <Typography
+                  sx={{
+                    mb: 1,
+                    fontWeight: 500,
+                    ...truncateTextByLine(2),
+                  }}>
+                  {item?.title}
+                </Typography>
+              </Box>
             </AppLink>
           </SwiperSlide>
         ))}
@@ -82,8 +76,6 @@ const ArticleByTag = ({ data, title }: { data: IArticle[]; title: string }) => {
     </Box>
   );
 };
-
-export default ArticleByTag;
 
 const ArticleByTagStyle: SxProps<Theme> = {
   '.arrow-left, .arrow-right': {

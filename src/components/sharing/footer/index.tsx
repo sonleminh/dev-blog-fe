@@ -1,3 +1,6 @@
+import AppLink from '@/components/common/AppLink';
+import LayoutContainer from '../layout-container';
+
 import {
   Box,
   Button,
@@ -10,20 +13,15 @@ import {
   Typography,
   useTheme,
 } from '@mui/material';
-import LayoutContainer from '../layout-container';
-import SkeletonImage from '@/components/common/SkeletonImage';
-import { truncateTextByLine } from '@/utils/css-helper.util';
-import FacebookIcon from '@mui/icons-material/Facebook';
-import XIcon from '@mui/icons-material/X';
 import InstagramIcon from '@mui/icons-material/Instagram';
+import FacebookIcon from '@mui/icons-material/Facebook';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
-import HeaderLogo from '../header/HeaderLogo';
-import AppLink from '@/components/common/AppLink';
-import NextJS from '../../../../public/nextjs-logo.svg';
-import Image from 'next/image';
+import XIcon from '@mui/icons-material/X';
+
 import NextJSLogo from '@/assests/nextjs-logo';
-import MUILogo from '@/assests/mui-logo';
+import HeaderLogo from '../header/HeaderLogo';
 import NestLogo from '@/assests/nestjs-logo';
+import MUILogo from '@/assests/mui-logo';
 
 const Footer = () => {
   const theme = useTheme();
@@ -94,7 +92,7 @@ const Footer = () => {
         </Grid>
         <Divider sx={{ bgcolor: '#696969' }} />
         <Box sx={{ mt: 2, textAlign: 'center' }}>
-          <Typography sx={{ fontSize: 14, color: '#e1e1e1' }}>
+          <Typography sx={{ mb: 2, fontSize: 14, color: '#e1e1e1' }}>
             Copyright © 2024 Atlas Two | Powered by WordPress .
           </Typography>
           <Box
@@ -104,8 +102,8 @@ const Footer = () => {
               alignItems: 'center',
             }}>
             <NextJSLogo />
-            <MUILogo />
             <NestLogo />
+            <MUILogo />
           </Box>
         </Box>
       </LayoutContainer>

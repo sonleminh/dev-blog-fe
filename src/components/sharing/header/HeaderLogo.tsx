@@ -1,9 +1,5 @@
-import AppLink from '@/components/common/AppLink';
-import { Box } from '@mui/material';
-
 const HeaderLogo = () => {
   return (
-    // <Box component={AppLink} href={'/'}>
     <svg
       width='130'
       height='45'
@@ -24,7 +20,6 @@ const HeaderLogo = () => {
         fill='white'
       />
     </svg>
-    // </Box>
   );
 };
 

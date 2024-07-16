@@ -1,4 +1,15 @@
-import { Box, Button, Grid, Typography, useTheme } from '@mui/material';
+import {
+  Box,
+  Button,
+  Divider,
+  Grid,
+  List,
+  ListItem,
+  SxProps,
+  Theme,
+  Typography,
+  useTheme,
+} from '@mui/material';
 import LayoutContainer from '../layout-container';
 import SkeletonImage from '@/components/common/SkeletonImage';
 import { truncateTextByLine } from '@/utils/css-helper.util';
@@ -8,6 +19,11 @@ import InstagramIcon from '@mui/icons-material/Instagram';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import HeaderLogo from '../header/HeaderLogo';
 import AppLink from '@/components/common/AppLink';
+import NextJS from '../../../../public/nextjs-logo.svg';
+import Image from 'next/image';
+import NextJSLogo from '@/assests/nextjs-logo';
+import MUILogo from '@/assests/mui-logo';
+import NestLogo from '@/assests/nestjs-logo';
 
 const Footer = () => {
   const theme = useTheme();
@@ -19,7 +35,7 @@ const Footer = () => {
         color: '#fff',
       }}>
       <LayoutContainer>
-        <Grid container spacing={3}>
+        <Grid container spacing={3} sx={FooterStyle}>
           <Grid item xs={3}>
             <Button
               component={AppLink}
@@ -32,44 +48,64 @@ const Footer = () => {
               <HeaderLogo />
             </Button>
           </Grid>
-          <Grid item xs={3}>
+          <Grid item xs={4}>
             <Typography sx={{ mb: 3, fontSize: 20, fontWeight: 600 }}>
               Giới thiệu
             </Typography>
-            <Typography sx={{ fontSize: 14 }}>
+            <Typography className='footer-content'>
               Phát triển bởi Son Le vào năm 2024, là blog cá nhân chia sẻ kiến
               thức IT.
             </Typography>
           </Grid>
-          <Grid item xs={3}>
-            <Typography sx={{ mb: 3, fontSize: 20, fontWeight: 600 }}>
-              Weekly
+          <Grid item xs={2}>
+            <Typography sx={{ mb: 2, fontSize: 20, fontWeight: 600 }}>
+              Blog
             </Typography>
+            <List sx={{ p: 0, li: { px: 0 } }}>
+              <ListItem>
+                <AppLink href={'/blog'} className='footer-content'>
+                  Mới nhất
+                </AppLink>
+              </ListItem>
+              <ListItem>
+                <AppLink href={'/tag/develop'} className='footer-content'>
+                  Lập trình
+                </AppLink>
+              </ListItem>
+            </List>
           </Grid>
           <Grid item xs={3}>
             <Typography sx={{ mb: 3, fontSize: 20, fontWeight: 600 }}>
-              Subscribe Us
+              Follow me
             </Typography>
-            <Typography>
-              Get the latest creative news from Atlas magazine
-            </Typography>
+            <Box
+              sx={{
+                '& svg': {
+                  m: '0 8px',
+                  fontSize: 18,
+                },
+              }}>
+              <FacebookIcon />
+              <XIcon />
+              <InstagramIcon />
+              <LinkedInIcon />
+            </Box>
           </Grid>
         </Grid>
-        <Box sx={{ display: 'flex', justifyContent: 'space-between', mt: 2 }}>
-          <Typography sx={{ fontSize: 14 }}>
+        <Divider sx={{ bgcolor: '#696969' }} />
+        <Box sx={{ mt: 2, textAlign: 'center' }}>
+          <Typography sx={{ fontSize: 14, color: '#e1e1e1' }}>
             Copyright © 2024 Atlas Two | Powered by WordPress .
           </Typography>
           <Box
             sx={{
-              '& svg': {
-                m: '0 8px',
-                fontSize: 18,
-              },
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
             }}>
-            <FacebookIcon />
-            <XIcon />
-            <InstagramIcon />
-            <LinkedInIcon />
+            <NextJSLogo />
+            <MUILogo />
+            <NestLogo />
           </Box>
         </Box>
       </LayoutContainer>
@@ -78,3 +114,11 @@ const Footer = () => {
 };
 
 export default Footer;
+
+const FooterStyle: SxProps<Theme> = {
+  pb: 4,
+  '.footer-content': {
+    fontSize: 14,
+    color: '#bdbdbd',
+  },
+};

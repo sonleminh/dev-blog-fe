@@ -6,6 +6,28 @@ import { getRequest } from '@/utils/fetch-client';
 
 const articleUrl = 'article';
 
+type TInitDataRes = {
+  tags?: { value: string; label: string }[];
+};
+
+// GET INITIAL TAG
+
+const getArticleInitial = async () => {
+  const result = await getRequest(`http://localhost:8080/admin/api/${articleUrl}/get-article-initial`);
+  return result as TInitDataRes;
+};
+
+export const useGetArticleInitial = () => {
+  return useQuery({
+    queryKey: [QueryKeys.ARTICLE],
+    queryFn: () => getArticleInitial(),
+    refetchOnWindowFocus: false,
+    refetchInterval: false,
+  });
+};
+
+// GET ARTICLE LIST
+
 export const getArticleListAPI = async () => {
   const result: {data: IHomeArticlesResponse} = await getRequest(
     `http://localhost:3000/api`, {cache: 'no-store', next: {revalidate: 0}}
@@ -15,7 +37,7 @@ export const getArticleListAPI = async () => {
 
 export const getSearchArticleAPI = async (keyword: string) => {
   const result = await getRequest(
-    `http://localhost:8080/admin/api/article?s=${keyword}`,  {cache: 'no-store', next: {revalidate: 0}}
+    `http://localhost:8080/admin/api/${articleUrl}?s=${keyword}`,  {cache: 'no-store', next: {revalidate: 0}}
   );
   return result as IArticlesResponse;
 };

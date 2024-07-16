@@ -18,14 +18,16 @@ import {
 import LayoutContainer from '../layout-container';
 import HeaderLogo from './HeaderLogo';
 import SkeletonImage from '@/components/common/SkeletonImage';
-import { useSearchArticle } from '@/services/article';
+import { useGetArticleInitial, useSearchArticle } from '@/services/article';
 import { truncateTextByLine } from '@/utils/css-helper.util';
 import moment from 'moment';
 import { ChangeEvent, useEffect, useRef, useState } from 'react';
+import { MenuDropDown } from './components/menu-dropdown';
 
 const Header = () => {
   const theme = useTheme();
-
+  const { data: tagData } = useGetArticleInitial();
+  console.log(tagData);
   const [searchValue, setSearchValue] = useState<string | null>();
   const { data: searchResult, refetch } = useSearchArticle(
     searchValue as string
@@ -104,6 +106,9 @@ const Header = () => {
             <List sx={MenuListStyle}>
               <ListItem>
                 <AppLink href={'/'}>Blog</AppLink>
+              </ListItem>
+              <ListItem>
+                <MenuDropDown data={tagData} />
               </ListItem>
               <ListItem>
                 <AppLink href={'/'}>Liên hệ</AppLink>
@@ -244,7 +249,9 @@ const MenuListStyle: SxProps<Theme> = {
   alignItems: 'center',
   ml: 2,
   whiteSpace: 'nowrap',
-  '& li': {
+  '& >li': {
+    p: 0,
+    mx: 2,
     position: 'relative',
     ':before': {
       position: 'absolute',
@@ -263,5 +270,8 @@ const MenuListStyle: SxProps<Theme> = {
         transform: 'scaleX(1)',
       },
     },
+  },
+  a: {
+    pb: 1,
   },
 };

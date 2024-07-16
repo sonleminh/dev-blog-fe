@@ -105,7 +105,7 @@ const Header = () => {
             </Button>
             <List sx={MenuListStyle}>
               <ListItem>
-                <AppLink href={'/'}>Blog</AppLink>
+                <AppLink href={'/blog'}>Blog</AppLink>
               </ListItem>
               <ListItem>
                 <MenuDropDown data={tagData} />
@@ -248,11 +248,15 @@ const MenuListStyle: SxProps<Theme> = {
   display: 'flex',
   alignItems: 'center',
   ml: 2,
+  pb: 0,
   whiteSpace: 'nowrap',
   '& >li': {
     p: 0,
     mx: 2,
     position: 'relative',
+    '& >a': {
+      pb: 1,
+    },
     ':before': {
       position: 'absolute',
       content: '""',
@@ -270,8 +274,5 @@ const MenuListStyle: SxProps<Theme> = {
         transform: 'scaleX(1)',
       },
     },
-  },
-  a: {
-    pb: 1,
   },
 };

@@ -43,11 +43,13 @@ export const MenuDropDown = ({ data }: { data?: TInitDataRes }) => {
           <ListItem
             key={item?.value}
             sx={{
-              fontSize: 14,
+              fontSize: 13.5,
               textTransform: 'capitalize',
+              transition: 'all 0.2s ease',
               ':hover': {
                 bgcolor: '#000',
                 color: '#fff',
+                cursor: 'pointer',
               },
             }}>
             <AppLink href={`/tag/${item?.value}`}>{item.label}</AppLink>

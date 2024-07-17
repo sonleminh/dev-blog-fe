@@ -1,14 +1,15 @@
 import React from 'react';
-
-import { Box, List, ListItem, Typography } from '@mui/material';
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import AppLink from '@/components/common/AppLink';
+
+import { Box, List, ListItem, Typography, useTheme } from '@mui/material';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
 type TInitDataRes = {
   tags?: { value: string; label: string }[];
 };
 
 export const MenuDropDown = ({ data }: { data?: TInitDataRes }) => {
+  const theme = useTheme();
   return (
     <Box
       sx={{
@@ -16,7 +17,9 @@ export const MenuDropDown = ({ data }: { data?: TInitDataRes }) => {
         pb: 1,
         ':hover': {
           '.dropdown-content': {
-            display: 'block',
+            top: '100%',
+            visibility: 'visible',
+            opacity: 1,
           },
         },
       }}>
@@ -30,14 +33,17 @@ export const MenuDropDown = ({ data }: { data?: TInitDataRes }) => {
         className='dropdown-content'
         sx={{
           position: 'absolute',
-          top: '32px',
+          top: 0,
           left: 0,
           zIndex: 69,
-          display: 'none',
-          bgcolor: '#fff',
+          visibility: 'hidden',
+          opacity: 0,
+          bgcolor: theme.palette.mode === 'light' ? '#fff' : '#000',
+          border: theme.palette.mode === 'dark' ? '1px solid #696969' : '',
           boxShadow: 2,
           borderRadius:
             'box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)',
+          transition: 'all .2s',
         }}>
         {data?.tags?.map((item) => (
           <ListItem
@@ -47,8 +53,8 @@ export const MenuDropDown = ({ data }: { data?: TInitDataRes }) => {
               textTransform: 'capitalize',
               transition: 'all 0.2s ease',
               ':hover': {
-                bgcolor: '#000',
-                color: '#fff',
+                bgcolor: theme.palette.mode === 'light' ? '#000' : '#fff',
+                color: theme.palette.mode === 'light' ? '#fff' : '#000',
                 cursor: 'pointer',
               },
             }}>

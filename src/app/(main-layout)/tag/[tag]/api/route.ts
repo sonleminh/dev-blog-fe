@@ -1,5 +1,5 @@
-import { getRequest } from "@/utils/fetch-client";
 import { NextRequest } from "next/server";
+import { getRequest } from "@/utils/fetch-client";
 
 export async function GET(request: NextRequest, {params}: {
     params: { tag: string}

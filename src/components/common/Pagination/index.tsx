@@ -1,8 +1,8 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
 import { IArticlesByTagResponse } from '@/interfaces/IArticle';
 import { Pagination as BasePagination } from '@mui/material';
-import { useRouter } from 'next/navigation';
 
 const Pagination = ({
   data,

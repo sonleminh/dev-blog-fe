@@ -1,12 +1,15 @@
 'use client';
 
 import React from 'react';
-import Header from '../header';
+
 import Footer from '../footer';
-import { Box, Grid, useTheme } from '@mui/material';
+import Header from '../header';
+
+import { ColorModeContext } from '@/contexts/ColorModeContext';
+
 import Brightness3Icon from '@mui/icons-material/Brightness3';
 import LightModeIcon from '@mui/icons-material/LightMode';
-import { ColorModeContext } from '@/contexts/ColorModeContext';
+import { Box, useTheme } from '@mui/material';
 
 type LayoutType = {
   children?: React.ReactNode;
@@ -28,8 +31,8 @@ const Layout = ({ children }: LayoutType) => {
           alignItems: 'center',
           width: '32px',
           height: '32px',
-          bgcolor: '#000',
-          color: '#fff',
+          bgcolor: theme.palette.mode === 'light' ? '#000' : '#fff',
+          color: theme.palette.mode === 'light' ? '#fff' : '#000',
           borderRadius: 2,
           cursor: 'pointer',
         }}

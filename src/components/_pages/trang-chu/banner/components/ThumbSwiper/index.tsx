@@ -1,13 +1,14 @@
-import React, { useRef } from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Autoplay, FreeMode, Navigation, Thumbs } from 'swiper/modules';
 import SkeletonImage from '@/components/common/SkeletonImage';
-import { Box, SxProps, Theme } from '@mui/material';
+
+import { Autoplay, FreeMode, Navigation, Thumbs } from 'swiper/modules';
+import { Swiper, SwiperSlide } from 'swiper/react';
+
 import { IArticle } from '@/interfaces/IArticle';
+import { Box, SxProps, Theme } from '@mui/material';
 
 type TSwiperProps = {
   data: IArticle[];
-  setThumbsSwiper: () => void;
+  setThumbsSwiper: any;
 };
 
 const ThumbSwiper = (props: TSwiperProps) => {
@@ -88,6 +89,7 @@ const SwiperStyle: SxProps<Theme> = {
     position: 'relative',
     width: '72px',
     height: '72px',
+    cursor: 'pointer',
   },
   '.thumb-container': {
     ':before': {

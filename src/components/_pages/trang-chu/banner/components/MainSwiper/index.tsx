@@ -1,12 +1,16 @@
 import React from 'react';
+
+import SkeletonImage from '@/components/common/SkeletonImage';
+import AppLink from '@/components/common/AppLink';
+
+import { truncateTextByLine } from '@/utils/css-helper.util';
+import { IArticle } from '@/interfaces/IArticle';
+import { Box, SxProps, Theme, Typography } from '@mui/material';
+
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, FreeMode, Thumbs } from 'swiper/modules';
-import { Box, SxProps, Theme, Typography } from '@mui/material';
-import SkeletonImage from '@/components/common/SkeletonImage';
-import { IArticle } from '@/interfaces/IArticle';
-import AppLink from '@/components/common/AppLink';
+
 import moment from 'moment';
-import { truncateTextByLine } from '@/utils/css-helper.util';
 
 type TSwiperProps = {
   data: IArticle[];
@@ -47,6 +51,11 @@ const MainSwiper = (props: TSwiperProps) => {
                   background:
                     'linear-gradient(to bottom, rgba(0, 0, 0, 0) 40%, rgba(0, 0, 0, 0.7) 100%)',
                 },
+                ':hover': {
+                  '& img': {
+                    transform: 'scale(1.05)',
+                  },
+                },
               }}>
               <Box
                 sx={{
@@ -57,9 +66,14 @@ const MainSwiper = (props: TSwiperProps) => {
                   overflow: 'hidden',
                   '& img': {
                     objectFit: 'cover',
+                    transition: 'all 0.5s ease',
                   },
                 }}>
-                <SkeletonImage src={item.thumbnail_image} alt='cc' fill />
+                <SkeletonImage
+                  src={item.thumbnail_image}
+                  alt={item.summary}
+                  fill
+                />
               </Box>
               <Box
                 sx={{
@@ -95,6 +109,6 @@ export default MainSwiper;
 const MainSwiperStyle: SxProps<Theme> = {
   '.mainSwiper': {
     height: 450,
-    borderRadius: '10px',
+    borderRadius: '8px',
   },
 };

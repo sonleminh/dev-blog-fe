@@ -1,12 +1,15 @@
 'use client';
 
-import AppLink from '@/components/common/AppLink';
 import SkeletonImage from '@/components/common/SkeletonImage';
-import { IArticle } from '@/interfaces/IArticle';
+import AppLink from '@/components/common/AppLink';
+
 import { truncateTextByLine } from '@/utils/css-helper.util';
-import { Box, Grid, Typography } from '@mui/material';
+import { IArticle } from '@/interfaces/IArticle';
+
+import { Box, Button, Grid, Typography, useTheme } from '@mui/material';
 
 const Latest = ({ data }: { data: IArticle[] }) => {
+  const theme = useTheme();
   return (
     <Box sx={{ mb: 3 }}>
       <Box
@@ -17,8 +20,15 @@ const Latest = ({ data }: { data: IArticle[] }) => {
           mb: 2,
         }}>
         <Typography sx={{ fontSize: 18, fontWeight: 600 }}>Mới nhất</Typography>
-        <AppLink href={'/blog'} sx={{ fontSize: 12 }}>
-          View all
+        <AppLink href={'/blog'}>
+          <Button
+            sx={{
+              color: theme.palette.mode === 'light' ? '' : '#fff',
+              fontSize: 13,
+              textTransform: 'capitalize',
+            }}>
+            View all
+          </Button>
         </AppLink>
       </Box>
       <Grid container rowSpacing={4} columnSpacing={2.5}>

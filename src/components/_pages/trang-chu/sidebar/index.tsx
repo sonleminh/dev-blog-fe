@@ -1,9 +1,10 @@
 import SkeletonImage from '@/components/common/SkeletonImage';
 import AppLink from '@/components/common/AppLink';
+import { TagList } from './components/TagList';
 
-import { truncateTextByLine } from '@/utils/css-helper.util';
 import { getArticleListAPI } from '@/services/article';
-import { Box, Button, SxProps, Theme, Typography } from '@mui/material';
+import { truncateTextByLine } from '@/utils/css-helper.util';
+import { Box, SxProps, Theme, Typography } from '@mui/material';
 import moment from 'moment';
 
 const Sidebar = async () => {
@@ -61,37 +62,7 @@ const Sidebar = async () => {
         ))}
       </Box>
       <Box mb={4}>
-        <Typography sx={{ mb: 2, fontSize: 18, fontWeight: 600 }}>
-          Tags
-        </Typography>
-        <Box
-          sx={{
-            display: 'flex',
-            flexWrap: 'wrap',
-            gap: '10px',
-          }}>
-          {tags?.map((item, index) => (
-            <AppLink key={index} href={`/tag/${item?.value}`}>
-              <Button
-                variant='contained'
-                sx={{
-                  p: '4px 8px',
-                  bgcolor: '#eee',
-                  color: '#000',
-                  fontSize: 13,
-                  borderRadius: '4px',
-                  textTransform: 'none',
-                  boxShadow: 'none',
-                  ':hover': {
-                    // bgcolor: (theme) => theme.palette.primary.light,
-                    color: '#fff',
-                  },
-                }}>
-                #{item.label}
-              </Button>
-            </AppLink>
-          ))}
-        </Box>
+        <TagList data={tags} />
       </Box>
     </Box>
   );

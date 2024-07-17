@@ -1,9 +1,8 @@
 'use client';
 
-import { dynamicBlurDataUrl } from '@/utils/image.util';
-import { Skeleton } from '@mui/material';
+import React, { useState } from 'react';
 import Image, { ImageProps } from 'next/image';
-import React, { useEffect, useState } from 'react';
+import { Skeleton } from '@mui/material';
 
 const SkeletonImage: React.FC<ImageProps> = (props) => {
   const [isError, setIsError] = useState(false);

@@ -1,7 +1,15 @@
 'use client';
 
+import { ChangeEvent, useEffect, useRef, useState } from 'react';
+
+import SkeletonImage from '@/components/common/SkeletonImage';
+import { MenuDropDown } from './components/menu-dropdown';
 import AppLink from '@/components/common/AppLink';
-import SearchIcon from '@mui/icons-material/Search';
+import LayoutContainer from '../layout-container';
+
+import { useGetArticleInitial, useSearchArticle } from '@/services/article';
+import { truncateTextByLine } from '@/utils/css-helper.util';
+
 import {
   Box,
   Button,
@@ -15,23 +23,17 @@ import {
   Typography,
   useTheme,
 } from '@mui/material';
-import LayoutContainer from '../layout-container';
+import SearchIcon from '@mui/icons-material/Search';
+
 import HeaderLogo from './HeaderLogo';
-import SkeletonImage from '@/components/common/SkeletonImage';
-import { useGetArticleInitial, useSearchArticle } from '@/services/article';
-import { truncateTextByLine } from '@/utils/css-helper.util';
 import moment from 'moment';
-import { ChangeEvent, useEffect, useRef, useState } from 'react';
-import { MenuDropDown } from './components/menu-dropdown';
 
 const Header = () => {
   const theme = useTheme();
   const { data: tagData } = useGetArticleInitial();
-  console.log(tagData);
   const [searchValue, setSearchValue] = useState<string | null>();
-  const { data: searchResult, refetch } = useSearchArticle(
-    searchValue as string
-  );
+
+  const { data: searchResult } = useSearchArticle(searchValue as string);
   const [isOpen, setIsOpen] = useState(false);
   const searchResultBoxRef = useRef<HTMLDivElement>(null);
   const searchInputRef = useRef<HTMLInputElement>(null);
@@ -99,7 +101,8 @@ const Header = () => {
               href='/'
               sx={{
                 p: 0,
-                border: theme.palette.mode === 'light' ? '' : '1px solid #fff',
+                border:
+                  theme.palette.mode === 'light' ? '' : '1px solid #696969',
               }}>
               <HeaderLogo />
             </Button>
@@ -166,7 +169,8 @@ const Header = () => {
                   left: 0,
                   zIndex: 69,
                   width: '100%',
-                  bgcolor: '#fff',
+                  bgcolor: theme.palette.mode === 'light' ? '#fff' : '#000',
+                  border: '1px solid #696969',
                   boxShadow: 5,
                 }}>
                 {searchResult?.articleList.length > 0 ? (
@@ -189,6 +193,7 @@ const Header = () => {
                                   position: 'relative',
                                   width: '100%',
                                   height: 50,
+                                  border: '1px solid #3d3d3d',
                                   borderRadius: '4px',
                                   overflow: 'hidden',
                                   '& img': {
@@ -264,7 +269,7 @@ const MenuListStyle: SxProps<Theme> = {
       right: '0',
       bottom: '0',
       width: '100%',
-      bgcolor: '#000',
+      bgcolor: (theme) => (theme.palette.mode === 'light' ? '#000' : '#fff'),
       transition: 'transform .2s',
       transform: 'scaleX(0)',
       transformOrigin: 'top right',

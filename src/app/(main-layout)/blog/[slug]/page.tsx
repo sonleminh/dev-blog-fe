@@ -20,7 +20,7 @@ const ArticleDetail = async ({ params }: { params: { slug: string } }) => {
   ];
   return (
     <LayoutContainer>
-      <Box sx={{ p: '16px 0 20px' }}>
+      <Box sx={{ p: '16px 0 28px' }}>
         <Grid container spacing={4}>
           <Grid
             item
@@ -95,7 +95,7 @@ const ArticleDetail = async ({ params }: { params: { slug: string } }) => {
             <Sidebar />
           </Grid>
         </Grid>
-        <Box>
+        <Box sx={{ mt: 2 }}>
           <RelatedArticle data={relatedData?.articleList} />
         </Box>
       </Box>

@@ -1,6 +1,6 @@
 import React from 'react';
-import { Link as MuiLink, LinkProps as MuiLinkProps } from '@mui/material';
 import Link, { LinkProps as NextLinkProps } from 'next/link';
+import { Link as MuiLink, LinkProps as MuiLinkProps } from '@mui/material';
 
 type AppLinkProps = NextLinkProps & MuiLinkProps & { href: string };
 

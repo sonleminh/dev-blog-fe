@@ -1,9 +1,6 @@
-import React, { ReactNode } from 'react';
-import { Stack } from '@mui/material';
-import { Breadcrumbs as BaseBreadcrumbs } from '@mui/material';
-import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import AppLink from '../AppLink';
-import { truncateTextByLine } from '@/utils/css-helper.util';
+import NavigateNextIcon from '@mui/icons-material/NavigateNext';
+import { Breadcrumbs as BaseBreadcrumbs } from '@mui/material';
 
 interface IBreadcrumbsProps {
   options: IBreadcrumbOption[];

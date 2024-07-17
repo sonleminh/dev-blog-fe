@@ -2,10 +2,10 @@ import LayoutContainer from '@/components/sharing/layout-container';
 import SkeletonImage from '@/components/common/SkeletonImage';
 import Sidebar from '@/components/_pages/trang-chu/sidebar';
 import Breadcrumbs from '@/components/common/Breadcrumbs';
-import { getLatestArticleAPI } from '@/services/article';
 import Pagination from '@/components/common/Pagination';
 
 import { truncateTextByLine } from '@/utils/css-helper.util';
+import { getLatestArticleAPI } from '@/services/article';
 import { Box, Grid, Typography } from '@mui/material';
 import moment from 'moment';
 
@@ -25,7 +25,7 @@ const Latest = async ({
 
   return (
     <LayoutContainer>
-      <Box sx={{ p: '16px 0 20px' }}>
+      <Box sx={{ p: '16px 0 28px' }}>
         <Grid container spacing={4}>
           <Grid item xs={8}>
             <Box sx={{ mb: 3 }}>

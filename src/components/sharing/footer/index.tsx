@@ -41,7 +41,7 @@ const Footer = () => {
               sx={{
                 p: 0,
                 mb: 4,
-                border: '1px solid #fff',
+                border: '1px solid #696969',
               }}>
               <HeaderLogo />
             </Button>

@@ -92,8 +92,8 @@ const ArticleByTagStyle: SxProps<Theme> = {
     alignItems: 'center',
     width: '26px',
     height: '26px',
-    bgcolor: '#000',
-    color: '#fff',
+    bgcolor: (theme) => (theme.palette.mode === 'light' ? '#000' : '#fff'),
+    color: (theme) => (theme.palette.mode === 'light' ? '#fff' : '#000'),
     borderRadius: '10px',
     '& svg': {
       fontSize: 18,
@@ -105,8 +105,8 @@ const ArticleByTagStyle: SxProps<Theme> = {
     ml: 0.5,
   },
   '.swiper-button-disabled': {
-    bgcolor: '#eee',
-    color: '#000',
+    bgcolor: (theme) => (theme.palette.mode === 'light' ? '#eee' : '#363636'),
+    color: (theme) => (theme.palette.mode === 'light' ? '#000' : '#eee'),
     cursor: 'default',
   },
 };

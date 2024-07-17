@@ -23,7 +23,7 @@ const ArticleByTag = async ({
   ];
   return (
     <LayoutContainer>
-      <Box sx={{ p: '16px 0 20px' }}>
+      <Box sx={{ p: '16px 0 28px' }}>
         <Grid container spacing={4}>
           <Grid item xs={8}>
             <Box sx={{ mb: 3 }}>

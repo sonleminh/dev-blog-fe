@@ -1,17 +1,14 @@
 'use client';
 
-import { Theme } from '@emotion/react';
-import { Box, Grid, SxProps, Typography } from '@mui/material';
-import Image from 'next/image';
-import Link from 'next/link';
-import React, { useRef, useState } from 'react';
-import { truncateTextByLine } from '@/utils/css-helper.util';
-import SkeletonImage from '@/components/common/SkeletonImage';
-import { Autoplay, Pagination, Navigation } from 'swiper/modules';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import MainSwiper from './components/MainSwiper';
+import { useState } from 'react';
+
 import ThumbSwiper from './components/ThumbSwiper';
+import MainSwiper from './components/MainSwiper';
+
 import { IArticle } from '@/interfaces/IArticle';
+
+import { Box, SxProps } from '@mui/material';
+import { Theme } from '@emotion/react';
 
 const Banner = ({ data }: { data: IArticle[] }) => {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
@@ -27,6 +24,8 @@ export default Banner;
 
 const BannerContainer: SxProps<Theme> = {
   position: 'relative',
+  border: '1px solid #eee',
+  borderRadius: '8px',
   '.swiper-slide': {
     width: '100%',
   },

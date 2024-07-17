@@ -44,7 +44,7 @@ export const RelatedArticle = ({ data }: { data: IArticle[] }) => {
         spaceBetween={20}>
         {data?.map((item: IArticle, index: number) => (
           <SwiperSlide key={index}>
-            <AppLink href={`blog/${item._id}`}>
+            <AppLink href={`/blog/${item._id}`}>
               <Box
                 sx={{
                   position: 'relative',

@@ -7,8 +7,7 @@ import MainSwiper from './components/MainSwiper';
 
 import { IArticle } from '@/interfaces/IArticle';
 
-import { Box, SxProps } from '@mui/material';
-import { Theme } from '@emotion/react';
+import { Box, SxProps, Theme } from '@mui/material';
 
 const Banner = ({ data }: { data: IArticle[] }) => {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
@@ -24,7 +23,8 @@ export default Banner;
 
 const BannerContainer: SxProps<Theme> = {
   position: 'relative',
-  border: '1px solid #eee',
+  border: (theme) =>
+    theme.palette.mode === 'light' ? '1px solid #eee' : '1px solid #222',
   borderRadius: '8px',
   '.swiper-slide': {
     width: '100%',

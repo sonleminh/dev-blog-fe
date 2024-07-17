@@ -46,20 +46,21 @@ export const MenuDropDown = ({ data }: { data?: TInitDataRes }) => {
           transition: 'all .2s',
         }}>
         {data?.tags?.map((item) => (
-          <ListItem
-            key={item?.value}
-            sx={{
-              fontSize: 13.5,
-              textTransform: 'capitalize',
-              transition: 'all 0.2s ease',
-              ':hover': {
-                bgcolor: theme.palette.mode === 'light' ? '#000' : '#fff',
-                color: theme.palette.mode === 'light' ? '#fff' : '#000',
-                cursor: 'pointer',
-              },
-            }}>
-            <AppLink href={`/tag/${item?.value}`}>{item.label}</AppLink>
-          </ListItem>
+          <AppLink key={item?.value} href={`/tag/${item?.value}`}>
+            <ListItem
+              sx={{
+                fontSize: 13.5,
+                textTransform: 'capitalize',
+                transition: 'all 0.2s ease',
+                ':hover': {
+                  bgcolor: theme.palette.mode === 'light' ? '#000' : '#fff',
+                  color: theme.palette.mode === 'light' ? '#fff' : '#000',
+                  cursor: 'pointer',
+                },
+              }}>
+              {item.label}
+            </ListItem>
+          </AppLink>
         ))}
       </List>
     </Box>

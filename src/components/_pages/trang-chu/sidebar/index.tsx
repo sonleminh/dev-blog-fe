@@ -69,29 +69,3 @@ const Sidebar = async () => {
 };
 
 export default Sidebar;
-
-const ProgramingStyle: SxProps<Theme> = {
-  '.arrow-left, .arrow-right': {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: '26px',
-    height: '26px',
-    bgcolor: (theme) => theme.palette.primary.light,
-    color: '#fff',
-    borderRadius: '10px',
-    '& svg': {
-      fontSize: 18,
-    },
-    cursor: 'pointer',
-    transition: 'all .2s linear',
-  },
-  '.arrow-right': {
-    ml: 0.5,
-  },
-  '.swiper-button-disabled': {
-    bgcolor: '#F0F2FE',
-    color: '#000',
-    cursor: 'default',
-  },
-};

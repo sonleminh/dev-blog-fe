@@ -3,12 +3,12 @@ import SkeletonImage from '@/components/common/SkeletonImage';
 import Sidebar from '@/components/_pages/trang-chu/sidebar';
 import Breadcrumbs from '@/components/common/Breadcrumbs';
 import Pagination from '@/components/common/Pagination';
+import AppLink from '@/components/common/AppLink';
 
 import { truncateTextByLine } from '@/utils/css-helper.util';
 import { getLatestArticleAPI } from '@/services/article';
 import { Box, Grid, Typography } from '@mui/material';
 import moment from 'moment';
-import AppLink from '@/components/common/AppLink';
 
 const Latest = async ({
   params,

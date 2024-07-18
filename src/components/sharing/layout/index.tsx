@@ -7,6 +7,7 @@ import Header from '../header';
 
 import { ColorModeContext } from '@/contexts/ColorModeContext';
 
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import Brightness3Icon from '@mui/icons-material/Brightness3';
 import LightModeIcon from '@mui/icons-material/LightMode';
 import { Box, useTheme } from '@mui/material';
@@ -18,19 +19,41 @@ type LayoutType = {
 const Layout = ({ children }: LayoutType) => {
   const theme = useTheme();
   const context = React.useContext(ColorModeContext);
+
+  const handleScrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
   return (
     <>
       <Header />
       <Box
         sx={{
           position: 'fixed',
-          bottom: '3%',
+          bottom: '11%',
           right: '3%',
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
-          width: '32px',
-          height: '32px',
+          width: '36px',
+          height: '36px',
+          bgcolor: theme.palette.mode === 'light' ? '#000' : '#fff',
+          color: theme.palette.mode === 'light' ? '#fff' : '#000',
+          borderRadius: 2,
+          cursor: 'pointer',
+        }}
+        onClick={handleScrollToTop}>
+        <KeyboardArrowUpIcon sx={{ fontSize: 24 }} />
+      </Box>
+      <Box
+        sx={{
+          position: 'fixed',
+          bottom: '5%',
+          right: '3%',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          width: '36px',
+          height: '36px',
           bgcolor: theme.palette.mode === 'light' ? '#000' : '#fff',
           color: theme.palette.mode === 'light' ? '#fff' : '#000',
           borderRadius: 2,

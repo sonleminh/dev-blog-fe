@@ -6,22 +6,26 @@ import { ThemeProvider, createTheme } from '@mui/material';
 const ColorModeContext = React.createContext({ toggleColorMode: () => {} });
 
 function ColorModeProvider({ children }: { children: ReactNode }) {
-  const [mode, setMode] = React.useState<'light' | 'dark'>(
-    (localStorage.getItem('THEME_MODE') as 'light' | 'dark') || 'light'
-  );
+  const [mode, setMode] = React.useState<'light' | 'dark'>('light');
   const colorMode = React.useMemo(
     () => ({
       toggleColorMode: () => {
-        setMode((prevMode) => (prevMode === 'light' ? 'dark' : 'light'));
+        setMode((prevMode) => {
+          const newMode = prevMode === 'light' ? 'dark' : 'light';
+          localStorage.setItem('THEME_MODE', newMode);
+          return newMode;
+        });
       },
     }),
     []
   );
-  console.log(mode);
 
   useEffect(() => {
-    localStorage.setItem('THEME_MODE', mode);
-  }, [mode]);
+    const savedMode = localStorage.getItem('THEME_MODE') as 'light' | 'dark';
+    if (savedMode) {
+      setMode(savedMode);
+    }
+  }, []);
 
   const darkTheme = createTheme({
     palette: {

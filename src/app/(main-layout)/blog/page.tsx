@@ -17,17 +17,17 @@ const Latest = async ({
   params: { tag: string };
   searchParams: { page: string };
 }) => {
-  const data = await getLatestArticleAPI(params.tag, +searchParams.page);
+  // const data = await getLatestArticleAPI(params.tag, +searchParams.page);
 
-  const breadcrumbsOptions = [
-    { link: '/', label: 'HOME' },
-    { link: ``, label: 'Mới nhất' },
-  ];
+  // const breadcrumbsOptions = [
+  //   { link: '/', label: 'HOME' },
+  //   { link: ``, label: 'Mới nhất' },
+  // ];
 
   return (
     <LayoutContainer>
       <Box sx={{ p: '16px 0 28px' }}>
-        <Grid container spacing={4}>
+        {/* <Grid container spacing={4}>
           <Grid item xs={8}>
             <Box sx={{ mb: 3 }}>
               <Breadcrumbs options={breadcrumbsOptions} />
@@ -99,7 +99,7 @@ const Latest = async ({
           <Grid item xs={4}>
             <Sidebar />
           </Grid>
-        </Grid>
+        </Grid> */}
       </Box>
     </LayoutContainer>
   );

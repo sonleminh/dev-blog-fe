@@ -30,10 +30,10 @@ import moment from 'moment';
 
 const Header = () => {
   const theme = useTheme();
-  const { data: tagData } = useGetArticleInitial();
+  // const { data: tagData } = useGetArticleInitial();
   const [searchValue, setSearchValue] = useState<string | null>();
 
-  const { data: searchResult } = useSearchArticle(searchValue as string);
+  // const { data: searchResult } = useSearchArticle(searchValue as string);
   const [isOpen, setIsOpen] = useState(false);
   const searchResultBoxRef = useRef<HTMLDivElement>(null);
   const searchInputRef = useRef<HTMLInputElement>(null);
@@ -91,7 +91,7 @@ const Header = () => {
             alignItems: 'center',
             height: 80,
           }}>
-          <Box
+          {/* <Box
             sx={{
               display: 'flex',
               alignItems: 'center',
@@ -240,7 +240,7 @@ const Header = () => {
                 )}
               </Box>
             )}
-          </Box>
+          </Box> */}
         </Box>
       </LayoutContainer>
     </>

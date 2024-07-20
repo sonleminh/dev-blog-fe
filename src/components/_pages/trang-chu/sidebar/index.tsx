@@ -8,10 +8,10 @@ import { Box, SxProps, Theme, Typography } from '@mui/material';
 import moment from 'moment';
 
 const Sidebar = async () => {
-  const { trending_articles, tags } = await getArticleListAPI();
+  // const { trending_articles, tags } = await getArticleListAPI();
   return (
     <Box>
-      <Box sx={{ mb: 4 }}>
+      {/* <Box sx={{ mb: 4 }}>
         <Box
           sx={{
             display: 'flex',
@@ -63,7 +63,7 @@ const Sidebar = async () => {
       </Box>
       <Box mb={4}>
         <TagList data={tags} />
-      </Box>
+      </Box> */}
     </Box>
   );
 };

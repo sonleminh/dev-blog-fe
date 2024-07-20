@@ -8,10 +8,10 @@ import { getArticleListAPI } from '@/services/article';
 import { Box, Grid } from '@mui/material';
 
 const Homepage = async () => {
-  const data = await getArticleListAPI();
+  // const data = await getArticleListAPI();
   return (
     <LayoutContainer>
-      <Box sx={{ py: 4 }}>
+      {/* <Box sx={{ py: 4 }}>
         <Banner data={data.recent_articles.slice(4, 10)} />
         <Box sx={{ mt: 3 }}>
           <Grid container spacing={3}>
@@ -30,7 +30,8 @@ const Homepage = async () => {
             </Grid>
           </Grid>
         </Box>
-      </Box>
+      </Box> */}
+      cc
     </LayoutContainer>
   );
 };

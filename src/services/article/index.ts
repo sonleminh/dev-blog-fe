@@ -16,7 +16,7 @@ type TInitDataRes = {
 // GET INITIAL TAG
 
 const getArticleInitial = async () => {
-  const result = await getRequest(`${PUBLIC_URL}${articleUrl}/get-article-initial`);
+  const result = await getRequest(`https://dev-blog-be-production.up.railway.app/admin/api/${articleUrl}/get-article-initial`);
   return result as TInitDataRes;
 };
 
@@ -33,14 +33,14 @@ export const useGetArticleInitial = () => {
 
 export const getArticleListAPI = async () => {
   const result: {data: IHomeArticlesResponse} = await getRequest(
-    `${SERVER_URL}/api`
+    `https://dev-blog-site.vervel.app/api`
   );
   return result.data as IHomeArticlesResponse;
 };
 
 export const getSearchArticleAPI = async (keyword: string) => {
   const result = await getRequest(
-    `${PUBLIC_URL}${articleUrl}?s=${keyword}`,  {cache: 'no-store', next: {revalidate: 0}}
+    `https://dev-blog-be-production.up.railway.app/admin/api/${articleUrl}?s=${keyword}`,  {cache: 'no-store', next: {revalidate: 0}}
   );
   return result as IArticlesResponse;
 };
@@ -56,21 +56,21 @@ export const useSearchArticle = (keyword: string) => {
 
 export const getArticleByIdAPI = async (id:string) => {
   const result = await getRequest(
-    `${SERVER_URL}/blog/${id}/api`, {cache: 'no-store', next: {revalidate: 0}}
+    `https://dev-blog-site.vervel.app/blog/${id}/api`, {cache: 'no-store', next: {revalidate: 0}}
   );
   return result as IArticleByIdResponse;
 };
 
 export const getArticleByTagAPI = async (tag:string, page: number) => {
   const result: {data: IArticlesByTagResponse} = await getRequest(
-    `${SERVER_URL}/tag/${tag}/api?page=${page}`, {cache: 'no-store', next: {revalidate: 0}}
+    `https://dev-blog-site.vervel.app/tag/${tag}/api?page=${page}`, {cache: 'no-store', next: {revalidate: 0}}
   );
   return result.data as IArticlesByTagResponse;
 };
 
 export const getLatestArticleAPI = async (tag:string, page: number) => {
   const result: {data: IArticlesByTagResponse} = await getRequest(
-    `${SERVER_URL}/blog/api?page=${page}`, {cache: 'no-store', next: {revalidate: 0}}
+    `https://dev-blog-site.vervel.app/blog/api?page=${page}`, {cache: 'no-store', next: {revalidate: 0}}
   );
   return result.data as IArticlesByTagResponse;
 };

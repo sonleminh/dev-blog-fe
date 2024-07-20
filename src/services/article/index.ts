@@ -4,6 +4,9 @@ import { useQuery } from '@tanstack/react-query';
 import { IArticleByIdResponse, IArticlesByTagResponse, IArticlesResponse, IHomeArticlesResponse } from '@/interfaces/IArticle';
 import { getRequest } from '@/utils/fetch-client';
 
+const PUBLIC_URL = process.env.NEXT_PUBLIC_HOST;
+const SERVER_URL = process.env.NEXT_SERVER_HOST;
+
 const articleUrl = 'article';
 
 type TInitDataRes = {
@@ -13,7 +16,7 @@ type TInitDataRes = {
 // GET INITIAL TAG
 
 const getArticleInitial = async () => {
-  const result = await getRequest(`http://localhost:8080/admin/api/${articleUrl}/get-article-initial`);
+  const result = await getRequest(`${PUBLIC_URL}${articleUrl}/get-article-initial`);
   return result as TInitDataRes;
 };
 
@@ -30,14 +33,14 @@ export const useGetArticleInitial = () => {
 
 export const getArticleListAPI = async () => {
   const result: {data: IHomeArticlesResponse} = await getRequest(
-    `http://localhost:3000/api`, {cache: 'no-store', next: {revalidate: 0}}
+    `${SERVER_URL}`, {cache: 'no-store', next: {revalidate: 0}}
   );
   return result.data as IHomeArticlesResponse;
 };
 
 export const getSearchArticleAPI = async (keyword: string) => {
   const result = await getRequest(
-    `http://localhost:8080/admin/api/${articleUrl}?s=${keyword}`,  {cache: 'no-store', next: {revalidate: 0}}
+    `${PUBLIC_URL}${articleUrl}?s=${keyword}`,  {cache: 'no-store', next: {revalidate: 0}}
   );
   return result as IArticlesResponse;
 };
@@ -53,21 +56,21 @@ export const useSearchArticle = (keyword: string) => {
 
 export const getArticleByIdAPI = async (id:string) => {
   const result = await getRequest(
-    `http://localhost:3000/blog/${id}/api`, {cache: 'no-store', next: {revalidate: 0}}
+    `${SERVER_URL}/blog/${id}/api`, {cache: 'no-store', next: {revalidate: 0}}
   );
   return result as IArticleByIdResponse;
 };
 
 export const getArticleByTagAPI = async (tag:string, page: number) => {
   const result: {data: IArticlesByTagResponse} = await getRequest(
-    `http://localhost:3000/tag/${tag}/api?page=${page}`, {cache: 'no-store', next: {revalidate: 0}}
+    `${SERVER_URL}/tag/${tag}/api?page=${page}`, {cache: 'no-store', next: {revalidate: 0}}
   );
   return result.data as IArticlesByTagResponse;
 };
 
 export const getLatestArticleAPI = async (tag:string, page: number) => {
   const result: {data: IArticlesByTagResponse} = await getRequest(
-    `http://localhost:3000/blog/api?page=${page}`, {cache: 'no-store', next: {revalidate: 0}}
+    `${SERVER_URL}/blog/api?page=${page}`, {cache: 'no-store', next: {revalidate: 0}}
   );
   return result.data as IArticlesByTagResponse;
 };

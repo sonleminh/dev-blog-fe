@@ -5,7 +5,7 @@ const PUBLIC_URL = process.env.NEXT_PUBLIC_HOST;
     
     const data = await 
       getRequest(
-        `https://dev-blog-be-production.up.railway.app/admin/api/article?find_option=HOME`
+        `https://jsonplaceholder.typicode.com/users`
       )
     return Response.json({ data }) 
   }

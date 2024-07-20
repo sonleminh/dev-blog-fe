@@ -31,11 +31,18 @@ const articleUrl = 'article';
 
 // GET ARTICLE LIST
 
+// export const getArticleListAPI = async () => {
+//   const result: {data: IHomeArticlesResponse} = await getRequest(
+//     `${SERVER_URL}/api`, {cache: 'no-store', next: {revalidate: 0}}
+//   );
+//   return result.data as IHomeArticlesResponse;
+// };
+
 export const getArticleListAPI = async () => {
-  const result: {data: IHomeArticlesResponse} = await getRequest(
-    `${SERVER_URL}/api`
+  const result = await getRequest(
+    `${SERVER_URL}/api`, {cache: 'no-store', next: {revalidate: 0}}
   );
-  return result.data as IHomeArticlesResponse;
+  return result;
 };
 
 // export const getSearchArticleAPI = async (keyword: string) => {

@@ -33,7 +33,7 @@ export const useGetArticleInitial = () => {
 
 export const getArticleListAPI = async () => {
   const result: {data: IHomeArticlesResponse} = await getRequest(
-    `${SERVER_URL}`, {cache: 'no-store', next: {revalidate: 0}}
+    `${SERVER_URL}/api`
   );
   return result.data as IHomeArticlesResponse;
 };

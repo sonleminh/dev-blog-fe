@@ -5,7 +5,7 @@ import Breadcrumbs from '@/components/common/Breadcrumbs';
 import Pagination from '@/components/common/Pagination';
 
 import { truncateTextByLine } from '@/utils/css-helper.util';
-import { getArticleByTagAPI } from '@/services/article';
+// import { getArticleByTagAPI } from '@/services/article';
 import { Box, Grid, Typography } from '@mui/material';
 import moment from 'moment';
 

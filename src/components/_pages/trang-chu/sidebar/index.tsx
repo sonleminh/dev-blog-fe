@@ -2,7 +2,7 @@ import SkeletonImage from '@/components/common/SkeletonImage';
 import AppLink from '@/components/common/AppLink';
 import { TagList } from './components/TagList';
 
-import { getArticleListAPI } from '@/services/article';
+// import { getArticleListAPI } from '@/services/article';
 import { truncateTextByLine } from '@/utils/css-helper.util';
 import { Box, SxProps, Theme, Typography } from '@mui/material';
 import moment from 'moment';

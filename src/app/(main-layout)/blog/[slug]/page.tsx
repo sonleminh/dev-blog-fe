@@ -5,7 +5,7 @@ import Sidebar from '@/components/_pages/trang-chu/sidebar';
 import Breadcrumbs from '@/components/common/Breadcrumbs';
 import AppLink from '@/components/common/AppLink';
 
-import { getArticleByIdAPI } from '@/services/article';
+// import { getArticleByIdAPI } from '@/services/article';
 
 import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
 import { Box, Button, Grid, Typography } from '@mui/material';

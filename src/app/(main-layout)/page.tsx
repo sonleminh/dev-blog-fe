@@ -4,7 +4,7 @@ import Sidebar from '@/components/_pages/trang-chu/sidebar';
 import Banner from '@/components/_pages/trang-chu/banner';
 import Latest from '@/components/_pages/trang-chu/latest';
 
-import { getArticleListAPI } from '@/services/article';
+// import { getArticleListAPI } from '@/services/article';
 import { Box, Grid } from '@mui/material';
 
 const Homepage = async () => {

@@ -6,7 +6,7 @@ import Pagination from '@/components/common/Pagination';
 import AppLink from '@/components/common/AppLink';
 
 import { truncateTextByLine } from '@/utils/css-helper.util';
-import { getLatestArticleAPI } from '@/services/article';
+// import { getLatestArticleAPI } from '@/services/article';
 import { Box, Grid, Typography } from '@mui/material';
 import moment from 'moment';
 

@@ -7,7 +7,7 @@ import { MenuDropDown } from './components/menu-dropdown';
 import AppLink from '@/components/common/AppLink';
 import LayoutContainer from '../layout-container';
 
-import { useGetArticleInitial, useSearchArticle } from '@/services/article';
+// import { useGetArticleInitial, useSearchArticle } from '@/services/article';
 import { truncateTextByLine } from '@/utils/css-helper.util';
 
 import {

@@ -4,14 +4,14 @@ import Sidebar from '@/components/_pages/trang-chu/sidebar';
 import Banner from '@/components/_pages/trang-chu/banner';
 import Latest from '@/components/_pages/trang-chu/latest';
 
-// import { getArticleListAPI } from '@/services/article';
+import { getArticleListAPI } from '@/services/article';
 import { Box, Grid } from '@mui/material';
 
 const Homepage = async () => {
-  // const data = await getArticleListAPI();
+  const data = await getArticleListAPI();
   return (
     <LayoutContainer>
-      {/* <Box sx={{ py: 4 }}>
+      <Box sx={{ py: 4 }}>
         <Banner data={data.recent_articles.slice(4, 10)} />
         <Box sx={{ mt: 3 }}>
           <Grid container spacing={3}>
@@ -30,8 +30,7 @@ const Homepage = async () => {
             </Grid>
           </Grid>
         </Box>
-      </Box> */}
-      cc
+      </Box>
     </LayoutContainer>
   );
 };

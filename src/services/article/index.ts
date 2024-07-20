@@ -1,13 +1,13 @@
 // import { QueryKeys } from '@/components/constants/query-key';
 // import { useQuery } from '@tanstack/react-query';
 
-// import { IArticleByIdResponse, IArticlesByTagResponse, IArticlesResponse, IHomeArticlesResponse } from '@/interfaces/IArticle';
-// import { getRequest } from '@/utils/fetch-client';
+import { IArticleByIdResponse, IArticlesByTagResponse, IArticlesResponse, IHomeArticlesResponse } from '@/interfaces/IArticle';
+import { getRequest } from '@/utils/fetch-client';
 
-// const PUBLIC_URL = process.env.NEXT_PUBLIC_HOST;
-// const SERVER_URL = process.env.NEXT_SERVER_HOST;
+const PUBLIC_URL = process.env.NEXT_PUBLIC_HOST;
+const SERVER_URL = process.env.NEXT_SERVER_HOST;
 
-// const articleUrl = 'article';
+const articleUrl = 'article';
 
 // type TInitDataRes = {
 //   tags?: { value: string; label: string }[];
@@ -29,14 +29,14 @@
 //   });
 // };
 
-// // GET ARTICLE LIST
+// GET ARTICLE LIST
 
-// export const getArticleListAPI = async () => {
-//   const result: {data: IHomeArticlesResponse} = await getRequest(
-//     `${SERVER_URL}/api`
-//   );
-//   return result.data as IHomeArticlesResponse;
-// };
+export const getArticleListAPI = async () => {
+  const result: {data: IHomeArticlesResponse} = await getRequest(
+    `${SERVER_URL}/api`
+  );
+  return result.data as IHomeArticlesResponse;
+};
 
 // export const getSearchArticleAPI = async (keyword: string) => {
 //   const result = await getRequest(

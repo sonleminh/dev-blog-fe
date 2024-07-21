@@ -8,10 +8,12 @@ import { getArticleListAPI } from '@/services/article';
 import { Box, Grid } from '@mui/material';
 
 const Homepage = async () => {
-  const data: any = await getArticleListAPI();
+  // const data: any = await getArticleListAPI();
+
+  const env = process.env.NEXT_PUBLIC_SERVER;
   return (
     <LayoutContainer>
-      c{/* {data?.[0]?.id} */}
+      c {env}
       {/* <Box sx={{ py: 4 }}>
         <Banner data={data.recent_articles.slice(4, 10)} />
         <Box sx={{ mt: 3 }}>

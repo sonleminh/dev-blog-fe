@@ -37,13 +37,14 @@ const articleUrl = 'article';
 // };
 
 export const getArticleListAPI = async () => {
-  const result: {data: IHomeArticlesResponse} = await getRequest(
-    `${SERVER_API_URL}/api`
-  );
-  if (!result) {
+  try {
+    const result: {data: IHomeArticlesResponse} = await getRequest(
+      `${SERVER_API_URL}/api`
+    );
+    return result.data as IHomeArticlesResponse;
+  } catch (error) {
    throw new Error('Failed to fetch article list API') 
   }
-  return result.data as IHomeArticlesResponse;
 };
 
 // export const getSearchArticleAPI = async (keyword: string) => {

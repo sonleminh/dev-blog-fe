@@ -77,9 +77,14 @@ export const getArticleListAPI = async () => {
 //   return result.data as IArticlesByTagResponse;
 // };
 
-// export const getLatestArticleAPI = async (tag:string, page: number) => {
-//   const result: {data: IArticlesByTagResponse} = await getRequest(
-//     `${SERVER_URL}/blog/api?page=${page}`, {cache: 'no-store', next: {revalidate: 0}}
-//   );
-//   return result.data as IArticlesByTagResponse;
-// };
+export const getLatestArticleAPI = async (page: number) => {
+  try {
+    const result: {data: IArticlesByTagResponse} = await getRequest(
+      `${SERVER_API_URL}/blog/api?page=${page}`
+    );
+    return result.data as IArticlesByTagResponse;
+  } catch (error) {
+   throw new Error('Failed to fetch latest article list API') 
+  }
+  
+};

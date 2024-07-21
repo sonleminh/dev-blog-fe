@@ -1,5 +1,5 @@
-import { BASE_API_URL } from "@/constants/env";
 import { getRequest } from "@/utils/fetch-client";
+import { BASE_API_URL } from "@/constants/env";
 
 export async function GET() {
     const data = await 

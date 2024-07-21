@@ -9,25 +9,19 @@ import { truncateTextByLine } from '@/utils/css-helper.util';
 // import { getLatestArticleAPI } from '@/services/article';
 import { Box, Grid, Typography } from '@mui/material';
 import moment from 'moment';
+import { getLatestArticleAPI } from '@/services/article';
 
-const Latest = async ({
-  params,
-  searchParams,
-}: {
-  params: { tag: string };
-  searchParams: { page: string };
-}) => {
-  // const data = await getLatestArticleAPI(params.tag, +searchParams.page);
+const Latest = async ({ searchParams }: { searchParams: { page: string } }) => {
+  const data = await getLatestArticleAPI(+searchParams.page);
 
-  // const breadcrumbsOptions = [
-  //   { link: '/', label: 'HOME' },
-  //   { link: ``, label: 'Mới nhất' },
-  // ];
-
+  const breadcrumbsOptions = [
+    { link: '/', label: 'HOME' },
+    { link: ``, label: 'Mới nhất' },
+  ];
   return (
     <LayoutContainer>
       <Box sx={{ p: '16px 0 28px' }}>
-        {/* <Grid container spacing={4}>
+        <Grid container spacing={4}>
           <Grid item xs={8}>
             <Box sx={{ mb: 3 }}>
               <Breadcrumbs options={breadcrumbsOptions} />
@@ -99,7 +93,7 @@ const Latest = async ({
           <Grid item xs={4}>
             <Sidebar />
           </Grid>
-        </Grid> */}
+        </Grid>
       </Box>
     </LayoutContainer>
   );

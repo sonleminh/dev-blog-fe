@@ -31,6 +31,7 @@ import moment from 'moment';
 const Header = () => {
   const theme = useTheme();
   const { data: tagData } = useGetArticleInitial();
+  console.log(tagData);
   const [searchValue, setSearchValue] = useState<string | null>();
 
   const { data: searchResult } = useSearchArticle(searchValue as string);

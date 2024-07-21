@@ -4,16 +4,15 @@ import Sidebar from '@/components/_pages/trang-chu/sidebar';
 import Banner from '@/components/_pages/trang-chu/banner';
 import Latest from '@/components/_pages/trang-chu/latest';
 
-import { getArticleListAPI } from '@/services/article';
 import { Box, Grid } from '@mui/material';
+import { getRequest } from '@/utils/fetch-client';
 
 const Homepage = async () => {
-  const data: any = await getArticleListAPI();
-  console.log(data);
-  const env = `${process.env.NEXT_PUBLIC_SERVER}/api`;
+  const result: any = await getRequest(`${process.env.NEXT_PUBLIC_SERVER}/api`);
+  console.log(result);
   return (
     <LayoutContainer>
-      c
+      c{/* {result?.data?.[0]?.id} */}
       {/* <Box sx={{ py: 4 }}>
         <Banner data={data.recent_articles.slice(4, 10)} />
         <Box sx={{ mt: 3 }}>

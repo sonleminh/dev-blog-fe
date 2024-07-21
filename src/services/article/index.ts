@@ -39,10 +39,10 @@ const articleUrl = 'article';
 // };
 
 export const getArticleListAPI = async () => {
-  const result: {data: any} = await getRequest(
+  const result = await getRequest(
     `${process.env.NEXT_PUBLIC_SERVER}/api`
   );
-  return result.data ;
+  return result ;
 };
 
 // export const getSearchArticleAPI = async (keyword: string) => {

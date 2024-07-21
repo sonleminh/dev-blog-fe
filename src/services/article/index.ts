@@ -40,7 +40,7 @@ const articleUrl = 'article';
 
 export const getArticleListAPI = async () => {
   const result: {data: any} = await getRequest(
-    `${SERVER_URL}/api`
+    `https://dev-blog-site.vervel.app/api`
   );
   return result.data ;
 };

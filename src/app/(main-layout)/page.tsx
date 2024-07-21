@@ -8,7 +8,7 @@ import { getArticleListAPI } from '@/services/article';
 import { Box, Grid } from '@mui/material';
 
 const Homepage = async () => {
-  const data: any = await getArticleListAPI();
+  // const data: any = await getArticleListAPI();
   // console.log(data?.data);
   return (
     <LayoutContainer>

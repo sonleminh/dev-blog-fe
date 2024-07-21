@@ -5,7 +5,7 @@ import Breadcrumbs from '@/components/common/Breadcrumbs';
 import Pagination from '@/components/common/Pagination';
 
 import { truncateTextByLine } from '@/utils/css-helper.util';
-// import { getArticleByTagAPI } from '@/services/article';
+import { getArticleByTagAPI } from '@/services/article';
 import { Box, Grid, Typography } from '@mui/material';
 import moment from 'moment';
 
@@ -16,15 +16,15 @@ const ArticleByTag = async ({
   params: { tag: string };
   searchParams: { page: string };
 }) => {
-  // const data = await getArticleByTagAPI(params.tag, +searchParams.page);
-  // const breadcrumbsOptions = [
-  //   { link: '/', label: 'HOME' },
-  //   { link: `/tag/${data?.tag?.value}`, label: data?.tag?.label },
-  // ];
+  const data = await getArticleByTagAPI(params.tag, +searchParams.page);
+  const breadcrumbsOptions = [
+    { link: '/', label: 'HOME' },
+    { link: `/tag/${data?.tag?.value}`, label: data?.tag?.label },
+  ];
   return (
     <LayoutContainer>
       <Box sx={{ p: '16px 0 28px' }}>
-        {/* <Grid container spacing={4}>
+        <Grid container spacing={4}>
           <Grid item xs={8}>
             <Box sx={{ mb: 3 }}>
               <Breadcrumbs options={breadcrumbsOptions} />
@@ -85,7 +85,7 @@ const ArticleByTag = async ({
           <Grid item xs={4}>
             <Sidebar />
           </Grid>
-        </Grid> */}
+        </Grid>
       </Box>
     </LayoutContainer>
   );

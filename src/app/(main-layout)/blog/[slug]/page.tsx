@@ -5,23 +5,23 @@ import Sidebar from '@/components/_pages/trang-chu/sidebar';
 import Breadcrumbs from '@/components/common/Breadcrumbs';
 import AppLink from '@/components/common/AppLink';
 
-// import { getArticleByIdAPI } from '@/services/article';
+import { getArticleByIdAPI } from '@/services/article';
 
 import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
 import { Box, Button, Grid, Typography } from '@mui/material';
 import moment from 'moment';
 
 const ArticleDetail = async ({ params }: { params: { slug: string } }) => {
-  // const { data, relatedData } = await getArticleByIdAPI(params?.slug);
+  const { data, relatedData } = await getArticleByIdAPI(params?.slug);
 
-  // const breadcrumbsOptions = [
-  //   { link: '/', label: 'HOME' },
-  //   { link: `/blog/${data._id}`, label: data.title },
-  // ];
+  const breadcrumbsOptions = [
+    { link: '/', label: 'HOME' },
+    { link: `/blog/${data._id}`, label: data.title },
+  ];
   return (
     <LayoutContainer>
       <Box sx={{ p: '16px 0 28px' }}>
-        {/* <Grid container spacing={4}>
+        <Grid container spacing={4}>
           <Grid
             item
             xs={8}
@@ -97,7 +97,7 @@ const ArticleDetail = async ({ params }: { params: { slug: string } }) => {
         </Grid>
         <Box sx={{ mt: 2 }}>
           <RelatedArticle data={relatedData?.articleList} />
-        </Box> */}
+        </Box>
       </Box>
     </LayoutContainer>
   );

@@ -8,9 +8,9 @@ import { Box, Grid } from '@mui/material';
 import { getRequest } from '@/utils/fetch-client';
 
 const Homepage = async () => {
-  if (!process.env.NEXT_PUBLIC_SERVER) {
-    return null;
-  }
+  // if (!process.env.NEXT_PUBLIC_SERVER) {
+  //   return null;
+  // }
   const result: any = await getRequest(`${process.env.NEXT_PUBLIC_SERVER}/api`);
   console.log(result);
   return (

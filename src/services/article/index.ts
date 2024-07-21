@@ -1,11 +1,9 @@
 // import { QueryKeys } from '@/components/constants/query-key';
 // import { useQuery } from '@tanstack/react-query';
 
+import { BASE_API_URL, SERVER_API_URL } from '@/constants/env';
 import { IArticleByIdResponse, IArticlesByTagResponse, IArticlesResponse, IHomeArticlesResponse } from '@/interfaces/IArticle';
 import { getRequest } from '@/utils/fetch-client';
-
-const PUBLIC_URL = process.env.NEXT_PUBLIC_HOST;
-const SERVER_URL = process.env.NEXT_PUBLIC_SERVER;
 
 const articleUrl = 'article';
 
@@ -39,10 +37,10 @@ const articleUrl = 'article';
 // };
 
 export const getArticleListAPI = async () => {
-  const result = await getRequest(
-    `${process.env.NEXT_PUBLIC_SERVER}/api`
+  const result: {data: IHomeArticlesResponse} = await getRequest(
+    `${SERVER_API_URL}/api`
   );
-  return result ;
+  return result.data as IHomeArticlesResponse;
 };
 
 // export const getSearchArticleAPI = async (keyword: string) => {

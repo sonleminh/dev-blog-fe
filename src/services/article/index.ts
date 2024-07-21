@@ -40,6 +40,9 @@ export const getArticleListAPI = async () => {
   const result: {data: IHomeArticlesResponse} = await getRequest(
     `${SERVER_API_URL}/api`
   );
+  if (!result) {
+   throw new Error('Failed to fetch article list API') 
+  }
   return result.data as IHomeArticlesResponse;
 };
 

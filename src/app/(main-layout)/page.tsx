@@ -15,7 +15,7 @@ const Homepage = async () => {
   console.log(result);
   return (
     <LayoutContainer>
-      c{/* {result?.data?.[0]?.id} */}
+      c{result?.data?.[0]?.id}
       {/* <Box sx={{ py: 4 }}>
         <Banner data={data.recent_articles.slice(4, 10)} />
         <Box sx={{ mt: 3 }}>

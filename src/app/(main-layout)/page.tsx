@@ -9,7 +9,7 @@ import { Box, Grid } from '@mui/material';
 
 const Homepage = async () => {
   const data = await getArticleListAPI();
-  console.log(data);
+  console.log(data?.tags);
   return (
     <LayoutContainer>
       <Box sx={{ py: 4 }}>

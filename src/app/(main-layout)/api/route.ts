@@ -3,7 +3,7 @@ import { getRequest } from "@/utils/fetch-client";
 
 export async function GET() {
   if (!BASE_API_URL) {
-    return null
+    return;
   }
     const data = await 
       getRequest(

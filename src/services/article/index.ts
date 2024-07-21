@@ -14,8 +14,12 @@ type TInitDataRes = {
 // GET INITIAL TAG
 
 const getArticleInitial = async () => {
-  const result = await getRequest(`${BASE_API_URL}/${articleUrl}/get-article-initial`);
+  try {
+    const result = await getRequest(`${BASE_API_URL}/${articleUrl}/get-article-initial`);
   return result as TInitDataRes;
+  } catch (error) {
+    throw new Error('Failed to fetch initial article list API') 
+  }
 };
 
 export const useGetArticleInitial = () => {
@@ -41,10 +45,14 @@ export const getArticleListAPI = async () => {
 };
 
 export const getSearchArticleAPI = async (keyword: string) => {
-  const result = await getRequest(
-    `${BASE_API_URL}/${articleUrl}?s=${keyword}`
-  );
-  return result as IArticlesResponse;
+  try {
+    const result = await getRequest(
+      `${BASE_API_URL}/${articleUrl}?s=${keyword}`
+    );
+    return result as IArticlesResponse;
+  } catch (error) {
+    throw new Error('Failed to fetch search article list API') 
+  }
 };
 
 export const useSearchArticle = (keyword: string) => {

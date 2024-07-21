@@ -1,7 +1,7 @@
 import { getRequest } from "@/utils/fetch-client";
 
 export async function GET() {
-const PUBLIC_URL = process.env.NEXT_PUBLIC_HOST;
+// const PUBLIC_URL = process.env.NEXT_PUBLIC_HOST;
     
     const data = await 
       getRequest(

@@ -9,9 +9,10 @@ import { Box, Grid } from '@mui/material';
 
 const Homepage = async () => {
   const data: any = await getArticleListAPI();
+  // console.log(data?.data);
   return (
     <LayoutContainer>
-      {data?.data[0]?.id}
+      c{/* {data?.[0]?.id} */}
       {/* <Box sx={{ py: 4 }}>
         <Banner data={data.recent_articles.slice(4, 10)} />
         <Box sx={{ mt: 3 }}>

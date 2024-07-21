@@ -39,10 +39,10 @@ const articleUrl = 'article';
 // };
 
 export const getArticleListAPI = async () => {
-  const result = await getRequest(
+  const result: {data: any} = await getRequest(
     `${SERVER_URL}/api`
   );
-  return result;
+  return result.data ;
 };
 
 // export const getSearchArticleAPI = async (keyword: string) => {

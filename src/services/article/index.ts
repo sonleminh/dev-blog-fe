@@ -40,7 +40,7 @@ const articleUrl = 'article';
 
 export const getArticleListAPI = async () => {
   const result: {data: any} = await getRequest(
-    `${SERVER_URL}/api`
+    `${process.env.NEXT_PUBLIC_SERVER}/api`
   );
   return result.data ;
 };

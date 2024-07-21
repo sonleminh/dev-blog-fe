@@ -5,7 +5,7 @@ import { IArticleByIdResponse, IArticlesByTagResponse, IArticlesResponse, IHomeA
 import { getRequest } from '@/utils/fetch-client';
 
 const PUBLIC_URL = process.env.NEXT_PUBLIC_HOST;
-const SERVER_URL = process.env.NEXT_SERVER_HOST;
+const SERVER_URL = process.env.NEXT_PUBLIC_SERVER;
 
 const articleUrl = 'article';
 
@@ -40,7 +40,7 @@ const articleUrl = 'article';
 
 export const getArticleListAPI = async () => {
   const result: {data: any} = await getRequest(
-    `https://dev-blog-site.vervel.app/api`
+    `${SERVER_URL}/api`
   );
   return result.data ;
 };

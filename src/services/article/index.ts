@@ -40,7 +40,6 @@ export const getArticleListAPI = async () => {
     );
     return result.data as IHomeArticlesResponse;
   } catch (error) {
-    console.error('Error fetching article list API:', error); 
    throw new Error('Failed to fetch article list API') 
   }
 };
@@ -84,7 +83,6 @@ export const getArticleByTagAPI = async (tag:string, page: number) => {
     );
   return result.data as IArticlesByTagResponse;
 } catch (error) {
-  console.error('Error fetching article list by tag API:', error); 
    throw new Error('Failed to fetch article list by tag API') 
   }
 };

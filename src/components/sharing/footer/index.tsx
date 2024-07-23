@@ -19,7 +19,7 @@ import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import XIcon from '@mui/icons-material/X';
 
 import NextJSLogo from '@/assests/nextjs-logo';
-import HeaderLogo from '../header/HeaderLogo';
+import HeaderLogo from '../header/components/HeaderLogo';
 import NestLogo from '@/assests/nestjs-logo';
 import MUILogo from '@/assests/mui-logo';
 import { FooterStyle } from './style';

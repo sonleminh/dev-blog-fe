@@ -10,12 +10,14 @@ import { Box, Grid } from '@mui/material';
 const Homepage = async () => {
   const data = await getArticleListAPI();
   return (
-    <LayoutContainer>
-      <Box sx={{ py: 4 }}>
+    <Box sx={{ py: 4 }}>
+      <Box sx={{ maxWidth: { xs: '100%', lg: 1070 }, margin: '0 auto' }}>
         <Banner data={data?.recent_articles?.slice(4, 10)} />
-        {/* <Box sx={{ mt: 3 }}>
+      </Box>
+      <LayoutContainer>
+        <Box sx={{ mt: 3 }}>
           <Grid container spacing={3}>
-            <Grid item xs={8}>
+            <Grid item xs={12} lg={8}>
               <Latest data={data?.recent_articles?.slice(0, 4)} />
               <Box sx={{ mb: 3 }}>
                 <ArticleByTag data={data?.FE_articles} title={'Front-end'} />
@@ -24,14 +26,15 @@ const Homepage = async () => {
             </Grid>
             <Grid
               item
-              xs={4}
+              xs={12}
+              lg={4}
               sx={{ position: 'sticky', top: '0', height: '100%' }}>
               <Sidebar />
             </Grid>
           </Grid>
-        </Box> */}
-      </Box>
-    </LayoutContainer>
+        </Box>
+      </LayoutContainer>
+    </Box>
   );
 };
 

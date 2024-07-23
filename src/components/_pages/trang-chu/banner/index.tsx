@@ -24,7 +24,9 @@ export default Banner;
 const BannerContainer: SxProps<Theme> = {
   position: 'relative',
   border: (theme) =>
-    theme.palette.mode === 'light' ? '1px solid #eee' : '1px solid #222',
+    theme.palette.mode === 'light'
+      ? { xs: 'none', sm: '1px solid #eee' }
+      : { xs: 'none', sm: '1px solid #222' },
   borderRadius: '8px',
   '.swiper-slide': {
     width: '100%',

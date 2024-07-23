@@ -33,7 +33,7 @@ const Latest = ({ data }: { data: IArticle[] }) => {
       </Box>
       <Grid container rowSpacing={4} columnSpacing={2.5}>
         {data?.map((item, index) => (
-          <Grid key={index} item xs={6}>
+          <Grid key={index} item xs={12} lg={6}>
             <Box
               component={AppLink}
               href={`blog/${item._id}`}
@@ -51,8 +51,9 @@ const Latest = ({ data }: { data: IArticle[] }) => {
                 sx={{
                   position: 'relative',
                   width: '100%',
-                  height: { xs: '250px', sm: '250px', md: '250px' },
+                  height: { xs: '200px', lg: '250px' },
                   mb: 1,
+                  border: '1px solid #eee',
                   borderRadius: '8px',
                   overflow: 'hidden',
                   '& img': {
@@ -60,7 +61,11 @@ const Latest = ({ data }: { data: IArticle[] }) => {
                     transition: 'all 0.5s ease',
                   },
                 }}>
-                <SkeletonImage src={item.thumbnail_image} alt='cc' fill />
+                <SkeletonImage
+                  src={item.thumbnail_image}
+                  alt={item.summary}
+                  fill
+                />
               </Box>
               <Typography
                 component={'span'}

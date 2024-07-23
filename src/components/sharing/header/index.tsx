@@ -13,10 +13,13 @@ import { truncateTextByLine } from '@/utils/css-helper.util';
 import {
   Box,
   Button,
+  Collapse,
+  Drawer,
   Grid,
   InputAdornment,
   List,
   ListItem,
+  ListItemText,
   TextField,
   Typography,
   useTheme,
@@ -25,17 +28,22 @@ import SearchIcon from '@mui/icons-material/Search';
 import MenuIcon from '@mui/icons-material/Menu';
 
 import { HeaderStyle, MenuListStyle } from './style';
-import HeaderLogo from './HeaderLogo';
+import HeaderLogo from './components/HeaderLogo';
 import moment from 'moment';
+import { ExpandLess, ExpandMore } from '@mui/icons-material';
+import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined';
+import CodeOutlinedIcon from '@mui/icons-material/CodeOutlined';
+import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
 
 const Header = () => {
   const theme = useTheme();
-  const { data: tagData } = useGetArticleInitial();
-  console.log(tagData);
   const [searchValue, setSearchValue] = useState<string | null>();
-
-  const { data: searchResult } = useSearchArticle(searchValue as string);
+  const [openMobileMenu, setOpenMobileMenu] = useState<boolean>(false);
+  const [isActive, setIsActive] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+
+  const { data: tagData } = useGetArticleInitial();
+  const { data: searchResult } = useSearchArticle(searchValue as string);
   const searchResultBoxRef = useRef<HTMLDivElement>(null);
   const searchInputRef = useRef<HTMLInputElement>(null);
 
@@ -86,8 +94,91 @@ const Header = () => {
     <>
       <LayoutContainer>
         <Box sx={HeaderStyle}>
-          <Box className='mobile-menu'>
-            <MenuIcon />
+          <Box className='mobile-btn'>
+            <MenuIcon onClick={() => setOpenMobileMenu(!openMobileMenu)} />
+            <Drawer
+              open={openMobileMenu}
+              onClose={() => setOpenMobileMenu(!openMobileMenu)}>
+              <Box sx={{ width: 200 }}>
+                <Box
+                  sx={{
+                    mt: 2,
+                    textAlign: 'center',
+                    svg: {
+                      width: 100,
+                    },
+                  }}>
+                  <HeaderLogo />
+                </Box>
+                <List
+                  sx={{
+                    '> li': {
+                      a: {
+                        display: 'flex',
+                        alignItems: 'center',
+                        fontSize: 15,
+                        '>svg': {
+                          mr: 1,
+                        },
+                      },
+                      ':hover': {
+                        bgcolor: '#dadada',
+                      },
+                    },
+                  }}>
+                  <ListItem>
+                    <AppLink
+                      href={'/blog'}
+                      onClick={() => setOpenMobileMenu(!openMobileMenu)}>
+                      <ArticleOutlinedIcon />
+                      Blog
+                    </AppLink>
+                  </ListItem>
+                  <ListItem onClick={() => setIsActive(!isActive)}>
+                    <CodeOutlinedIcon sx={{ mr: 1 }} />
+                    <ListItemText
+                      primary={<>Lập trình</>}
+                      sx={{ span: { fontSize: 15 } }}
+                    />
+                    {isActive ? (
+                      <ExpandLess sx={{ mr: '0!important' }} />
+                    ) : (
+                      <ExpandMore sx={{ mr: '0!important' }} />
+                    )}
+                  </ListItem>
+                  <Collapse in={isActive} timeout='auto' unmountOnExit>
+                    <List sx={{ pt: 0, pl: 4 }}>
+                      {tagData?.tags?.map((item) => (
+                        <AppLink key={item.value} href={`/blog/${item?.value}`}>
+                          <ListItem
+                            onClick={() => {
+                              setOpenMobileMenu(false);
+                            }}>
+                            <ListItemText
+                              primary={item?.label}
+                              sx={{
+                                m: 0,
+                                ['span']: {
+                                  fontSize: 14,
+                                  fontWeight: 500,
+                                  textTransform: 'capitalize',
+                                },
+                              }}
+                            />
+                          </ListItem>
+                        </AppLink>
+                      ))}
+                    </List>
+                  </Collapse>
+                  <ListItem>
+                    <AppLink href={'/'}>
+                      <EmailOutlinedIcon />
+                      Liên hệ
+                    </AppLink>
+                  </ListItem>
+                </List>
+              </Box>
+            </Drawer>
           </Box>
           <Box
             sx={{

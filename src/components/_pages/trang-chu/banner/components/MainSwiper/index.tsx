@@ -61,7 +61,7 @@ const MainSwiper = (props: TSwiperProps) => {
                 sx={{
                   position: 'relative',
                   width: '100%',
-                  height: { xs: '160px', sm: '160px', md: '100%' },
+                  height: { xs: '100%', sm: '160px', md: '100%' },
                   mb: 1,
                   overflow: 'hidden',
                   '& img': {
@@ -80,19 +80,20 @@ const MainSwiper = (props: TSwiperProps) => {
                   position: 'absolute',
                   bottom: '0',
                   zIndex: 2,
-                  p: '0 120px 24px 24px',
+                  p: { xs: '0 80px 12px 8px', sm: '0 120px 24px 24px' },
                   color: '#fff',
                 }}>
                 <Typography
                   sx={{
-                    mb: 1,
-                    fontSize: 24,
+                    mb: { xs: 0.5, sm: 1 },
+                    fontSize: { xs: 13, sm: 24 },
                     fontWeight: 600,
                     ...truncateTextByLine(2),
                   }}>
                   {item?.title}
                 </Typography>
-                <Typography sx={{ fontSize: 15, fontWeight: 500 }}>
+                <Typography
+                  sx={{ fontSize: { xs: 10, sm: 15 }, fontWeight: 500 }}>
                   {moment(item.createdAt).format('MMMM D, YYYY')}
                 </Typography>
               </Box>
@@ -108,7 +109,7 @@ export default MainSwiper;
 
 const MainSwiperStyle: SxProps<Theme> = {
   '.mainSwiper': {
-    height: 450,
-    borderRadius: '8px',
+    height: { xs: 240, sm: 450 },
+    borderRadius: { xs: 0, sm: '8px' },
   },
 };

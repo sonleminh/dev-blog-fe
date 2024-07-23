@@ -25,9 +25,14 @@ export const MenuDropDown = ({ data }: { data?: TInitDataRes }) => {
       }}>
       <Box
         className='dropdown-btn'
-        sx={{ display: 'flex', alignItems: 'center' }}>
-        <Typography sx={{ mr: 0.5 }}>Lập Trình</Typography>{' '}
-        <KeyboardArrowDownIcon />
+        sx={{
+          display: 'flex',
+          alignItems: 'center',
+        }}>
+        <Typography sx={{ mr: 0.5, fontSize: { sm: 14, md: 16 } }}>
+          Lập Trình
+        </Typography>{' '}
+        <KeyboardArrowDownIcon sx={{ fontSize: { sm: 20, md: 24 } }} />
       </Box>
       <List
         className='dropdown-content'
@@ -49,7 +54,7 @@ export const MenuDropDown = ({ data }: { data?: TInitDataRes }) => {
           <AppLink key={item?.value} href={`/tag/${item?.value}`}>
             <ListItem
               sx={{
-                fontSize: 13.5,
+                fontSize: { sm: 12, md: 13.5 },
                 textTransform: 'capitalize',
                 transition: 'all 0.2s ease',
                 ':hover': {

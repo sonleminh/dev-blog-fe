@@ -38,8 +38,10 @@ const Layout = ({ children }: LayoutType) => {
           height: '36px',
           bgcolor: theme.palette.mode === 'light' ? '#000' : '#fff',
           color: theme.palette.mode === 'light' ? '#fff' : '#000',
+          border: '1px solid #696969',
           borderRadius: 2,
           cursor: 'pointer',
+          zIndex: 69,
         }}
         onClick={handleScrollToTop}>
         <KeyboardArrowUpIcon sx={{ fontSize: 24 }} />
@@ -56,8 +58,10 @@ const Layout = ({ children }: LayoutType) => {
           height: '36px',
           bgcolor: theme.palette.mode === 'light' ? '#000' : '#fff',
           color: theme.palette.mode === 'light' ? '#fff' : '#000',
+          border: '1px solid #696969',
           borderRadius: 2,
           cursor: 'pointer',
+          zIndex: 69,
         }}
         onClick={context.toggleColorMode}>
         {theme.palette.mode === 'light' ? (

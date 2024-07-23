@@ -4,7 +4,7 @@ import { Autoplay, FreeMode, Navigation, Thumbs } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 import { IArticle } from '@/interfaces/IArticle';
-import { Box, SxProps, Theme } from '@mui/material';
+import { Box, SxProps, Theme, useMediaQuery, useTheme } from '@mui/material';
 
 type TSwiperProps = {
   data: IArticle[];
@@ -12,6 +12,19 @@ type TSwiperProps = {
 };
 
 const ThumbSwiper = (props: TSwiperProps) => {
+  // const theme = useTheme();
+  // const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
+  // const isMediumScreen = useMediaQuery(theme.breakpoints.between('sm', 'md'));
+  // const isLargeScreen = useMediaQuery(theme.breakpoints.up('md'));
+
+  // let radius: number;
+  // let radius: number;
+  // let radius: number;
+
+  // if (isSmallScreen) {
+  //   radius = 24;
+  // }
+
   return (
     <Box sx={SwiperStyle}>
       <Swiper
@@ -31,7 +44,17 @@ const ThumbSwiper = (props: TSwiperProps) => {
           clickable: true,
         }}
         modules={[Autoplay, FreeMode, Navigation, Thumbs]}
-        className='mySwiper'>
+        className='mySwiper'
+        breakpoints={{
+          0: {
+            slidesPerView: 3,
+            spaceBetween: 0,
+          },
+          600: {
+            slidesPerView: 4,
+            spaceBetween: 10,
+          },
+        }}>
         {props?.data?.map((item: IArticle, index: number) => (
           <SwiperSlide key={index}>
             <Box className='thumb-item'>
@@ -41,7 +64,7 @@ const ThumbSwiper = (props: TSwiperProps) => {
                   position: 'relative',
                   width: { xs: '100%' },
                   height: { xs: '100%' },
-                  mb: 1,
+                  mb: { xs: 0, sm: 1 },
                   borderRadius: '50%',
                   overflow: 'hidden',
                   '& img': {
@@ -51,7 +74,7 @@ const ThumbSwiper = (props: TSwiperProps) => {
                 <SkeletonImage src={item.thumbnail_image} alt='cc' fill />
               </Box>
               <svg className='progressBar'>
-                <circle r='35' cx='36' cy='36'></circle>
+                <circle></circle>
               </svg>
             </Box>
           </SwiperSlide>
@@ -74,8 +97,8 @@ const SwiperStyle: SxProps<Theme> = {
   zIndex: 2,
   borderLeft: '1px solid rgba(255,255,255,.1)',
   '.mySwiper': {
-    width: 120,
-    height: 350,
+    width: { xs: 72, sm: 120 },
+    height: { xs: 220, sm: 350 },
   },
   '.swiper-slide': {
     position: 'relative',
@@ -87,8 +110,8 @@ const SwiperStyle: SxProps<Theme> = {
   },
   '.thumb-item': {
     position: 'relative',
-    width: '72px',
-    height: '72px',
+    width: { xs: '48px', sm: '72px' },
+    height: { xs: '48px', sm: '72px' },
     cursor: 'pointer',
   },
   '.thumb-container': {
@@ -109,16 +132,19 @@ const SwiperStyle: SxProps<Theme> = {
     position: 'absolute',
     top: '0',
     right: '0',
-    width: '72px',
-    height: '72px',
+    width: { xs: '48px', sm: '72px' },
+    height: { xs: '48px', sm: '72px' },
     '& circle': {
       fill: 'rgba(255,255,255,0)',
       stroke: '#fff',
       strokeWidth: '3px',
       strokeLinecap: 'round',
       animation: 'progress 5.5s',
-      strokeDasharray: '219.8',
-      strokeDashoffset: '219.8',
+      strokeDasharray: { xs: '144.44', sm: '219.8' },
+      strokeDashoffset: { xs: '144.44', sm: '219.8' },
+      r: { xs: 23, sm: 35 },
+      cx: { xs: 24, sm: 36 },
+      cy: { xs: 24, sm: 36 },
     },
   },
   '.swiper-slide-thumb-active .progressBar': {
@@ -126,7 +152,7 @@ const SwiperStyle: SxProps<Theme> = {
   },
   '@keyframes progress': {
     '0%': {
-      strokeDashoffset: '219.8',
+      strokeDashoffset: { xs: '144.44', sm: '219.8' },
     },
     '100%': {
       strokeDashoffset: '0',

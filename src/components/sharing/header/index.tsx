@@ -17,14 +17,14 @@ import {
   InputAdornment,
   List,
   ListItem,
-  SxProps,
   TextField,
-  Theme,
   Typography,
   useTheme,
 } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
+import MenuIcon from '@mui/icons-material/Menu';
 
+import { HeaderStyle, MenuListStyle } from './style';
 import HeaderLogo from './HeaderLogo';
 import moment from 'moment';
 
@@ -85,13 +85,10 @@ const Header = () => {
   return (
     <>
       <LayoutContainer>
-        <Box
-          sx={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            height: 80,
-          }}>
+        <Box sx={HeaderStyle}>
+          <Box className='mobile-menu'>
+            <MenuIcon />
+          </Box>
           <Box
             sx={{
               display: 'flex',
@@ -100,6 +97,7 @@ const Header = () => {
             <Button
               component={AppLink}
               href='/'
+              className='header-logo'
               sx={{
                 p: 0,
                 border:
@@ -124,11 +122,7 @@ const Header = () => {
             onClick={() => {
               handleBoxClick;
             }}
-            sx={{
-              position: 'relative',
-              display: 'flex',
-              alignItems: 'center',
-            }}>
+            className='header-search'>
             <TextField
               variant='outlined'
               size='small'
@@ -150,17 +144,6 @@ const Header = () => {
               inputRef={searchInputRef}
               onChange={(e) => handleSearchChange(e)}
               onClick={() => setIsOpen(true)}
-              sx={{
-                width: 120,
-                borderRadius: 4,
-                transition: 'width 0.3s ease',
-                '& .MuiInputBase-root': {
-                  width: '100%',
-                },
-                '&:focus-within': {
-                  width: 300,
-                },
-              }}
             />
             {searchResult && isOpen && (
               <Box
@@ -242,6 +225,7 @@ const Header = () => {
               </Box>
             )}
           </Box>
+          <SearchIcon className='search-mobile' />
         </Box>
       </LayoutContainer>
     </>
@@ -249,36 +233,3 @@ const Header = () => {
 };
 
 export default Header;
-
-const MenuListStyle: SxProps<Theme> = {
-  display: 'flex',
-  alignItems: 'center',
-  ml: 2,
-  pb: 0,
-  whiteSpace: 'nowrap',
-  '& >li': {
-    p: 0,
-    mx: 2,
-    position: 'relative',
-    '& >a': {
-      pb: 1,
-    },
-    ':before': {
-      position: 'absolute',
-      content: '""',
-      height: '3px',
-      right: '0',
-      bottom: '0',
-      width: '100%',
-      bgcolor: (theme) => (theme.palette.mode === 'light' ? '#000' : '#fff'),
-      transition: 'transform .2s',
-      transform: 'scaleX(0)',
-      transformOrigin: 'top right',
-    },
-    ':hover': {
-      ':before': {
-        transform: 'scaleX(1)',
-      },
-    },
-  },
-};

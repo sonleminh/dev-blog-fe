@@ -3,7 +3,9 @@ import { Box } from '@mui/material';
 
 const LayoutContainer = ({ children }: { children: ReactNode }) => {
   return (
-    <Box sx={{ maxWidth: { lg: 1070 }, margin: '0 auto' }}>{children}</Box>
+    <Box sx={{ maxWidth: { sm: 550, lg: 1070 }, margin: '0 auto' }}>
+      {children}
+    </Box>
   );
 };
 

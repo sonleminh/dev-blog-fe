@@ -22,43 +22,39 @@ import NextJSLogo from '@/assests/nextjs-logo';
 import HeaderLogo from '../header/HeaderLogo';
 import NestLogo from '@/assests/nestjs-logo';
 import MUILogo from '@/assests/mui-logo';
+import { FooterStyle } from './style';
 
 const Footer = () => {
   const theme = useTheme();
   return (
-    <Box
-      sx={{
-        padding: '50px 0 30px',
-        bgcolor: theme.palette.mode === 'light' ? '#000' : '#222',
-        color: '#fff',
-      }}>
+    <Box sx={FooterStyle}>
       <LayoutContainer>
-        <Grid container spacing={3} sx={FooterStyle}>
-          <Grid item xs={3}>
-            <Button
-              component={AppLink}
-              href='/'
-              sx={{
-                p: 0,
-                mb: 4,
-                border: '1px solid #696969',
-              }}>
+        <Grid
+          container
+          spacing={{ xs: 2, sm: 3 }}
+          sx={{
+            pb: 4,
+            '.footer-content': {
+              fontSize: 14,
+              color: '#bdbdbd',
+            },
+          }}>
+          <Grid item xs={12} sm={3}>
+            <Button component={AppLink} href='/' className='footer-logo'>
               <HeaderLogo />
             </Button>
           </Grid>
-          <Grid item xs={4}>
-            <Typography sx={{ mb: 3, fontSize: 20, fontWeight: 600 }}>
+          <Grid item xs={12} sm={4} className='footer-introduce'>
+            <Typography variant='h4' className='introduce-heading'>
               Giới thiệu
             </Typography>
-            <Typography className='footer-content'>
+            <Typography className='introduce-content'>
               Phát triển bởi Son Le vào năm 2024, là blog cá nhân chia sẻ kiến
               thức IT.
             </Typography>
           </Grid>
-          <Grid item xs={2}>
-            <Typography sx={{ mb: 2, fontSize: 20, fontWeight: 600 }}>
-              Blog
-            </Typography>
+          <Grid item xs={6} sm={2} className='footer-blog'>
+            <Typography variant='h4'>Blog</Typography>
             <List sx={{ p: 0, li: { px: 0 } }}>
               <ListItem>
                 <AppLink href={'/blog'} className='footer-content'>
@@ -72,10 +68,8 @@ const Footer = () => {
               </ListItem>
             </List>
           </Grid>
-          <Grid item xs={3}>
-            <Typography sx={{ mb: 3, fontSize: 20, fontWeight: 600 }}>
-              Follow me
-            </Typography>
+          <Grid item xs={6} sm={3} className='footer-follow'>
+            <Typography variant='h4'>Follow me</Typography>
             <Box
               sx={{
                 '& svg': {
@@ -92,10 +86,11 @@ const Footer = () => {
         </Grid>
         <Divider sx={{ bgcolor: '#696969' }} />
         <Box sx={{ mt: 2, textAlign: 'center' }}>
-          <Typography sx={{ mb: 2, fontSize: 14, color: '#e1e1e1' }}>
-            Copyright © 2024 Atlas Two | Powered by WordPress .
+          <Typography className='footer-copyright'>
+            Copyright © 2024 Son Le | Powered by NextJS .
           </Typography>
           <Box
+            className='footer-tech'
             sx={{
               display: 'flex',
               justifyContent: 'center',
@@ -112,11 +107,3 @@ const Footer = () => {
 };
 
 export default Footer;
-
-const FooterStyle: SxProps<Theme> = {
-  pb: 4,
-  '.footer-content': {
-    fontSize: 14,
-    color: '#bdbdbd',
-  },
-};

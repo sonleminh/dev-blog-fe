@@ -13,7 +13,7 @@ const Homepage = async () => {
     <LayoutContainer>
       <Box sx={{ py: 4 }}>
         <Banner data={data?.recent_articles?.slice(4, 10)} />
-        <Box sx={{ mt: 3 }}>
+        {/* <Box sx={{ mt: 3 }}>
           <Grid container spacing={3}>
             <Grid item xs={8}>
               <Latest data={data?.recent_articles?.slice(0, 4)} />
@@ -29,7 +29,7 @@ const Homepage = async () => {
               <Sidebar />
             </Grid>
           </Grid>
-        </Box>
+        </Box> */}
       </Box>
     </LayoutContainer>
   );

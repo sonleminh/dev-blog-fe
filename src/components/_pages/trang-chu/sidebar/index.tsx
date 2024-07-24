@@ -16,7 +16,7 @@ const Sidebar = async () => {
           sx={{
             display: 'flex',
             justifyContent: 'space-between',
-            mb: 2,
+            mb: '25px',
           }}>
           <Typography sx={{ fontSize: 18, fontWeight: 600 }}>
             Thịnh hành

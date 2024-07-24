@@ -9,6 +9,7 @@ import { Box, Grid } from '@mui/material';
 
 const Homepage = async () => {
   const data = await getArticleListAPI();
+
   return (
     <Box sx={{ py: 4 }}>
       <Box sx={{ maxWidth: { xs: '100%', lg: 1070 }, margin: '0 auto' }}>

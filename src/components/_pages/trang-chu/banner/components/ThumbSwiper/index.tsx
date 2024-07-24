@@ -12,19 +12,6 @@ type TSwiperProps = {
 };
 
 const ThumbSwiper = (props: TSwiperProps) => {
-  // const theme = useTheme();
-  // const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
-  // const isMediumScreen = useMediaQuery(theme.breakpoints.between('sm', 'md'));
-  // const isLargeScreen = useMediaQuery(theme.breakpoints.up('md'));
-
-  // let radius: number;
-  // let radius: number;
-  // let radius: number;
-
-  // if (isSmallScreen) {
-  //   radius = 24;
-  // }
-
   return (
     <Box sx={SwiperStyle}>
       <Swiper
@@ -50,7 +37,7 @@ const ThumbSwiper = (props: TSwiperProps) => {
             slidesPerView: 3,
             spaceBetween: 0,
           },
-          600: {
+          1200: {
             slidesPerView: 4,
             spaceBetween: 10,
           },

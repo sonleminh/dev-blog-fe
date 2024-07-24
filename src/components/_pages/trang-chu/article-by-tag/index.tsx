@@ -33,12 +33,21 @@ const ArticleByTag = ({ data, title }: { data: IArticle[]; title: string }) => {
       </Box>
       <Swiper
         slidesPerView={3}
-        spaceBetween={12}
         navigation={{
           prevEl: `.arrow-left-${title}`,
           nextEl: `.arrow-right-${title}`,
         }}
         modules={[Navigation]}
+        breakpoints={{
+          0: {
+            slidesPerView: 1,
+            spaceBetween: 0,
+          },
+          1200: {
+            slidesPerView: 3,
+            spaceBetween: 12,
+          },
+        }}
         className='mySwiper'>
         {data?.map((item) => (
           <SwiperSlide key={item._id}>
@@ -58,7 +67,7 @@ const ArticleByTag = ({ data, title }: { data: IArticle[]; title: string }) => {
                 sx={{
                   position: 'relative',
                   width: '100%',
-                  height: { xs: '160px', sm: '160px', md: '160px' },
+                  height: { xs: '220px', lg: '160px' },
                   mb: 1,
                   borderRadius: '8px',
                   overflow: 'hidden',

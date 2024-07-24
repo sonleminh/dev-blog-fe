@@ -26,7 +26,7 @@ const ArticleByTag = async ({
     <LayoutContainer>
       <Box sx={{ p: '16px 0 28px' }}>
         <Grid container spacing={4}>
-          <Grid item xs={8}>
+          <Grid item xs={12} sm={8}>
             <Box sx={{ mb: 3 }}>
               <Breadcrumbs options={breadcrumbsOptions} />
             </Box>
@@ -49,7 +49,7 @@ const ArticleByTag = async ({
                             sx={{
                               position: 'relative',
                               width: '100%',
-                              height: 150,
+                              height: { xs: 80, lg: 150 },
                               borderRadius: '8px',
                               overflow: 'hidden',
                               '& img': {
@@ -68,23 +68,26 @@ const ArticleByTag = async ({
                             className='article-title'
                             sx={{
                               mb: 0.5,
-                              fontSize: 18,
+                              fontSize: { xs: 12, lg: 18 },
                               fontWeight: 500,
                               ...truncateTextByLine(2),
                             }}>
                             {item?.title}
                           </Typography>
-                          <Typography sx={{ mb: 0.5, fontSize: 11 }}>
+                          <Typography
+                            sx={{ mb: 0.5, fontSize: { xs: 9, lg: 11 } }}>
                             {moment(item?.createdAt).format('MMMM D, YYYY')}
                           </Typography>
-                          <Typography
-                            sx={{
-                              fontSize: 13,
-                              color: '#767676',
-                              ...truncateTextByLine(2),
-                            }}>
-                            {item?.summary}
-                          </Typography>
+                          <Box sx={{ display: { xs: 'none', lg: 'block' } }}>
+                            <Typography
+                              sx={{
+                                fontSize: 13,
+                                color: '#767676',
+                                ...truncateTextByLine(2),
+                              }}>
+                              {item?.summary}
+                            </Typography>
+                          </Box>
                         </Grid>
                       </Grid>
                     </AppLink>
@@ -94,7 +97,7 @@ const ArticleByTag = async ({
             </Box>
             <Pagination data={data} page={+searchParams?.page} type='tag' />
           </Grid>
-          <Grid item xs={4}>
+          <Grid item xs={12} sm={8}>
             <Sidebar />
           </Grid>
         </Grid>

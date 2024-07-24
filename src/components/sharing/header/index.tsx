@@ -20,6 +20,7 @@ import {
   List,
   ListItem,
   ListItemText,
+  Modal,
   TextField,
   Typography,
   useTheme,
@@ -27,7 +28,7 @@ import {
 import SearchIcon from '@mui/icons-material/Search';
 import MenuIcon from '@mui/icons-material/Menu';
 
-import { HeaderStyle, MenuListStyle } from './style';
+import { HeaderStyle, MenuListStyle, SearchModalStyle } from './style';
 import HeaderLogo from './components/HeaderLogo';
 import moment from 'moment';
 import { ExpandLess, ExpandMore } from '@mui/icons-material';
@@ -39,6 +40,7 @@ const Header = () => {
   const theme = useTheme();
   const [searchValue, setSearchValue] = useState<string | null>();
   const [openMobileMenu, setOpenMobileMenu] = useState<boolean>(false);
+  const [openSearch, setOpenSearch] = useState<boolean>(false);
   const [isActive, setIsActive] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
@@ -89,7 +91,6 @@ const Header = () => {
       setIsOpen(true);
     }
   };
-
   return (
     <>
       <LayoutContainer>
@@ -149,7 +150,7 @@ const Header = () => {
                   <Collapse in={isActive} timeout='auto' unmountOnExit>
                     <List sx={{ pt: 0, pl: 4 }}>
                       {tagData?.tags?.map((item) => (
-                        <AppLink key={item.value} href={`/blog/${item?.value}`}>
+                        <AppLink key={item.value} href={`/tag/${item?.value}`}>
                           <ListItem
                             onClick={() => {
                               setOpenMobileMenu(false);
@@ -316,7 +317,105 @@ const Header = () => {
               </Box>
             )}
           </Box>
-          <SearchIcon className='search-mobile' />
+          <SearchIcon
+            onClick={() => setOpenSearch(true)}
+            className='search-mobile'
+          />
+          <Modal
+            open={openSearch}
+            onClose={() => setOpenSearch(false)}
+            aria-labelledby='parent-modal-title'
+            aria-describedby='parent-modal-description'
+            closeAfterTransition>
+            <Box sx={SearchModalStyle}>
+              <TextField
+                variant='outlined'
+                size='small'
+                fullWidth
+                name='username'
+                placeholder='Search..'
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position='start' onClick={handleBoxClick}>
+                      <SearchIcon />
+                    </InputAdornment>
+                  ),
+                }}
+                helperText={
+                  <Typography
+                    component={'span'}
+                    sx={{ fontSize: 13, color: 'red' }}></Typography>
+                }
+                inputRef={searchInputRef}
+                onChange={(e) => handleSearchChange(e)}
+                onClick={() => setIsOpen(true)}
+              />
+              {searchResult ? (
+                <List sx={{ maxHeight: 300, overflow: 'auto' }}>
+                  {searchResult?.articleList.map((item) => (
+                    <ListItem
+                      key={item._id}
+                      onClick={() => {
+                        setIsOpen(false);
+                        setSearchValue('');
+                        if (searchInputRef.current) {
+                          searchInputRef.current.value = '';
+                        }
+                      }}>
+                      <AppLink href={`/blog/${item._id}`}>
+                        <Grid container spacing={1.5}>
+                          <Grid item xs={3}>
+                            <Box
+                              sx={{
+                                position: 'relative',
+                                width: '100%',
+                                height: 50,
+                                border: '1px solid #3d3d3d',
+                                borderRadius: '4px',
+                                overflow: 'hidden',
+                                '& img': {
+                                  objectFit: 'cover',
+                                },
+                              }}>
+                              <SkeletonImage
+                                src={item?.thumbnail_image}
+                                alt={item?.title}
+                                fill
+                              />
+                            </Box>
+                          </Grid>
+                          <Grid item xs={9}>
+                            <Typography
+                              sx={{
+                                fontSize: 13,
+                                fontWeight: 500,
+                                lineHeight: '18px',
+                                ...truncateTextByLine(2),
+                              }}>
+                              {item.title}
+                            </Typography>
+                            <Typography sx={{ fontSize: 11, color: '#767676' }}>
+                              {moment(item?.createdAt).format('MMMM D, YYYY')}
+                            </Typography>
+                          </Grid>
+                        </Grid>
+                      </AppLink>
+                    </ListItem>
+                  ))}
+                </List>
+              ) : (
+                <Box
+                  sx={{
+                    p: '8px 0',
+                    fontSize: 14,
+                    fontStyle: 'italic',
+                    textAlign: 'center',
+                  }}>
+                  No result
+                </Box>
+              )}
+            </Box>
+          </Modal>
         </Box>
       </LayoutContainer>
     </>

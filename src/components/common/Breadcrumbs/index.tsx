@@ -1,6 +1,6 @@
 import AppLink from '../AppLink';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
-import { Breadcrumbs as BaseBreadcrumbs } from '@mui/material';
+import { Breadcrumbs as BaseBreadcrumbs, Typography } from '@mui/material';
 
 interface IBreadcrumbsProps {
   options: IBreadcrumbOption[];
@@ -16,28 +16,20 @@ const Breadcrumbs = ({ options }: IBreadcrumbsProps) => {
     <BaseBreadcrumbs
       separator={<NavigateNextIcon sx={{ fontSize: 16 }} />}
       aria-label='breadcrumb'
-      sx={
-        {
-          '.MuiBreadcrumbs-ol': {
-            width: '100%',
-            flexWrap: 'nowrap',
+      sx={{
+        '.MuiBreadcrumbs-ol': {
+          width: '100%',
+          flexWrap: 'nowrap',
+        },
+        '.MuiBreadcrumbs-li': {
+          lineHeight: '12px',
+          ':last-child': {
+            overflow: 'hidden',
+            textOverflow: 'ellipsis',
+            whiteSpace: 'nowrap',
           },
-          '.MuiBreadcrumbs-li': {
-            lineHeight: '12px',
-            ':last-child': {
-              overflow: 'hidden',
-              textOverflow: 'ellipsis',
-              whiteSpace: 'nowrap',
-            },
-          },
-        }
-        // {
-        // '.MuiBreadcrumbs-separator': {
-        //   margin: '0 2px',
-        // },
-
-        // }
-      }>
+        },
+      }}>
       {options?.map((item, index) => {
         return (
           <AppLink
@@ -46,7 +38,9 @@ const Breadcrumbs = ({ options }: IBreadcrumbsProps) => {
             sx={{
               fontSize: 12,
             }}>
-            {item.label}
+            <Typography sx={{ textTransform: 'capitalize' }}>
+              {item.label}
+            </Typography>
           </AppLink>
         );
       })}

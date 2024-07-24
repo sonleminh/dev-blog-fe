@@ -1,4 +1,4 @@
-import { SxProps, Theme } from "@mui/material";
+import { keyframes, SxProps, Theme } from "@mui/material";
 
 export const HeaderStyle: SxProps<Theme> = {
     display: 'flex',
@@ -68,3 +68,35 @@ export const MenuListStyle: SxProps<Theme> = {
       },
     },
   };
+
+const slideIn = keyframes`
+from {
+  transform: translate(-50%, -100%);
+  opacity: 0;
+}
+to {
+  transform: translate(-50%, -50%);
+  opacity: 1;
+}
+`;
+
+export const SearchModalStyle: SxProps<Theme> = {
+  position: 'absolute' as 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: {
+    xs: '90%',
+    md: '90%',
+    lg: 900
+  },
+  p: 2,
+  bgcolor: 'background.paper',
+  border: '1px solid #696969',
+  animation: `${slideIn} 500ms cubic-bezier(0.34, 1.61, 0.7, 1)`,
+  ['&.MuiSlide-entered']: {
+    opacity: 1,
+  },
+  borderRadius: {xs:2},
+  overflow: 'hidden'
+}

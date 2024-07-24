@@ -4,7 +4,7 @@ import { Autoplay, FreeMode, Navigation, Thumbs } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 import { IArticle } from '@/interfaces/IArticle';
-import { Box, SxProps, Theme, useMediaQuery, useTheme } from '@mui/material';
+import { Box, SxProps, Theme } from '@mui/material';
 
 type TSwiperProps = {
   data: IArticle[];

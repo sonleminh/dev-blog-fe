@@ -59,8 +59,8 @@ export const useSearchArticle = (keyword: string) => {
   return useQuery({queryKey:[QueryKeys.ARTICLE, keyword], queryFn: ()=> getSearchArticleAPI(keyword), 
     enabled: !!keyword,
     refetchOnWindowFocus: false,
-    // refetchOnMount: false,
-    // refetchInterval: false,
+    refetchOnMount: false,
+    refetchInterval: false,
   });
 };
 

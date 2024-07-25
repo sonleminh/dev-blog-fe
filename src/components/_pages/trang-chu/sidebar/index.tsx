@@ -55,7 +55,7 @@ const Sidebar = async () => {
                   sx={{
                     mb: 1,
                     fontSize: 14,
-                    fontWeight: 700,
+                    fontWeight: 500,
                     ...truncateTextByLine(2),
                   }}>
                   {item.title}

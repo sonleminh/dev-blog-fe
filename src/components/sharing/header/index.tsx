@@ -123,7 +123,10 @@ const Header = () => {
                         },
                       },
                       ':hover': {
-                        bgcolor: '#dadada',
+                        bgcolor:
+                          theme.palette.mode === 'light'
+                            ? '#dadada'
+                            : '#696969',
                       },
                     },
                   }}>

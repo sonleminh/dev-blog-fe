@@ -32,13 +32,12 @@ const Breadcrumbs = ({ options }: IBreadcrumbsProps) => {
       }}>
       {options?.map((item, index) => {
         return (
-          <AppLink
-            key={index}
-            href={item.link}
-            sx={{
-              fontSize: 12,
-            }}>
-            <Typography sx={{ textTransform: 'capitalize' }}>
+          <AppLink key={index} href={item.link}>
+            <Typography
+              sx={{
+                fontSize: { xs: 13, lg: 16 },
+                textTransform: 'capitalize',
+              }}>
               {item.label}
             </Typography>
           </AppLink>

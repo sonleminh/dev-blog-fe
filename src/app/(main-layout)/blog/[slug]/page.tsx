@@ -1,6 +1,6 @@
 import LayoutContainer from '@/components/sharing/layout-container';
 import HtmlRenderBox from '@/components/common/HtmlRenderBox';
-import { RelatedArticle } from './components/relatedArticle';
+import { RelatedArticle } from './components/related-article';
 import Sidebar from '@/components/_pages/trang-chu/sidebar';
 import Breadcrumbs from '@/components/common/Breadcrumbs';
 import AppLink from '@/components/common/AppLink';
@@ -10,6 +10,7 @@ import { getArticleByIdAPI } from '@/services/article';
 import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
 import { Box, Button, Grid, Typography } from '@mui/material';
 import moment from 'moment';
+import { TagItem } from './components/tag-item';
 
 const ArticleDetail = async ({ params }: { params: { slug: string } }) => {
   const { data, relatedData } = await getArticleByIdAPI(params?.slug);
@@ -24,7 +25,8 @@ const ArticleDetail = async ({ params }: { params: { slug: string } }) => {
         <Grid container spacing={4}>
           <Grid
             item
-            xs={8}
+            xs={12}
+            sm={8}
             sx={{
               pre: {
                 p: 2,
@@ -49,26 +51,8 @@ const ArticleDetail = async ({ params }: { params: { slug: string } }) => {
                 gap: '10px',
                 mb: 2,
               }}>
-              {data?.tags?.map((item, index) => (
-                <AppLink key={index} href={`/tag/${item?.value}`}>
-                  <Button
-                    variant='contained'
-                    sx={{
-                      p: '4px 8px',
-                      bgcolor: '#000',
-                      color: '#fff',
-                      fontSize: 13,
-                      borderRadius: '4px',
-                      textTransform: 'none',
-                      boxShadow: 'none',
-                      ':hover': {
-                        // bgcolor: (theme) => theme.palette.primary.light,
-                        color: '#fff',
-                      },
-                    }}>
-                    #{item.label}
-                  </Button>
-                </AppLink>
+              {data?.tags?.map((item) => (
+                <TagItem key={item.value} data={item} />
               ))}
             </Box>
             <Box
@@ -90,7 +74,8 @@ const ArticleDetail = async ({ params }: { params: { slug: string } }) => {
           </Grid>
           <Grid
             item
-            xs={4}
+            xs={12}
+            sm={4}
             sx={{ position: 'sticky', top: '0', height: '100%' }}>
             <Sidebar />
           </Grid>

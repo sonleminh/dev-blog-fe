@@ -58,7 +58,10 @@ const Latest = ({ data }: { data: IArticle[] }) => {
                     width: '100%',
                     height: { xs: '220px', lg: '220px' },
                     mb: 1,
-                    border: '1px solid #eee',
+                    border:
+                      theme.palette.mode === 'light'
+                        ? '1px solid #eee'
+                        : '1px solid #363636',
                     borderRadius: '8px',
                     overflow: 'hidden',
                     '& img': {

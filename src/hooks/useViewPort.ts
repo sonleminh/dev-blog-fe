@@ -5,7 +5,7 @@ import { useMediaQuery } from '@mui/material';
 export const useViewport = () => {
     const [currentBreakpoint, setCurrentBreakpoint] = useState<Breakpoint>(
       );
-  const isMobile = useMediaQuery( `(max-width: ${Breakpoint.Tablet - 1}px)` );
+  const isMobile = useMediaQuery( `(max-width: ${Breakpoint.Desktop - 1}px)` );
   const isDesktop = useMediaQuery(
   `(min-width: ${Breakpoint.Desktop}px) and
   (max-width: ${Breakpoint.LargeDesktop - 1}px)`);

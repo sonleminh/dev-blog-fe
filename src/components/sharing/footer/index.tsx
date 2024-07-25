@@ -25,7 +25,6 @@ import MUILogo from '@/assests/mui-logo';
 import { FooterStyle } from './style';
 
 const Footer = () => {
-  const theme = useTheme();
   return (
     <Box sx={FooterStyle}>
       <LayoutContainer>

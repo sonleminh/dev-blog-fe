@@ -50,13 +50,13 @@ export const ArticleItem = ({ data }: { data: IArticle }) => {
               className='article-title'
               sx={{
                 mb: 0.5,
-                fontSize: { xs: 12, lg: 18 },
-                fontWeight: 500,
+                fontSize: { xs: 15, lg: 18 },
+                fontWeight: 600,
                 ...truncateTextByLine(2),
               }}>
               {data?.title}
             </Typography>
-            <Typography sx={{ mb: 0.5, fontSize: { xs: 9, lg: 11 } }}>
+            <Typography sx={{ mb: 0.5, fontSize: { xs: 11, lg: 11 } }}>
               {moment(data?.createdAt).format('MMMM D, YYYY')}
             </Typography>
             <Box sx={{ display: { xs: 'none', lg: 'block' } }}>

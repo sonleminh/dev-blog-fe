@@ -40,7 +40,6 @@ const MainSwiper = (props: TSwiperProps) => {
             <AppLink
               href={`blog/${item._id}`}
               sx={{
-                position: 'relative',
                 ':before': {
                   position: 'absolute',
                   content: "''",
@@ -80,20 +79,20 @@ const MainSwiper = (props: TSwiperProps) => {
                   position: 'absolute',
                   bottom: '0',
                   zIndex: 2,
-                  p: { xs: '0 80px 12px 8px', sm: '0 120px 24px 24px' },
+                  p: { xs: '0 80px 12px 8px', lg: '0 120px 24px 24px' },
                   color: '#fff',
                 }}>
                 <Typography
                   sx={{
                     mb: { xs: 0.5, sm: 1 },
-                    fontSize: { xs: 13, sm: 24 },
+                    fontSize: { xs: 16, sm: 24 },
                     fontWeight: 600,
                     ...truncateTextByLine(2),
                   }}>
                   {item?.title}
                 </Typography>
                 <Typography
-                  sx={{ fontSize: { xs: 10, sm: 15 }, fontWeight: 500 }}>
+                  sx={{ fontSize: { xs: 12, sm: 15 }, fontWeight: 500 }}>
                   {moment(item.createdAt).format('MMMM D, YYYY')}
                 </Typography>
               </Box>

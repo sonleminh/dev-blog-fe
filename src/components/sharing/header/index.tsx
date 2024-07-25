@@ -335,6 +335,7 @@ const Header = () => {
                 variant='outlined'
                 size='small'
                 fullWidth
+                autoFocus
                 name='username'
                 placeholder='Search..'
                 InputProps={{
@@ -359,7 +360,7 @@ const Header = () => {
                     <ListItem
                       key={item._id}
                       onClick={() => {
-                        setIsOpen(false);
+                        setOpenSearch(false);
                         setSearchValue('');
                         if (searchInputRef.current) {
                           searchInputRef.current.value = '';

@@ -8,7 +8,7 @@ export const useViewport = () => {
   const isMobile = useMediaQuery( `(max-width: ${Breakpoint.Desktop - 1}px)` );
   const isDesktop = useMediaQuery(
   `(min-width: ${Breakpoint.Desktop}px) and
-  (max-width: ${Breakpoint.LargeDesktop - 1}px)`);
+  (max-width: ${Breakpoint.LargeDesktop - 1}px)`); 
   const isLargeDesktop = useMediaQuery(`(min-width: ${Breakpoint.LargeDesktop}px)`);
 
   useEffect(() => {

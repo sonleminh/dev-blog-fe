@@ -19,24 +19,28 @@ const Breadcrumbs = ({ options }: IBreadcrumbsProps) => {
       sx={{
         '.MuiBreadcrumbs-ol': {
           width: '100%',
-          flexWrap: 'nowrap',
+          flexWrap: { xs: 'nowrap', lg: 'nowrap' },
         },
         '.MuiBreadcrumbs-li': {
+          display: 'inline-block',
           lineHeight: '12px',
           ':last-child': {
-            overflow: 'hidden',
+            overflow: { xs: 'hidden', lg: 'hidden' },
             textOverflow: 'ellipsis',
-            whiteSpace: 'nowrap',
+            whiteSpace: { xs: 'nowrap', lg: 'nowrap' },
           },
         },
       }}>
       {options?.map((item, index) => {
         return (
-          <AppLink key={index} href={item.link}>
+          <AppLink component={'span'} key={index} href={item.link}>
             <Typography
               sx={{
                 fontSize: { xs: 13, lg: 16 },
                 textTransform: 'capitalize',
+                overflow: 'hidden',
+                textOverflow: 'ellipsis',
+                whiteSpace: 'nowrap',
               }}>
               {item.label}
             </Typography>

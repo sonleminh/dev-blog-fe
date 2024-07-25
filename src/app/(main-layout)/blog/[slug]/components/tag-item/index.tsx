@@ -27,8 +27,10 @@ export const TagItem = ({
           textTransform: 'none',
           boxShadow: 'none',
           ':hover': {
-            bgcolor: (theme) => theme.palette.primary.light,
-            color: '#fff',
+            bgcolor: (theme) =>
+              theme.palette.mode === 'light' ? '#000' : '#fff',
+            color: (theme) =>
+              theme.palette.mode === 'light' ? '#fff' : '#000',
           },
         }}>
         #{data.label}

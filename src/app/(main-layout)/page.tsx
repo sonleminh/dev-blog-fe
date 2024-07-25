@@ -11,7 +11,7 @@ const Homepage = async () => {
   const data = await getArticleListAPI();
 
   return (
-    <Box sx={{ py: 4 }}>
+    <Box sx={{ py: { xs: 2, lg: 4 } }}>
       <Box sx={{ maxWidth: { xs: '100%', lg: 1070 }, margin: '0 auto' }}>
         <Banner data={data?.recent_articles?.slice(4, 10)} />
       </Box>

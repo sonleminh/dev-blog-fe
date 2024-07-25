@@ -1,15 +1,11 @@
 import LayoutContainer from '@/components/sharing/layout-container';
-import SkeletonImage from '@/components/common/SkeletonImage';
 import { ArticleItem } from '@/components/common/ArticleItem';
 import Sidebar from '@/components/_pages/trang-chu/sidebar';
 import Breadcrumbs from '@/components/common/Breadcrumbs';
 import Pagination from '@/components/common/Pagination';
-import AppLink from '@/components/common/AppLink';
 
-import { truncateTextByLine } from '@/utils/css-helper.util';
 import { getLatestArticleAPI } from '@/services/article';
-import { Box, Grid, Typography } from '@mui/material';
-import moment from 'moment';
+import { Box, Grid } from '@mui/material';
 
 const Latest = async ({ searchParams }: { searchParams: { page: string } }) => {
   const data = await getLatestArticleAPI(+searchParams.page);

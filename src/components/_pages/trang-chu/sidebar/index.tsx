@@ -54,13 +54,13 @@ const Sidebar = async () => {
                 <Typography
                   sx={{
                     mb: 1,
-                    fontSize: 14,
-                    fontWeight: 500,
+                    fontSize: 15,
+                    fontWeight: 600,
                     ...truncateTextByLine(2),
                   }}>
                   {item.title}
                 </Typography>
-                <Typography sx={{ fontSize: 12 }}>
+                <Typography sx={{ fontSize: 11 }}>
                   {moment(item.createdAt).format('MMMM D, YYYY')}
                 </Typography>
               </Grid>

@@ -40,8 +40,15 @@ export const RelatedArticle = ({ data }: { data: IArticle[] }) => {
           prevEl: `.arrow-left`,
           nextEl: `.arrow-right`,
         }}
-        slidesPerView={3}
-        spaceBetween={20}>
+        spaceBetween={20}
+        breakpoints={{
+          0: {
+            slidesPerView: 1,
+          },
+          1200: {
+            slidesPerView: 3,
+          },
+        }}>
         {data?.map((item: IArticle, index: number) => (
           <SwiperSlide key={index}>
             <AppLink href={`/blog/${item._id}`}>
@@ -49,7 +56,7 @@ export const RelatedArticle = ({ data }: { data: IArticle[] }) => {
                 sx={{
                   position: 'relative',
                   width: '100%',
-                  height: { xs: '160px', sm: '160px', md: '200px' },
+                  height: { xs: '200px', lg: '200px' },
                   mb: 1,
                   borderRadius: 2,
                   overflow: 'hidden',

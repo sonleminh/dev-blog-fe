@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
+import { GoogleAnalytics } from '@next/third-parties/google';
 
 import { ColorModeProvider } from '@/contexts/ColorModeContext';
 import { QueryContextProvider } from '@/contexts/QueryContext';
@@ -10,6 +11,7 @@ import { CssBaseline } from '@mui/material';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
+import { GA_ID } from '@/constants/env';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -32,6 +34,7 @@ export default async function RootLayout({
             <Layout>{children}</Layout>
           </body>
         </ColorModeProvider>
+        {GA_ID && <GoogleAnalytics gaId={GA_ID} />}
       </html>
     </QueryContextProvider>
   );

@@ -34,7 +34,7 @@ export default async function RootLayout({
             <Layout>{children}</Layout>
           </body>
         </ColorModeProvider>
-        {GA_ID && <GoogleAnalytics gaId={GA_ID} />}
+        {GA_ID && <GoogleAnalytics gaId='G-73CZM1WSWK' />}
       </html>
     </QueryContextProvider>
   );

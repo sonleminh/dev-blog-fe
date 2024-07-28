@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import { GoogleAnalytics } from '@next/third-parties/google';
+import { GoogleTagManager } from '@next/third-parties/google';
 
 import { ColorModeProvider } from '@/contexts/ColorModeContext';
 import { QueryContextProvider } from '@/contexts/QueryContext';
@@ -34,7 +35,8 @@ export default async function RootLayout({
             <Layout>{children}</Layout>
           </body>
         </ColorModeProvider>
-        <GoogleAnalytics gaId='G-73CZM1WSWK' />
+        {GA_ID && <GoogleAnalytics gaId={GA_ID} />}
+        <GoogleTagManager gtmId={'GTM-5HLMMZ68'} />
       </html>
     </QueryContextProvider>
   );

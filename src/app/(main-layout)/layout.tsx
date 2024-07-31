@@ -13,7 +13,8 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import { GA_ID } from '@/constants/env';
-
+import * as gtag from '@/utils/gtag';
+// import { useRouter } from 'next/navigation';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
@@ -26,6 +27,18 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // const router = useRouter();
+  // console.log('router:', router);
+  // useEffect(() => {
+  //   const handleRouteChange = (url: URL) => {
+  //     gtag.pageview(url);
+  //   };
+  //   router.events.on('routeChangeComplete', handleRouteChange);
+  //   return () => {
+  //     router.events.off('routeChangeComplete', handleRouteChange);
+  //   };
+  // }, [router.events]);
+
   return (
     <QueryContextProvider>
       <html lang='en'>
@@ -36,7 +49,7 @@ export default async function RootLayout({
           </body>
         </ColorModeProvider>
         {GA_ID && <GoogleAnalytics gaId={GA_ID} />}
-        <GoogleTagManager gtmId={'GTM-5HLMMZ68'} />
+        {/* <GoogleTagManager gtmId={'GTM-5HLMMZ68'} /> */}
       </html>
     </QueryContextProvider>
   );

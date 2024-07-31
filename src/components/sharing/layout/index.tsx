@@ -11,6 +11,7 @@ import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import Brightness3Icon from '@mui/icons-material/Brightness3';
 import LightModeIcon from '@mui/icons-material/LightMode';
 import { Box, useTheme } from '@mui/material';
+import { useRouter } from 'next/navigation';
 
 type LayoutType = {
   children?: React.ReactNode;
@@ -23,6 +24,9 @@ const Layout = ({ children }: LayoutType) => {
   const handleScrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
+  const router = useRouter();
+  // console.log('router:', router.);
+
   return (
     <>
       <Header />

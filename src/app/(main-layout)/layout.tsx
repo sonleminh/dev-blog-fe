@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import { GoogleAnalytics } from '@next/third-parties/google';
-import { GoogleTagManager } from '@next/third-parties/google';
 
 import { ColorModeProvider } from '@/contexts/ColorModeContext';
 import { QueryContextProvider } from '@/contexts/QueryContext';
@@ -12,9 +11,8 @@ import { CssBaseline } from '@mui/material';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
-import { GA_ID } from '@/constants/env';
-import * as gtag from '@/utils/gtag';
-// import { useRouter } from 'next/navigation';
+import { GA_ID, NODE_ENV } from '@/constants/env';
+
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
@@ -27,18 +25,6 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  // const router = useRouter();
-  // console.log('router:', router);
-  // useEffect(() => {
-  //   const handleRouteChange = (url: URL) => {
-  //     gtag.pageview(url);
-  //   };
-  //   router.events.on('routeChangeComplete', handleRouteChange);
-  //   return () => {
-  //     router.events.off('routeChangeComplete', handleRouteChange);
-  //   };
-  // }, [router.events]);
-
   return (
     <QueryContextProvider>
       <html lang='en'>
@@ -48,8 +34,7 @@ export default async function RootLayout({
             <Layout>{children}</Layout>
           </body>
         </ColorModeProvider>
-        {GA_ID && <GoogleAnalytics gaId={GA_ID} />}
-        {/* <GoogleTagManager gtmId={'GTM-5HLMMZ68'} /> */}
+        {NODE_ENV && GA_ID && <GoogleAnalytics gaId={GA_ID} />}
       </html>
     </QueryContextProvider>
   );

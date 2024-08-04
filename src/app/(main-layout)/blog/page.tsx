@@ -6,6 +6,15 @@ import Pagination from '@/components/common/Pagination';
 
 import { getLatestArticleAPI } from '@/services/article';
 import { Box, Grid } from '@mui/material';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: {
+    default: 'Blog mới nhất',
+    template: '%s - Blog kiến thức về lập trình',
+  },
+  description: 'Blog chia sẻ kiến thức về lập trình',
+};
 
 const Latest = async ({ searchParams }: { searchParams: { page: string } }) => {
   const data = await getLatestArticleAPI(+searchParams.page);

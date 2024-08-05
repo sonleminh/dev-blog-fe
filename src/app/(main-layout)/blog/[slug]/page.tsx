@@ -12,6 +12,13 @@ export async function generateMetadata({
   return {
     title: response.data.title,
     description: response.data.summary,
+    openGraph: {
+      images: [
+        {
+          url: response.data.thumbnail_image,
+        },
+      ],
+    },
   };
 }
 

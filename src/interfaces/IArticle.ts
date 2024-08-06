@@ -29,8 +29,8 @@ export interface IArticlesByTagResponse {
 }
 
 export interface IArticleByIdResponse {
-    data: IArticle,
-    relatedData: IArticlesResponse
+    data: IArticle;
+    relatedData: IArticlesResponse;
 }
 
 export interface IArticle {

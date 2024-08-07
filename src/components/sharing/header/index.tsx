@@ -356,6 +356,11 @@ const Header = () => {
                       <SearchIcon />
                     </InputAdornment>
                   ),
+                  endAdornment: isLoading && (
+                    <InputAdornment position='end' onClick={handleBoxClick}>
+                      <CircularProgress color='inherit' size={20} />
+                    </InputAdornment>
+                  ),
                 }}
                 helperText={
                   <Typography

@@ -12,6 +12,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import { GA_ID, NODE_ENV } from '@/constants/env';
+import { Analytics } from '@vercel/analytics/react';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -35,6 +36,7 @@ export default async function RootLayout({
           <body className={inter.className}>
             <CssBaseline />
             <Layout>{children}</Layout>
+            <Analytics />
           </body>
         </ColorModeProvider>
         {NODE_ENV && GA_ID && <GoogleAnalytics gaId={GA_ID} />}

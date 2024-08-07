@@ -13,6 +13,7 @@ import { truncateTextByLine } from '@/utils/css-helper.util';
 import {
   Box,
   Button,
+  CircularProgress,
   Collapse,
   Drawer,
   Grid,
@@ -41,11 +42,15 @@ const Header = () => {
   const [searchValue, setSearchValue] = useState<string | null>();
   const [openMobileMenu, setOpenMobileMenu] = useState<boolean>(false);
   const [openSearch, setOpenSearch] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isActive, setIsActive] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
+  console.log(isLoading);
+
   const { data: tagData } = useGetArticleInitial();
   const { data: searchResult } = useSearchArticle(searchValue as string);
+
   const searchResultBoxRef = useRef<HTMLDivElement>(null);
   const searchInputRef = useRef<HTMLInputElement>(null);
 
@@ -73,8 +78,10 @@ const Header = () => {
   function debounce<T extends (...args: any[]) => any>(cb: T, delay = 1000) {
     let timeout: ReturnType<typeof setTimeout>;
     return (...args: Parameters<T>): void => {
+      setIsLoading(true);
       clearTimeout(timeout);
       timeout = setTimeout(() => {
+        setIsLoading(false);
         cb(...args);
       }, delay);
     };
@@ -228,6 +235,11 @@ const Header = () => {
                 startAdornment: (
                   <InputAdornment position='start' onClick={handleBoxClick}>
                     <SearchIcon />
+                  </InputAdornment>
+                ),
+                endAdornment: isLoading && (
+                  <InputAdornment position='end' onClick={handleBoxClick}>
+                    <CircularProgress color='inherit' size={20} />
                   </InputAdornment>
                 ),
               }}

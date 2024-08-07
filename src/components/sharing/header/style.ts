@@ -16,14 +16,12 @@ export const HeaderStyle: SxProps<Theme> = {
         display: {xs: 'none', lg:'flex'},
         alignItems: 'center',
         '> div': {
-            width: {xs:100,lg:120},
-            borderRadius: 4,
-            transition: 'width 0.3s ease',
             '& .MuiInputBase-root': {
-              width: '100%',
-            },
-            '&:focus-within': {
-              width: 300,
+              width: {xs:100,lg:120},
+              transition: 'width 0.3s ease',
+              '&:focus-within': {
+                width: 300,
+              },
             },
         }
     },
